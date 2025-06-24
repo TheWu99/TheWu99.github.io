@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>泰勒展开式交互式可视化工具</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutral with Teal Accent -->
+    <!-- Application Structure Plan: A single-page dashboard structure. The top section introduces the concept. The main section features a large, interactive visualization tool with controls on the left (function selection, term count) and a dynamic chart on the right. This allows users to actively explore the core idea of Taylor approximation. A final section below provides reference material (key formulas and applications) in a tabbed format. This structure was chosen to guide the user from theory to hands-on practice, making a complex topic intuitive and engaging. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Taylor approximation concept -> Goal: Demonstrate convergence -> Viz: Interactive Chart.js line chart comparing a function to its polynomial approximation -> Interaction: Slider to control the number of terms -> Justification: Provides immediate visual feedback, making the abstract concept of convergence tangible.
+        - Report Info: Different base functions (sin, cos, etc.) -> Goal: Show versatility -> Viz: Dropdown menu -> Interaction: Select function to update chart -> Justification: Enables easy exploration and comparison.
+        - Report Info: Formulas and applications -> Goal: Provide reference -> Viz: Tabbed content cards -> Interaction: Click tabs to switch views -> Justification: Organizes static information cleanly without cluttering the main interactive tool.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #FDFBF8; /* A very light, warm off-white */
+            color: #334155; /* Slate 700 */
+        }
+        .control-panel-bg {
+            background-color: #F8F5F1; /* A slightly darker warm neutral */
+        }
+        .accent-color {
+            color: #14B8A6; /* Teal 500 */
+        }
+        .accent-bg {
+            background-color: #0D9488; /* Teal 600 */
+        }
+        .accent-bg-hover:hover {
+            background-color: #0F766E; /* Teal 700 */
+        }
+        .tab-active {
+            border-bottom: 2px solid #14B8A6;
+            color: #14B8A6;
+            font-weight: 500;
+        }
+        .tab-inactive {
+            border-bottom: 2px solid transparent;
+            color: #64748b; /* Slate 500 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 500px;
+            }
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #14B8A6;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #14B8A6;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <!-- Header Section -->
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold accent-color">泰勒展开式交互式可视化工具</h1>
+            <p class="mt-2 text-lg text-slate-600">探索如何用简单的多项式来逼近复杂的函数</p>
+        </header>
+
+        <!-- Intro Section -->
+        <section class="mb-10 max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-sm">
+            <h2 class="text-2xl font-semibold text-slate-800 mb-3">什么是泰勒展开式？</h2>
+            <p class="text-slate-600 leading-relaxed">
+                泰勒展开式是一个强大的数学工具，它能将一个函数表示为一个无穷的和式——由函数在某一点的各阶导数值计算出的多项式项构成。其核心思想是，在某一点附近，我们可以用一个多项式来“模拟”原函数的行为。我们增加的多项式项数越多，这个模拟就越精确，覆盖的范围也越广。这个工具在物理、工程和计算机科学中都有着至关重要的应用。
+            </p>
+        </section>
+
+
+        <!-- Main Interactive Visualizer Section -->
+        <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-10">
+            <!-- Control Panel -->
+            <aside class="lg:col-span-1 control-panel-bg p-6 rounded-lg shadow-sm">
+                <h3 class="text-xl font-semibold mb-4 text-slate-800">控制面板</h3>
+                
+                <!-- Function Selector -->
+                <div class="mb-6">
+                    <label for="functionSelect" class="block text-sm font-medium text-slate-700 mb-2">1. 选择一个函数:</label>
+                    <select id="functionSelect" class="w-full p-2 border border-slate-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500">
+                        <option value="sin" selected>sin(x)</option>
+                        <option value="cos">cos(x)</option>
+                        <option value="exp">e^x</option>
+                        <option value="log">ln(1+x)</option>
+                    </select>
+                </div>
+
+                <!-- Expansion Point 'a' -->
+                <div class="mb-6">
+                    <label for="expansionPoint" class="block text-sm font-medium text-slate-700 mb-2">2. 选择展开点 (a):</label>
+                    <input type="number" id="expansionPoint" value="0" step="0.1" class="w-full p-2 border border-slate-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500">
+                </div>
+
+                <!-- Number of Terms 'n' -->
+                <div class="mb-6">
+                    <label for="termsSlider" class="block text-sm font-medium text-slate-700 mb-2">3. 调整多项式项数 (n): <span id="termsCount" class="font-bold accent-color">5</span></label>
+                    <input type="range" id="termsSlider" min="0" max="15" value="5" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                </div>
+
+                <!-- Formula Display -->
+                <div>
+                    <h4 class="text-md font-semibold text-slate-700 mb-2">当前的多项式近似:</h4>
+                    <div id="formulaDisplay" class="p-3 bg-white rounded-md text-sm text-slate-700 overflow-x-auto">
+                        P(x) = ...
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Chart Display -->
+            <div class="lg:col-span-2 bg-white p-4 rounded-lg shadow-sm">
+                <div class="chart-container">
+                    <canvas id="taylorChart"></canvas>
+                </div>
+            </div>
+        </main>
+        
+        <!-- Reference Section -->
+        <section class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-sm">
+            <div class="border-b border-slate-200">
+                <nav class="-mb-px flex space-x-6" aria-label="Tabs">
+                    <button id="tab-formulas" class="tab-button tab-active px-1 py-4 text-sm font-medium">常见展开式</button>
+                    <button id="tab-apps" class="tab-button tab-inactive px-1 py-4 text-sm font-medium">应用场景</button>
+                </nav>
+            </div>
+            <div id="content-formulas" class="tab-content py-4">
+                 <ul class="space-y-4 text-slate-700">
+                    <li><strong>指数函数 e<sup>x</sup>:</strong> &nbsp; 1 + x + x²/2! + x³/3! + ...</li>
+                    <li><strong>正弦函数 sin(x):</strong> &nbsp; x - x³/3! + x⁵/5! - x⁷/7! + ...</li>
+                    <li><strong>余弦函数 cos(x):</strong> &nbsp; 1 - x²/2! + x⁴/4! - x⁶/6! + ...</li>
+                    <li><strong>自然对数 ln(1+x):</strong> &nbsp; x - x²/2 + x³/3 - x⁴/4 + ...</li>
+                    <li><strong>几何级数 1/(1-x):</strong> &nbsp; 1 + x + x² + x³ + ...</li>
+                </ul>
+            </div>
+            <div id="content-apps" class="tab-content hidden py-4">
+                <ul class="space-y-3 list-disc list-inside text-slate-600">
+                    <li><strong>函数近似计算:</strong> 在计算机和计算器中，三角函数、指数函数等的计算都依赖于泰勒多项式来获得高精度的近似值。</li>
+                    <li><strong>求极限:</strong> 在处理某些不定式极限时，将函数用泰勒展开式替换，可以大大简化计算。</li>
+                    <li><strong>物理与工程建模:</strong> 在研究微小振动或小角度摆动时，将 sin(θ) 近似为 θ 就是利用了其泰勒展开的第一项来简化模型。</li>
+                    <li><strong>解微分方程:</strong> 泰勒级数可以用来寻找微分方程的级数解，尤其是在没有解析解的情况下。</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer class="text-center mt-8">
+             <a href="/" class="text-slate-500 hover:text-teal-600 transition-colors">&larr; 返回首页</a>
+        </footer>
+
+    </div>
+
+    <script>
+        const functionSelect = document.getElementById('functionSelect');
+        const expansionPointInput = document.getElementById('expansionPoint');
+        const termsSlider = document.getElementById('termsSlider');
+        const termsCount = document.getElementById('termsCount');
+        const formulaDisplay = document.getElementById('formulaDisplay');
+        const ctx = document.getElementById('taylorChart').getContext('2d');
+
+        let chart;
+
+        const factorial = (n) => (n <= 1 ? 1 : n * factorial(n - 1));
+
+        const functions = {
+            sin: {
+                func: Math.sin,
+                derivative: (n, x) => {
+                    const patterns = [Math.cos, (y) => -Math.sin(y), (y) => -Math.cos(y), Math.sin];
+                    return patterns[n % 4](x);
+                }
+            },
+            cos: {
+                func: Math.cos,
+                derivative: (n, x) => {
+                    const patterns = [(y) => -Math.sin(y), (y) => -Math.cos(y), Math.sin, Math.cos];
+                    return patterns[n % 4](x);
+                }
+            },
+            exp: {
+                func: Math.exp,
+                derivative: (n, x) => Math.exp(x)
+            },
+            log: {
+                func: (x) => Math.log(1 + x),
+                derivative: (n, x) => {
+                    if (x <= -1) return NaN;
+                    if (n === 0) return Math.log(1 + x);
+                    return (n % 2 === 1 ? 1 : -1) * factorial(n - 1) / Math.pow(1 + x, n);
+                }
+            }
+        };
+
+        function getTaylorApproximation(funcKey, a, n_terms) {
+            return function(x) {
+                let sum = 0;
+                for (let n = 0; n <= n_terms; n++) {
+                    const derivative_val = functions[funcKey].derivative(n, a);
+                    sum += (derivative_val / factorial(n)) * Math.pow(x - a, n);
+                }
+                return sum;
+            };
+        }
+        
+        function formatTerm(coeff, n, a) {
+            if (Math.abs(coeff) < 1e-6) return '';
+            
+            const sign = coeff > 0 ? ' + ' : ' - ';
+            const absCoeff = Math.abs(coeff);
+            let coeffStr = absCoeff.toFixed(2);
+            if(Math.abs(absCoeff - 1) < 1e-6 && n > 0) {
+                 coeffStr = '';
+            }
+
+            let termStr = '';
+            if (n === 0) {
+                termStr = `${coeff.toFixed(2)}`;
+            } else {
+                 let xPart = '';
+                 if (a === 0) {
+                     xPart = n === 1 ? `x` : `x<sup>${n}</sup>`;
+                 } else {
+                     xPart = n === 1 ? `(x - ${a})` : `(x - ${a})<sup>${n}</sup>`;
+                 }
+                 termStr = `${sign}${coeffStr}${xPart}`;
+            }
+            return termStr;
+        }
+
+
+        function updateFormula(funcKey, a, n_terms) {
+            let formulaStr = '';
+            for (let n = 0; n <= n_terms; n++) {
+                const derivative_val = functions[funcKey].derivative(n, a);
+                const coeff = derivative_val / factorial(n);
+                if (Math.abs(coeff) < 1e-9) continue;
+
+                let termStr;
+                const sign = coeff > 0 ? '+' : '-';
+                const absCoeff = Math.abs(coeff);
+
+                let xPart = '';
+                if (n > 0) {
+                     if (a === 0) {
+                        xPart = n === 1 ? 'x' : `x<sup>${n}</sup>`;
+                     } else {
+                        const aStr = a > 0 ? `- ${a}` : `+ ${-a}`;
+                        xPart = n === 1 ? `(x ${aStr})` : `(x ${aStr})<sup>${n}</sup>`;
+                     }
+                }
+                
+                if(n === 0) {
+                    termStr = `${absCoeff.toFixed(2)}`;
+                } else if (Math.abs(absCoeff - 1) < 1e-9) {
+                     termStr = ` ${sign} ${xPart}`;
+                } else {
+                     termStr = ` ${sign} ${absCoeff.toFixed(2)}${xPart}`;
+                }
+                
+                if (n === 0 && coeff < 0) {
+                    termStr = `-${absCoeff.toFixed(2)}`;
+                }
+
+                formulaStr += termStr;
+            }
+            if(formulaStr.trim().startsWith('+')) {
+                 formulaStr = formulaStr.trim().substring(1).trim();
+            }
+            formulaDisplay.innerHTML = `P(x) = ${formulaStr.trim() || '0'}`;
+        }
+
+        function drawChart() {
+            const funcKey = functionSelect.value;
+            const expansionPoint = parseFloat(expansionPointInput.value);
+            const numTerms = parseInt(termsSlider.value);
+            termsCount.textContent = numTerms;
+
+            if (isNaN(expansionPoint)) return;
+            
+            updateFormula(funcKey, expansionPoint, numTerms);
+
+            const selectedFunc = functions[funcKey].func;
+            const taylorApprox = getTaylorApproximation(funcKey, expansionPoint, numTerms);
+            
+            const labels = [];
+            const originalData = [];
+            const approxData = [];
+
+            const x_min = -5, x_max = 5, step = 0.1;
+
+            for (let x = x_min; x <= x_max; x += step) {
+                labels.push(x.toFixed(1));
+                originalData.push(selectedFunc(x));
+                approxData.push(taylorApprox(x));
+            }
+
+            if (chart) {
+                chart.data.labels = labels;
+                chart.data.datasets[0].data = originalData;
+                chart.data.datasets[0].label = `${funcKey}(x)`;
+                chart.data.datasets[1].data = approxData;
+                chart.data.datasets[1].label = `P(x) with n=${numTerms}`;
+                chart.update();
+            } else {
+                chart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: `${funcKey}(x)`,
+                                data: originalData,
+                                borderColor: '#3b82f6', // Blue 500
+                                backgroundColor: 'transparent',
+                                borderWidth: 2,
+                                pointRadius: 0,
+                                tension: 0.1
+                            },
+                            {
+                                label: `P(x) with n=${numTerms}`,
+                                data: approxData,
+                                borderColor: '#14B8A6', // Teal 500
+                                backgroundColor: 'transparent',
+                                borderWidth: 3,
+                                pointRadius: 0,
+                                borderDash: [5, 5],
+                                tension: 0.1
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: false,
+                                suggestedMin: -2,
+                                suggestedMax: 2
+                            },
+                             x: {
+                                ticks: {
+                                    maxRotation: 0,
+                                    minRotation: 0,
+                                    autoSkip: true,
+                                    maxTicksLimit: 10
+                                }
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                position: 'top',
+                            },
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false
+                            }
+                        },
+                        animation: {
+                            duration: 250
+                        }
+                    }
+                });
+            }
+        }
+
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('tab-active');
+                    btn.classList.add('tab-inactive');
+                });
+                button.classList.add('tab-active');
+                button.classList.remove('tab-inactive');
+                
+                const targetContentId = button.id.replace('tab-', 'content-');
+                tabContents.forEach(content => {
+                    if (content.id === targetContentId) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        functionSelect.addEventListener('change', drawChart);
+        expansionPointInput.addEventListener('input', drawChart);
+        termsSlider.addEventListener('input', drawChart);
+
+        window.onload = drawChart;
+    </script>
+</body>
+</html>
