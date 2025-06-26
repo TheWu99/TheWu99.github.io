@@ -34,9 +34,17 @@ def taylor_visualizer():
     """
     return render_template('taylor_visualizer.html')
 
+@app.route('/gradient-descent')
+def gradient_descent():
+    """
+    Renders the Gradient Descent explanation page.
+    """
+    return render_template('gradient_descent.html')
+
+
 # --- Main execution ---
 
 if __name__ == '__main__':
     # Runs the Flask application.
     # debug=True allows for auto-reloading when code changes are saved.
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000,debug=True)

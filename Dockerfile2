@@ -1,0 +1,20 @@
+# STEP 1: base image with Python
+FROM python:3.13-slim AS base
+
+# Set working directory
+WORKDIR /app
+
+# Install dependencies first (this will be cached)
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+# STEP 2: final image with your source code
+FROM base AS final
+
+WORKDIR /app
+
+# Copy only your source code — after dependencies installed
+COPY . .
+
+# Run app
+CMD ["python", "app.py"]
