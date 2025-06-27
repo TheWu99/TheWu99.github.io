@@ -20,11 +20,14 @@ def index_en():
     """
     Renders the English homepage for the MathforAI project.
     """
-    return render_template('index_en.html')
+    return render_template('en/index_en.html')
 
-@app.route('/derivative')
-def derivative():
-    return render_template('derivative.html')
+@app.route('/derivatives')
+def derivatives():
+    """
+    Renders the interactive Derivatives and Partial Derivatives page.
+    """
+    return render_template('derivatives.html')
 
 @app.route('/taylor')
 def taylor_visualizer():
