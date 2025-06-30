@@ -44,6 +44,27 @@ def gradient_descent():
     """
     return render_template('gradient_descent.html')
 
+@app.route('/regression')
+def regression():
+    """
+    Renders the Regression Analysis and Optimization page.
+    """
+    return render_template('regression_optimization.html')
+
+@app.route('/gradient_descent_3d')
+def gradient_descent_3d():
+    """
+    Renders the 3D Gradient Descent mountain demo page.
+    """
+    return render_template('gradient_descent_3d.html')
+
+@app.route('/ai-model-training-process')
+def ai_model_training_process():
+    """
+    Renders the AI Model Training Process explanation page.
+    """
+    return render_template('ai_model_training_process.html')
+
 
 # --- Main execution ---
 
