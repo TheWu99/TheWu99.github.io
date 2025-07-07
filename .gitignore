@@ -2,3 +2,4 @@ test/
 .vscode/
 .venv/
 __pycache__/
+*.tar

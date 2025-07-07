@@ -11,10 +11,11 @@ docker ps
 docker save -o mathforai.tar mathforai
 
 #copy .tar to NAS
-scp mathforai.tar user@NAS_IP:/volume1/docker/
+sftp nas:/docker/
+put mathforai.tar 
 
 #load image on NAS
-ssh user@NAS_IP
+ssh nas
 cd /volume1/docker/
 docker load -i mathforai.tar
 

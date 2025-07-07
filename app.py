@@ -65,6 +65,22 @@ def ai_model_training_process():
     """
     return render_template('ai_model_training_process.html')
 
+# ...existing code...
+
+@app.route('/neural-networks-intro')
+def neural_networks_intro():
+    """
+    Renders the Neural Networks introduction page.
+    """
+    return render_template('neural_networks_intro.html')
+
+@app.route('/backpropagation')
+def backpropagation():
+    """
+    Renders the Backpropagation Algorithm explanation page.
+    """
+    return render_template('backpropagation.html')
+
 
 # --- Main execution ---
 
