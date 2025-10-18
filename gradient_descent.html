@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>梯度下降法交互式演示与详解 - Math for AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #FDFBF8;
+            color: #334155;
+        }
+        .accent-color { color: #14B8A6; }
+        .accent-bg { background-color: #0D9488; }
+        .accent-bg-hover:hover { background-color: #0F766E; }
+        .control-panel-bg { background-color: #F8F5F1; }
+        .content-card { background-color: #ffffff; }
+        
+        h2 {
+            border-bottom: 2px solid #14B8A6;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b; /* slate-800 */
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        p, li {
+            line-height: 1.75;
+            color: #475569; /* slate-600 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #14B8A6;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        code {
+            background-color: #f1f5f9; /* slate-100 */
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-size: 0.9em;
+            color: #e11d48; /* rose-600 */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <!-- Header Section -->
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold accent-color">梯度下降法：交互式学习</h1>
+            <p class="mt-3 text-lg text-slate-600">从动手操作到理论学习，全面掌握机器学习的优化核心</p>
+        </header>
+        
+        <!-- Interactive Visualizer Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <!-- Control Panel -->
+            <aside class="lg:col-span-1 control-panel-bg p-6 rounded-lg shadow-sm">
+                <h3 class="text-xl font-semibold mb-4 text-slate-800">交互式控制台</h3>
+                
+                <div class="mb-6">
+                    <label for="functionSelect" class="block text-sm font-medium text-slate-700 mb-2">1. 选择函数 J(θ):</label>
+                    <select id="functionSelect" class="w-full p-2 border border-slate-300 rounded-md shadow-sm focus:ring-teal-500 focus:border-teal-500">
+                        <option value="quadratic" selected>简单函数: θ²</option>
+                        <option value="complex">复杂函数: θ² + 5sin(θ)</option>
+                    </select>
+                </div>
+
+                <div class="mb-6">
+                    <label for="learningRateSlider" class="block text-sm font-medium text-slate-700 mb-2">2. 调整学习率 (η): <span id="learningRateValue" class="font-bold accent-color">0.1</span></label>
+                    <input type="range" id="learningRateSlider" min="0.01" max="1.0" value="0.1" step="0.01" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                </div>
+                
+                <div class="mb-4">
+                    <p class="text-sm font-medium text-slate-700 mb-2">3. 在图表上点击设置起点。</p>
+                </div>
+
+                <div class="flex space-x-4 mb-6">
+                    <button id="startButton" class="w-full accent-bg text-white font-semibold py-2 px-4 rounded-md shadow-sm accent-bg-hover transition-colors">开始/重置</button>
+                </div>
+
+                <div class="text-sm text-slate-600 space-y-2">
+                    <p>迭代次数: <span id="iterationCount" class="font-semibold text-slate-800">0</span></p>
+                    <p>当前位置 θ: <span id="currentTheta" class="font-semibold text-slate-800">N/A</span></p>
+                    <p>当前梯度 ∇J(θ): <span id="currentGradient" class="font-semibold text-slate-800">N/A</span></p>
+                    <p>当前损失 J(θ): <span id="currentLoss" class="font-semibold text-slate-800">N/A</span></p>
+                </div>
+            </aside>
+
+            <!-- Chart Display -->
+            <div class="lg:col-span-2 content-card p-4 rounded-lg shadow-sm">
+                 <div class="chart-container">
+                    <canvas id="gdChart"></canvas>
+                </div>
+                <div class="mt-4 p-3 bg-slate-50 rounded-md text-center text-md font-mono text-slate-700">
+                    θ<sub>new</sub> = θ<sub>old</sub> - <span id="lr_formula" class="accent-color font-bold">0.10</span> * ∇J(θ<sub>old</sub>)
+                </div>
+            </div>
+        </div>
+
+        <!-- Explanation Section -->
+        <main class="content-card p-6 md:p-8 rounded-lg shadow-sm">
+            <section id="what-it-is">
+                <h2>核心思想：下山的比喻</h2>
+                <p>
+                    梯度下降法的目标是寻找函数的最小值，就像在浓雾中寻找山谷的最低点。其策略是：<strong>在当前位置，找到最陡峭的下坡方向（梯度的反方向），然后朝着这个方向走一小步（步长由学习率决定）。</strong> 重复此过程，即可逐步逼近最小值。
+                </p>
+                <p class="mt-4">
+                    在上方的交互式演示中，您可以亲身体验这个过程。尝试改变学习率，看看它如何影响“下山”的速度和稳定性。选择复杂函数时，您会发现起点不同，最终可能会落入不同的“山谷”（局部最小值）。
+                </p>
+            </section>
+            
+            <section id="math-principle" class="mt-8">
+                <h2>数学原理</h2>
+                <p>
+                    梯度下降法的核心是下面的迭代公式，它描述了如何更新参数 <code>θ</code> 来最小化损失函数 <code>J(θ)</code>：
+                </p>
+                <div class="my-4 p-4 bg-slate-50 rounded-lg text-center text-lg md:text-xl font-mono text-slate-800">
+                    θ<sub>new</sub> = θ<sub>old</sub> - η ∇J(θ)
+                </div>
+                <p>
+                    其中：
+                </p>
+                <ul class="list-disc list-inside mt-4 space-y-2">
+                    <li><code>η</code> (eta) 是<b>学习率</b>。它控制着每一步更新的幅度。如果太大，可能会错过最小值；如果太小，收敛速度会非常慢。</li>
+                    <li><code>∇J(θ)</code> 是损失函数关于参数 <code>θ</code> 的<b>梯度</b>。梯度是一个向量，指向函数值增长最快的方向。因此，梯度的反方向（<code>-∇J(θ)</code>）就是函数值下降最快的方向。</li>
+                </ul>
+            </section>
+            
+            <section id="types" class="mt-8">
+                <h2>梯度下降的种类</h2>
+                <p>根据每次迭代更新参数时使用的数据量不同，梯度下降法主要分为三种类型：</p>
+                
+                <h3>1. 批量梯度下降 (Batch Gradient Descent, BGD)</h3>
+                <p>在每次迭代时，使用<b>全部</b>训练数据来计算梯度。这使得收敛路径非常平滑和稳定，但当数据集很大时，计算成本极高。</p>
+
+                <h3>2. 随机梯度下降 (Stochastic Gradient Descent, SGD)</h3>
+                <p>在每次迭代时，<b>随机选择一个</b>训练样本来计算梯度。这大大加快了更新速度，但其随机性导致收敛路径非常曲折、不稳定。</p>
+
+                <h3>3. 小批量梯度下降 (Mini-Batch Gradient Descent, MBGD)</h3>
+                <p>这是对前两种方法的折中。在每次迭代时，使用一小部分（一个“批次”，如32或64个）训练样本来计算梯度。它既保证了计算效率，又提高了收敛的稳定性，是现代深度学习中最常用的方法。</p>
+            </section>
+
+            <section id="applications" class="mt-8">
+                <h2>应用场景</h2>
+                <p>
+                    梯度下降是训练绝大多数机器学习和深度学习模型的基石。无论是简单的线性回归，还是复杂的深度神经网络，其核心训练过程都依赖于梯度下降或其变体来不断优化模型参数，使其能够从数据中学习并做出准确的预测。
+                </p>
+            </section>
+        </main>
+        
+        <footer class="text-center mt-8">
+            <a href="index.html" class="text-slate-500 hover:text-teal-600 transition-colors">&larr; 返回首页</a>
+        </footer>
+    </div>
+
+    <script>
+        const functionSelect = document.getElementById('functionSelect');
+        const learningRateSlider = document.getElementById('learningRateSlider');
+        const learningRateValue = document.getElementById('learningRateValue');
+        const lr_formula = document.getElementById('lr_formula');
+        const startButton = document.getElementById('startButton');
+        const iterationCount = document.getElementById('iterationCount');
+        const currentTheta = document.getElementById('currentTheta');
+        const currentGradient = document.getElementById('currentGradient');
+        const currentLoss = document.getElementById('currentLoss');
+        
+        const ctx = document.getElementById('gdChart').getContext('2d');
+        let chart, animationFrameId;
+        let currentX = 3.5;
+        let isAnimating = false;
+
+        const functions = {
+            quadratic: {
+                func: x => x * x,
+                grad: x => 2 * x,
+                range: {x: [-4, 4], y: [-1, 16]}
+            },
+            complex: {
+                func: x => x * x + 5 * Math.sin(x),
+                grad: x => 2 * x + 5 * Math.cos(x),
+                range: {x: [-8, 8], y: [-10, 70]}
+            }
+        };
+
+        function drawChart() {
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
+            isAnimating = false;
+            
+            const funcKey = functionSelect.value;
+            const { func, range } = functions[funcKey];
+            const labels = [];
+            const data = [];
+            const step = (range.x[1] - range.x[0]) / 200;
+
+            for (let x = range.x[0]; x <= range.x[1]; x += step) {
+                labels.push(x.toFixed(2));
+                data.push(func(x));
+            }
+            
+            resetInfoPanel();
+
+            if (chart) {
+                chart.destroy();
+            }
+
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [
+                        {
+                            label: '函数 J(θ)',
+                            data: data,
+                            borderColor: '#3b82f6',
+                            borderWidth: 2,
+                            pointRadius: 0,
+                            tension: 0.1
+                        },
+                        {
+                            label: '当前位置',
+                            data: [],
+                            borderColor: '#ef4444',
+                            backgroundColor: '#ef4444',
+                            pointRadius: 6,
+                            pointHoverRadius: 8,
+                            showLine: false
+                        },
+                        {
+                            label: '路径',
+                            data: [],
+                            borderColor: '#f97316',
+                            borderWidth: 1.5,
+                            pointRadius: 2,
+                            tension: 0.1,
+                            fill: false
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { min: range.y[0], max: range.y[1] },
+                        x: { type: 'linear', min: range.x[0], max: range.x[1] }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: { enabled: false }
+                    },
+                    onClick: (e) => {
+                        if (isAnimating) return;
+                        const canvasPosition = Chart.helpers.getRelativePosition(e, chart);
+                        currentX = chart.scales.x.getValueForPixel(canvasPosition.x);
+                        updatePoint(currentX);
+                        resetInfoPanel();
+                        updateInfoPanel(0, currentX);
+                    }
+                }
+            });
+             updatePoint(currentX);
+        }
+
+        function updatePoint(x) {
+            const funcKey = functionSelect.value;
+            const y = functions[funcKey].func(x);
+            chart.data.datasets[1].data = [{x: x, y: y}];
+            chart.data.datasets[2].data = [{x: x, y: y}];
+            chart.update('none');
+        }
+
+        function resetInfoPanel() {
+            iterationCount.textContent = '0';
+            currentTheta.textContent = 'N/A';
+            currentGradient.textContent = 'N/A';
+            currentLoss.textContent = 'N/A';
+        }
+        
+        function updateInfoPanel(iter, x) {
+            const funcKey = functionSelect.value;
+            const {func, grad} = functions[funcKey];
+            iterationCount.textContent = iter;
+            currentTheta.textContent = x.toFixed(3);
+            currentGradient.textContent = grad(x).toFixed(3);
+            currentLoss.textContent = func(x).toFixed(3);
+        }
+
+
+        function step() {
+            if (!isAnimating) return;
+
+            const funcKey = functionSelect.value;
+            const learningRate = parseFloat(learningRateSlider.value);
+            const { grad, func } = functions[funcKey];
+            
+            const gradient = grad(currentX);
+            const prevX = currentX;
+            currentX = currentX - learningRate * gradient;
+            const iter = parseInt(iterationCount.textContent) + 1;
+
+            updateInfoPanel(iter, currentX);
+
+            const pathDataset = chart.data.datasets[2].data;
+            if(pathDataset.length > 100) pathDataset.shift();
+            pathDataset.push({ x: currentX, y: func(currentX) });
+            chart.data.datasets[1].data = [{ x: currentX, y: func(currentX) }];
+            
+            chart.update('none');
+
+            if (Math.abs(prevX - currentX) < 1e-4 || iter >= 200) {
+                isAnimating = false;
+                startButton.textContent = "重置";
+                return;
+            }
+
+            animationFrameId = requestAnimationFrame(step);
+        }
+
+        startButton.addEventListener('click', () => {
+            if (isAnimating) {
+                isAnimating = false;
+                cancelAnimationFrame(animationFrameId);
+                startButton.textContent = "开始";
+            } else {
+                if (startButton.textContent === "重置") {
+                     updatePoint(currentX);
+                     resetInfoPanel();
+                }
+                isAnimating = true;
+                startButton.textContent = "暂停";
+                animationFrameId = requestAnimationFrame(step);
+            }
+        });
+
+        learningRateSlider.addEventListener('input', (e) => {
+            const val = parseFloat(e.target.value);
+            learningRateValue.textContent = val.toFixed(2);
+            lr_formula.textContent = val.toFixed(2);
+        });
+
+        functionSelect.addEventListener('change', drawChart);
+
+        window.onload = drawChart;
+    </script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回归分析与最优化 - Math for AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #FDFBF8;
+            color: #334155;
+        }
+        .accent-color { color: #14B8A6; }
+        .control-panel-bg { background-color: #F8F5F1; }
+        .content-card { background-color: #ffffff; }
+        h2 {
+            border-bottom: 2px solid #14B8A6;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+        h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1e293b;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #334155;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+        p, li {
+            line-height: 1.75;
+            color: #475569;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #14B8A6;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .math-formula {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+        .formula-box {
+             font-family: 'Times New Roman', serif;
+             font-style: italic;
+             font-size: 1.1rem;
+             text-align: center; 
+             font-weight: bold;
+             margin: 1rem 0; 
+             padding: 0.75rem;
+             background-color: #f8fafc;
+             border-radius: 0.375rem;
+        }
+        .key-concept {
+            background-color: #f0fdfa; /* teal-50 */
+            border-left: 4px solid #14B8A6; /* teal-500 */
+            padding: 1rem;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+        <!-- Header -->
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold accent-color">回归分析与最优化问题</h1>
+            <p class="mt-3 text-lg text-slate-600">从数据中寻找规律，并找到最佳的规律</p>
+        </header>
+
+        <!-- Main Content -->
+        <main class="content-card p-6 md:p-8 rounded-lg shadow-sm">
+            <section>
+                <h2>核心概念及其关系</h2>
+                <p>根据您的笔记，回归分析与最优化问题的关系可以总结为：</p>
+                <ul class="list-disc list-inside mt-4 space-y-2 bg-slate-50 p-4 rounded-md">
+                    <li><strong>回归分析 (Regression Analysis)</strong> 是我们的<b>目标</b>。我们希望“利用现有数据来分析，建立数据模型”，从而理解变量之间的关系并进行预测。</li>
+                    <li><strong>最优化问题 (Optimization Problem)</strong> 是我们实现目标的<b>方法</b>。它回答了这样一个问题：“如何确定这些参数，从而让平方误差的总和达到最小？”</li>
+                </ul>
+                <p class="mt-4">简单来说，我们通过提出一个最优化问题，并解决它，来完成一次<b>回归分析</b>。</p>
+            </section>
+
+            <section class="mt-8">
+                <h2>数学模型建模过程：一个例子</h2>
+                <p>我们用一个具体的例子来完整地走一遍这个过程：根据房屋面积预测其价格。</p>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                    <!-- Chart -->
+                    <div class="content-card p-4 rounded-lg shadow-sm mt-4">
+                        <div class="chart-container">
+                            <canvas id="regressionChart"></canvas>
+                        </div>
+                    </div>
+                    <!-- Controls -->
+                    <div class="control-panel-bg p-6 rounded-lg shadow-sm">
+                        <h3 class="mt-0">实时交互调整</h3>
+                        <p class="text-sm mb-4">拖动滑块，尝试手动找到最佳拟合线，观察损失函数（SSE）的变化。</p>
+                        <div class="mb-4">
+                            <label for="pSlider" class="block text-sm font-medium text-slate-700">参数 p (斜率): <span id="pValue" class="font-bold accent-color">1.5</span></label>
+                            <input type="range" id="pSlider" min="0" max="5" value="1.5" step="0.1" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                        <div class="mb-4">
+                            <label for="qSlider" class="block text-sm font-medium text-slate-700">参数 q (截距): <span id="qValue" class="font-bold accent-color">1.0</span></label>
+                            <input type="range" id="qSlider" min="-2" max="5" value="1" step="0.1" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                        </div>
+                        <div class="mt-4 p-3 bg-white rounded-md text-center">
+                            <p class="text-sm text-slate-600">损失函数 (SSE):</p>
+                            <p id="sseValue" class="font-bold text-red-500 text-2xl">...</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <h3>第一步：建立数学模型</h3>
+                    <p>我们观察到数据点大致呈线性关系。因此，我们假设价格 <span class="math-formula">y</span> 和面积 <span class="math-formula">x</span> 的关系可以用一个线性方程来描述：</p>
+                    <div class="formula-box">y = px + q</div>
+                    <p>这里的 <span class="math-formula">p</span> 和 <span class="math-formula">q</span> 是模型的<b>参数</b>。我们的任务就是找到最好的 <span class="math-formula">p</span> 和 <span class="math-formula">q</span>。</p>
+
+                    <h3>第二步：定义“最佳” - 损失函数</h3>
+                    <p>我们用<b>损失函数 (Loss Function)</b> 来衡量模型预测的好坏。一个常用的损失函数是<b>平方误差总和 (SSE)</b>，它计算了所有数据点的真实值与模型预测值之间差距的平方和：</p>
+                    <div class="formula-box">Loss(p, q) = SSE = Σ (y<sub>i</sub> - (px<sub>i</sub> + q))²</div>
+                    <p>我们的目标，就是找到一组参数 <span class="math-formula">(p, q)</span>，使得这个损失函数的值<b>最小</b>。</p>
+                    
+                    <h3>第三步：最优化求解 - 梯度下降法</h3>
+                    <p>“找到使损失函数最小的 <span class="math-formula">(p, q)</span>” 这本身就是一个<b>最优化问题</b>。我们采用<b>梯度下降法</b>来系统地寻找这个最低点。
+                        <br>
+                        <a href="/gradient_descent_3d"
+                            class="inline-block mt-2 accent-bg accent-bg-hover text-white font-semibold py-1 px-3 rounded-md shadow-md transition duration-300"
+                            target="_blank">
+                            观看 3D 梯度下降演示 &rarr;
+                        </a>
+                    </p>
+                    
+                    <h4>核心工具：偏导数</h4>
+                    <p>首先，我们需要知道“朝哪个方向调整 <span class="math-formula">p</span> 和 <span class="math-formula">q</span> 才能让损失下降得最快？” 这个问题，由<b>偏导数</b>来回答。梯度（由所有偏导数组成的向量）指向损失函数上升最快的方向。</p>
+                    
+                    <h4>更新规则：朝着梯度的反方向前进</h4>
+                    <p>我们只需要朝着梯度的<b>反方向</b>走一小步，就能保证损失函数减小。这就得到了 <span class="math-formula">p</span> 和 <span class="math-formula">q</span> 的更新规则，其中 <span class="math-formula">η</span> 是学习率，控制步长大小：</p>
+                    <div class="formula-box">p<sub>new</sub> = p<sub>old</sub> - η * (∂Loss/∂p)</div>
+                    <div class="formula-box">q<sub>new</sub> = q<sub>old</sub> - η * (∂Loss/∂q)</div>
+                    
+                    <h4>迭代过程</h4>
+                     <ol class="list-decimal list-inside mt-4 space-y-2">
+                        <li><b>随机初始化</b>：随机选择一个起始点 <span class="math-formula">(p₀, q₀)</span>。</li>
+                        <li><b>计算梯度</b>：在当前点，计算出损失函数关于 <span class="math-formula">p</span> 和 <span class="math-formula">q</span> 的偏导数值。</li>
+                        <li><b>更新参数</b>：使用上面的更新规则，计算出新的 <span class="math-formula">(p₁, q₁)</span>。</li>
+                        <li><b>重复</b>：回到第2步，在新的点上重复计算梯度和更新参数的过程。</li>
+                        <li><b>停止</b>：当损失函数的值几乎不再下降时，我们就找到了最佳解。</li>
+                    </ol>
+                     <p class="mt-2">（在这个页面的交互图表中，通过优化找到的最佳值是 p=2, q=3.5）</p>
+
+                    <div class="key-concept">
+                        <h4 class="font-bold text-slate-800">关键点：我们优化的是参数 (p, q)，而不是数据 (x, y)</h4>
+                        <p class="mt-2">这是一个非常重要的区分点。在最优化过程中：</p>
+                        <ul class="list-decimal list-inside ml-4 mt-2 space-y-1">
+                            <li><b>(x, y) 是我们的已知数据</b>：它们是图表上那些固定的蓝色数据点，代表着客观事实，在计算过程中不会改变。</li>
+                            <li><b>(p, q) 是我们的未知参数</b>：这才是我们要寻找的变量。我们通过调整 `p` 和 `q` 的值，来改变回归线的位置，目的是找到能最好地拟合数据的 `p` 和 `q`。</li>
+                        </ul>
+                        <p class="mt-2">因此，梯度下降等优化算法是在一个以 <b>p</b> 和 <b>q</b> 为坐标轴的“参数空间”中寻找损失函数的最低点，而不是在我们看到的 <b>x-y</b> “数据空间”中。</p>
+                    </div>
+
+                    <h3>第四步：应用模型</h3>
+                    <p>假设通过最优化，我们得到了最佳参数 <span class="math-formula">p=2</span>, <span class="math-formula">q=3.5</span>。我们就得到了最终的数学模型：</p>
+                    <div class="formula-box">y = 2x + 3.5</div>
+                    <p>现在，这个模型就可以用来预测了。正如您所写的，输入一个自变量 <span class="math-formula">x</span>（比如新的房屋面积，这就是“<b>prompt</b>”），模型就能运算得出一个因变量 <span class="math-formula">y</span>（预测的价格，这就是“<b>输出</b>”）。</p>
+                </div>
+
+            </section>
+        </main>
+        
+        <footer class="text-center mt-12">
+            <a href="index.html" class="text-slate-500 hover:text-teal-600 transition-colors">&larr; 返回首页</a>
+        </footer>
+    </div>
+
+    <script>
+        const pSlider = document.getElementById('pSlider');
+        const qSlider = document.getElementById('qSlider');
+        const pValue = document.getElementById('pValue');
+        const qValue = document.getElementById('qValue');
+        const sseValue = document.getElementById('sseValue');
+        const ctx = document.getElementById('regressionChart').getContext('2d');
+        let regressionChart;
+
+        // Sample data points
+        const dataPoints = [
+            { x: 1, y: 5 }, { x: 2, y: 8 }, { x: 3, y: 9 },
+            { x: 4, y: 11 }, { x: 5, y: 14 }, { x: 6, y: 15 }
+        ];
+
+        function calculateSSE(p, q) {
+            let sse = 0;
+            dataPoints.forEach(point => {
+                const predictedY = p * point.x + q;
+                const error = point.y - predictedY;
+                sse += error * error;
+            });
+            return sse;
+        }
+
+        function drawRegressionChart() {
+            const p = parseFloat(pSlider.value);
+            const q = parseFloat(qSlider.value);
+            
+            pValue.textContent = p.toFixed(1);
+            qValue.textContent = q.toFixed(1);
+            
+            const sse = calculateSSE(p, q);
+            sseValue.textContent = sse.toFixed(2);
+
+            const lineData = [
+                {x: 0, y: p * 0 + q},
+                {x: 7, y: p * 7 + q}
+            ];
+
+            if (regressionChart) {
+                regressionChart.data.datasets[1].data = lineData;
+                regressionChart.update('none');
+            } else {
+                regressionChart = new Chart(ctx, {
+                    type: 'scatter',
+                    data: {
+                        datasets: [{
+                            label: '实际数据点',
+                            data: dataPoints,
+                            backgroundColor: '#3b82f6',
+                            pointRadius: 6,
+                            pointHoverRadius: 8
+                        }, {
+                            label: '回归线 y=px+q',
+                            type: 'line',
+                            data: lineData,
+                            borderColor: '#14B8A6',
+                            borderWidth: 2,
+                            fill: false,
+                            tension: 0.1,
+                            pointRadius: 0
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                           x: { min: 0, max: 7, title: { display: true, text: '房屋面积 (x)'} },
+                           y: { min: 0, max: 20, title: { display: true, text: '价格 (y)'} }
+                        },
+                        plugins: { legend: { position: 'top' } }
+                    }
+                });
+            }
+        }
+
+        pSlider.addEventListener('input', drawRegressionChart);
+        qSlider.addEventListener('input', drawRegressionChart);
+
+        window.onload = drawRegressionChart;
+    </script>
+</body>
+</html>

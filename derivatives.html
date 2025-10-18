@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>导数与偏导数交互学习 - Math for AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #FDFBF8;
+            color: #334155;
+        }
+        .accent-color { color: #14B8A6; }
+        .accent-bg { background-color: #0D9488; }
+        .accent-bg-hover:hover { background-color: #0F766E; }
+        .control-panel-bg { background-color: #F8F5F1; }
+        .content-card { background-color: #ffffff; }
+        h2 {
+            border-bottom: 2px solid #14B8A6;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+        p, li {
+            line-height: 1.75;
+            color: #475569;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 350px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #14B8A6;
+            cursor: pointer;
+            border-radius: 50%;
+        }
+        .gemini-button {
+            background-color: #e2e8f0;
+            color: #475569;
+            transition: all 0.2s ease-in-out;
+        }
+        .gemini-button:hover {
+            background-color: #cbd5e1;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 50;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 90%;
+            width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8">
+        <!-- Header Section -->
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold accent-color">导数与偏导数</h1>
+            <p class="mt-3 text-lg text-slate-600">理解变化率的基石</p>
+        </header>
+
+        <!-- Derivative Section -->
+        <section class="mb-12">
+            <h2 class="text-slate-800">导数：瞬时变化率</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Chart -->
+                <div class="lg:col-span-2 content-card p-4 rounded-lg shadow-sm">
+                    <div class="chart-container">
+                        <canvas id="derivativeChart"></canvas>
+                    </div>
+                </div>
+                <!-- Controls and Explanation -->
+                <div class="control-panel-bg p-6 rounded-lg shadow-sm">
+                    <p class="mb-4">导数的几何意义是函数上某一点的切线斜率，它描述了函数在该点的瞬时变化速度。</p>
+                    <div class="mb-6">
+                        <label for="xSlider" class="block text-sm font-medium text-slate-700 mb-2">拖动滑块改变点的位置:</label>
+                        <input type="range" id="xSlider" min="-2" max="2" value="1" step="0.01" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer">
+                    </div>
+                    <div class="text-sm text-slate-600 space-y-2 mb-6">
+                        <p>函数: <span class="font-semibold text-slate-800">f(x) = x²</span></p>
+                        <p>当前位置 x: <span id="xValue" class="font-semibold text-slate-800">1.00</span></p>
+                        <p>函数值 f(x): <span id="fxValue" class="font-semibold text-slate-800">1.00</span></p>
+                        <p>导数 f'(x) (切线斜率): <span id="derivativeValue" class="font-semibold accent-color text-lg">2.00</span></p>
+                    </div>
+                    <button id="explainDerivativeFuncBtn" class="w-full py-2 px-4 rounded-md font-semibold text-sm gemini-button">✨ AI 解释这个函数</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partial Derivative Section -->
+        <section>
+            <h2 class="text-slate-800">偏导数：多维世界的“切片”分析</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Explanation -->
+                <div class="lg:col-span-1">
+                    <p>当函数有多个变量时（如 <code>f(x, y)</code>），我们无法简单地谈论“斜率”，因为在不同方向上，斜率是不同的。</p>
+                    <p class="mt-4">偏导数的思想是：<strong>先固定其他所有变量，只让一个变量变化</strong>，从而将多维问题降为一维问题来研究。这就像是用一个平面去“切”一个三维曲面，然后分析切口那条线的斜率。</p>
+                    <p class="mt-4">下面的演示将展示这个“切片”过程。</p>
+                    <div class="mt-6 space-y-3">
+                        <button id="explainPartialFuncBtn" class="w-full py-2 px-4 rounded-md font-semibold text-sm gemini-button">✨ AI 解释这个函数</button>
+                        <button id="findPartialAppBtn" class="w-full py-2 px-4 rounded-md font-semibold text-sm gemini-button">✨ AI 寻找现实应用</button>
+                    </div>
+                </div>
+                <!-- Chart and Controls -->
+                <div class="lg:col-span-2 content-card p-4 rounded-lg shadow-sm">
+                    <div class="chart-container">
+                        <canvas id="partialDerivativeChart"></canvas>
+                    </div>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 p-4 control-panel-bg rounded-lg">
+                        <div>
+                            <label for="ySliceSlider" class="block text-sm font-medium text-slate-700">固定 y 在: <span id="ySliceValue" class="font-bold accent-color">1.0</span></p></label>
+                            <input type="range" id="ySliceSlider" min="-2" max="2" value="1" step="0.1" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer mt-1">
+                            <p class="text-xs text-slate-500 mt-1">分析函数在 x 方向的变化率 ∂f/∂x</p>
+                        </div>
+                        <div>
+                            <label for="xSliceSlider" class="block text-sm font-medium text-slate-700">固定 x 在: <span id="xSliceValue" class="font-bold accent-color">1.0</span></p></label>
+                            <input type="range" id="xSliceSlider" min="-2" max="2" value="1" step="0.1" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer mt-1">
+                            <p class="text-xs text-slate-500 mt-1">分析函数在 y 方向的变化率 ∂f/∂y</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-12">
+            <a href="index.html" class="text-slate-500 hover:text-teal-600 transition-colors">&larr; 返回首页</a>
+        </footer>
+    </div>
+    
+    <!-- Gemini Modal -->
+    <div id="geminiModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-4">
+                <h3 id="modalTitle" class="text-xl font-bold text-slate-800">AI 小助手</h3>
+                <button id="closeModalBtn" class="text-slate-500 hover:text-slate-800">&times;</button>
+            </div>
+            <div id="modalBody" class="text-slate-600 leading-relaxed">
+                <p>正在思考中...</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // --- Part 1: Derivative ---
+        const xSlider = document.getElementById('xSlider');
+        const xValue = document.getElementById('xValue');
+        const fxValue = document.getElementById('fxValue');
+        const derivativeValue = document.getElementById('derivativeValue');
+        const dCtx = document.getElementById('derivativeChart').getContext('2d');
+        let derivativeChart;
+
+        const func = x => x * x;
+        const grad = x => 2 * x;
+
+        function drawDerivativeChart() {
+            const x = parseFloat(xSlider.value);
+            xValue.textContent = x.toFixed(2);
+            fxValue.textContent = func(x).toFixed(2);
+            derivativeValue.textContent = grad(x).toFixed(2);
+
+            const labels = [];
+            const data = [];
+            for (let i = -2.5; i <= 2.5; i += 0.1) {
+                labels.push(i);
+                data.push(func(i));
+            }
+
+            const tangentData = labels.map(val => grad(x) * (val - x) + func(x));
+
+            if (derivativeChart) {
+                derivativeChart.data.datasets[1].data = [{x: x, y: func(x)}];
+                derivativeChart.data.datasets[2].data = tangentData;
+                derivativeChart.update('none');
+            } else {
+                derivativeChart = new Chart(dCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: 'f(x) = x²',
+                                data: data,
+                                borderColor: '#3b82f6',
+                                borderWidth: 2,
+                                pointRadius: 0,
+                                tension: 0.1
+                            },
+                            {
+                                label: '当前点',
+                                data: [{x: x, y: func(x)}],
+                                backgroundColor: '#ef4444',
+                                pointRadius: 6,
+                                pointHoverRadius: 8
+                            },
+                            {
+                                label: '切线',
+                                data: tangentData,
+                                borderColor: '#14B8A6',
+                                borderWidth: 1.5,
+                                pointRadius: 0,
+                                borderDash: [5, 5]
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                         scales: { y: { beginAtZero: true } },
+                        plugins: { legend: { display: false } }
+                    }
+                });
+            }
+        }
+
+        xSlider.addEventListener('input', drawDerivativeChart);
+
+        // --- Part 2: Partial Derivative ---
+        const xSliceSlider = document.getElementById('xSliceSlider');
+        const ySliceSlider = document.getElementById('ySliceSlider');
+        const xSliceValue = document.getElementById('xSliceValue');
+        const ySliceValue = document.getElementById('ySliceValue');
+        const pdCtx = document.getElementById('partialDerivativeChart').getContext('2d');
+        let partialDerivativeChart;
+
+        // f(x, y) = x^2 + y^2
+        const p_func = (x, y) => x*x + y*y;
+
+        function drawPartialDerivativeChart() {
+            const x_slice = parseFloat(xSliceSlider.value);
+            const y_slice = parseFloat(ySliceSlider.value);
+            xSliceValue.textContent = x_slice.toFixed(1);
+            ySliceValue.textContent = y_slice.toFixed(1);
+
+            const labels = [];
+            const dataX = []; // Vary x, y is constant
+            const dataY = []; // Vary y, x is constant
+
+            for (let i = -2.5; i <= 2.5; i += 0.1) {
+                labels.push(i.toFixed(1));
+                dataX.push(p_func(i, y_slice));
+                dataY.push(p_func(x_slice, i));
+            }
+
+            if (partialDerivativeChart) {
+                partialDerivativeChart.data.datasets[0].data = dataX;
+                partialDerivativeChart.data.datasets[0].label = `Slice at y = ${y_slice.toFixed(1)}`;
+                partialDerivativeChart.data.datasets[1].data = dataY;
+                partialDerivativeChart.data.datasets[1].label = `Slice at x = ${x_slice.toFixed(1)}`;
+                partialDerivativeChart.update();
+            } else {
+                 partialDerivativeChart = new Chart(pdCtx, {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [
+                            {
+                                label: `Slice at y = ${y_slice.toFixed(1)}`,
+                                data: dataX,
+                                borderColor: '#3b82f6',
+                                borderWidth: 2,
+                                pointRadius: 0,
+                                tension: 0.1
+                            },
+                            {
+                                label: `Slice at x = ${x_slice.toFixed(1)}`,
+                                data: dataY,
+                                borderColor: '#ef4444',
+                                borderWidth: 2,
+                                pointRadius: 0,
+                                tension: 0.1
+                            }
+                        ]
+                    },
+                     options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { position: 'top' } },
+                        scales: {
+                           y: { title: { display: true, text: 'f(x,y) = x²+y²' } },
+                           x: { title: { display: true, text: 'Variable Axis' } }
+                        }
+                    }
+                 });
+            }
+        }
+
+        xSliceSlider.addEventListener('input', drawPartialDerivativeChart);
+        ySliceSlider.addEventListener('input', drawPartialDerivativeChart);
+        
+        // --- Part 3: Gemini API Integration ---
+        const modal = document.getElementById('geminiModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const explainDerivativeFuncBtn = document.getElementById('explainDerivativeFuncBtn');
+        const explainPartialFuncBtn = document.getElementById('explainPartialFuncBtn');
+        const findPartialAppBtn = document.getElementById('findPartialAppBtn');
+
+        function showModal(title, body) {
+            modalTitle.textContent = title;
+            modalBody.innerHTML = body;
+            modal.classList.remove('hidden');
+        }
+
+        function hideModal() {
+            modal.classList.add('hidden');
+        }
+
+        closeModalBtn.addEventListener('click', hideModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                hideModal();
+            }
+        });
+        
+        async function callGemini(prompt) {
+            showModal("AI 正在思考中...", '<div class="flex justify-center items-center"><div class="animate-spin rounded-full h-8 w-8 border-b-2 border-slate-700"></div></div>');
+            
+            const apiKey = ""; // Leave empty, will be handled by the environment
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            
+            const payload = {
+                contents: [{
+                    role: "user",
+                    parts: [{ text: prompt }]
+                }]
+            };
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API request failed with status ${response.status}`);
+                }
+                
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    modalBody.innerHTML = text.replace(/\n/g, '<br>'); // Basic formatting
+                } else {
+                    throw new Error("Invalid response structure from API.");
+                }
+
+            } catch (error) {
+                modalBody.textContent = `抱歉，出现了一个错误: ${error.message}`;
+                console.error(error);
+            }
+        }
+
+        explainDerivativeFuncBtn.addEventListener('click', () => {
+            const prompt = "请用中文通俗易懂地解释函数 f(x) = x² 的主要性质，并举一个它在现实生活中的简单例子。";
+            callGemini(prompt);
+            modalTitle.textContent = "AI 解释 f(x) = x²";
+        });
+        
+        explainPartialFuncBtn.addEventListener('click', () => {
+            const prompt = "请用中文通俗易懂地解释函数 f(x, y) = x² + y² 的主要性质，并解释为什么它在三维空间中形成一个碗状。";
+            callGemini(prompt);
+            modalTitle.textContent = "AI 解释 f(x, y) = x² + y²";
+        });
+
+        findPartialAppBtn.addEventListener('click', () => {
+            const prompt = "请用中文提供一个在机器学习或工程领域中使用偏导数的具体应用案例，并简单解释为什么在这个案例中需要用到偏导数。";
+            callGemini(prompt);
+            modalTitle.textContent = "AI 寻找现实应用";
+        });
+
+
+        window.onload = () => {
+            drawDerivativeChart();
+            drawPartialDerivativeChart();
+        };
+    </script>
+</body>
+</html>
