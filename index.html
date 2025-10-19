@@ -1,758 +1,157 @@
-<!DOCTYPE html><!DOCTYPE html>
-
-<html lang="en"><html lang="zh-CN">
-
-<head><head>
-
-    <meta charset="UTF-8">    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>TheWu99 - Professional Blog</title>    <title>Math for AI - 首页</title>
-
-    <script src="https://cdn.tailwindcss.com"></script>    <script src="https://cdn.tailwindcss.com"></script>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">    <link rel="preconnect" href="https://fonts.googleapis.com">
-
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-
-    <style>    <style>
-
-        body {        body {
-
-            font-family: 'Inter', sans-serif;            font-family: 'Noto Sans SC', sans-serif;
-
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);            background-color: #FDFBF8;
-
-            min-height: 100vh;            color: #334155;
-
-        }        }
-
-        .code-font {        .accent-color {
-
-            font-family: 'JetBrains Mono', monospace;            color: #14B8A6;
-
-        }        }
-
-        .glass-effect {        .accent-bg {
-
-            background: rgba(255, 255, 255, 0.95);            background-color: #0D9488;
-
-            backdrop-filter: blur(10px);        }
-
-            border: 1px solid rgba(255, 255, 255, 0.3);        .accent-bg-hover:hover {
-
-        }            background-color: #0F766E;
-
-        .sidebar {        }
-
-            position: sticky;    </style>
-
-            top: 2rem;</head>
-
-            height: fit-content;<body class="antialiased">
-
-            max-height: calc(100vh - 4rem);    <div class="container mx-auto p-8">
-
-            overflow-y: auto;        <header class="flex justify-between items-center mb-12">
-
-        }            <div class="text-center w-full">
-
-        .sidebar::-webkit-scrollbar {                <h1 class="text-4xl md:text-5xl font-bold accent-color">欢迎来到 Math for AI</h1>
-
-            width: 4px;                <p class="mt-3 text-lg text-slate-600">一个旨在通过交互式工具探索人工智能背后数学概念的项目</p>
-
-        }            </div>
-
-        .sidebar::-webkit-scrollbar-track {            <div class="ml-4 flex-shrink-0">
-
-            background: transparent;                <a href="https://www.buymeacoffee.com/" target="_blank" class="inline-block accent-bg accent-bg-hover text-white font-semibold py-2 px-6 rounded-md shadow-md transition duration-300">
-
-        }                    Buy Me a Coffee 
-
-        .sidebar::-webkit-scrollbar-thumb {                </a>
-
-            background: #667eea;                <!-- WeChat Pay QR code link/button -->
-
-            border-radius: 2px;                <!-- <a href="/static/wechat_pay_qr.png" target="_blank" class="inline-block border border-green-400 text-green-700 font-semibold py-2 px-4 rounded-md shadow-sm hover:bg-green-50 transition duration-300">
-
-        }                    微信支付
-
-        .menu-item {                </a> -->
-
-            transition: all 0.3s ease;                <a href="en/index_en.html" class="inline-block border border-slate-400 text-slate-700 font-semibold py-2 px-4 rounded-md shadow-sm hover:bg-slate-100 transition duration-300">
-
-            border-left: 3px solid transparent;                    English
-
-        }                </a>
-
-        .menu-item:hover, .menu-item.active {            </div>
-
-            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, transparent 100%);        </header>
-
-            border-left-color: #667eea;
-
-        }        <main>
-
-        .project-card {            <h2 class="text-2xl font-semibold text-slate-800 mb-6 text-center">可用的工具和主题</h2>
-
-            transition: all 0.3s ease;            <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-
-            border-left: 3px solid #667eea;
-
-        }                
-
-        .project-card:hover {                <!-- Card for Derivatives -->
-
-            transform: translateX(5px);                <a href="derivatives.html" class="block bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);                    <h3 class="text-xl font-bold accent-color mb-2">导数与偏导数交互学习</h3>
-
-        }                    <p class="text-slate-600">
-
-        .skill-tag {                        通过可视化图表，理解导数的几何意义以及偏导数的“切片”思想。
-
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);                    </p>
-
-        }                    <div class="mt-4 text-right">
-
-        .content-section {                        <span class="inline-block accent-bg text-white font-semibold py-2 px-4 rounded-md">
-
-            display: none;                            开始学习 &rarr;
-
-        }                        </span>
-
-        .content-section.active {                    </div>
-
-            display: block;                </a>
-
-            animation: fadeIn 0.5s ease-in;
-
-        }                <!-- Card for Taylor Visualizer -->
-
-        @keyframes fadeIn {                <a href="taylor_visualizer.html" class="block bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-
-            from { opacity: 0; transform: translateY(20px); }                    <h3 class="text-xl font-bold accent-color mb-2">泰勒展开式可视化</h3>
-
-            to { opacity: 1; transform: translateY(0); }                    <p class="text-slate-600">
-
-        }                        通过交互式图表，直观理解如何用多项式逼近复杂函数。
-
-        .github-card {                    </p>
-
-            background: linear-gradient(135deg, #24292e 0%, #1a1e22 100%);                    <div class="mt-4 text-right">
-
-        }                        <span class="inline-block accent-bg text-white font-semibold py-2 px-4 rounded-md">
-
-    </style>                            开始学习 &rarr;
-
-</head>                        </span>
-
-<body class="antialiased">                    </div>
-
-    <div class="container mx-auto px-4 py-8">                </a>
-
-        <div class="flex gap-6">
-
-                            <!-- Card for Gradient Descent -->
-
-            <!-- Left Sidebar (20%) -->                <a href="gradient_descent.html" class="block bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-
-            <aside class="w-1/5 sidebar glass-effect rounded-2xl shadow-2xl p-6">                    <h3 class="text-xl font-bold accent-color mb-2">梯度下降法交互学习</h3>
-
-                <div class="mb-8">                    <p class="text-slate-600">
-
-                    <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full mx-auto mb-4 flex items-center justify-center text-white text-2xl font-bold">                        通过动手操作，直观感受机器学习中最核心的优化算法。
-
-                        W                    </p>
-
-                    </div>                    <div class="mt-4 text-right">
-
-                    <h2 class="text-xl font-bold text-center text-gray-800">TheWu99</h2>                        <span class="inline-block accent-bg text-white font-semibold py-2 px-4 rounded-md">
-
-                    <p class="text-sm text-center text-gray-500 mt-1">Developer & AI Enthusiast</p>                            开始学习 &rarr;
-
-                </div>                        </span>
-
-                    </div>
-
-                <nav class="space-y-2">                </a>
-
-                    <a href="#about" onclick="showSection('about')" class="menu-item active block px-4 py-3 rounded-lg text-gray-700 font-medium cursor-pointer">                
-
-                        <span class="text-lg mr-2">👤</span> About Me                <a href="regression_optimization.html" class="block bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-
-                    </a>                    <h3 class="text-xl font-bold accent-color mb-2">回归分析与最优化</h3>
-
-                    <a href="#experience" onclick="showSection('experience')" class="menu-item block px-4 py-3 rounded-lg text-gray-700 font-medium cursor-pointer">                    <p class="text-slate-600">
-
-                        <span class="text-lg mr-2">💼</span> Work Experience                        结合您的笔记，理解如何用最优化方法找到最佳的数据模型。
-
-                    </a>                    </p>
-
-                    <a href="#projects" onclick="showSection('projects')" class="menu-item block px-4 py-3 rounded-lg text-gray-700 font-medium cursor-pointer">                    <div class="mt-4 text-right">
-
-                        <span class="text-lg mr-2">🚀</span> Projects                        <span class="inline-block accent-bg text-white font-semibold py-2 px-4 rounded-md">
-
-                    </a>                            开始学习 &rarr;
-
-                    <a href="#mathforai" onclick="showSection('mathforai')" class="menu-item block px-4 py-3 rounded-lg text-gray-700 font-medium cursor-pointer">                        </span>
-
-                        <span class="text-lg mr-2">📐</span> Math for AI                    </div>
-
-                    </a>                </a>
-
-                    <a href="#skills" onclick="showSection('skills')" class="menu-item block px-4 py-3 rounded-lg text-gray-700 font-medium cursor-pointer">
-
-                        <span class="text-lg mr-2">⚡</span> Skills                <!-- Card for AI Model Training Process -->
-
-                    </a>                <a href="ai_model_training_process.html"
-
-                    <a href="#contact" onclick="showSection('contact')" class="menu-item block px-4 py-3 rounded-lg text-gray-700 font-medium cursor-pointer">                    class="block bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-
-                        <span class="text-lg mr-2">📧</span> Contact                    <h3 class="text-xl font-bold accent-color mb-2">AI模型训练过程详解</h3>
-
-                    </a>                    <p class="text-slate-600">
-
-                </nav>                        了解AI模型从数据准备、模型选择到训练与评估的完整流程，掌握机器学习项目的全局视角。
-
-                    </p>
-
-                <div class="mt-8 pt-6 border-t border-gray-200">                    <div class="mt-4 text-right">
-
-                    <div class="flex justify-center space-x-4">                        <span class="inline-block accent-bg text-white font-semibold py-2 px-4 rounded-md">
-
-                        <a href="https://github.com/TheWu99" target="_blank" class="text-gray-600 hover:text-purple-600 transition">                            开始学习 &rarr;
-
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>                        </span>
-
-                        </a>                    </div>
-
-                        <a href="https://linkedin.com" target="_blank" class="text-gray-600 hover:text-purple-600 transition">                </a>
-
-                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-
-                        </a>                          
-
-                    </div>                
-
-                </div>                <!-- Card for Neural Networks Intro -->
-
-            </aside>                <a href="neural_networks_intro.html"
-
-                    class="block bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-
-            <!-- Main Content (60%) -->                    <h3 class="text-xl font-bold accent-color mb-2">神经网络（Neural Networks）简介</h3>
-
-            <main class="w-3/5 glass-effect rounded-2xl shadow-2xl p-8 overflow-y-auto" style="max-height: calc(100vh - 4rem);">                    <p class="text-slate-600">
-
-                                        了解神经网络的基本结构、工作原理和常见激活函数，掌握现代AI的核心基础。
-
-                <!-- About Section -->                    </p>
-
-                <section id="about-content" class="content-section active">                    <div class="mt-4 text-right">
-
-                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Hi, I'm TheWu99 👋</h1>                        <span class="inline-block accent-bg text-white font-semibold py-2 px-4 rounded-md">
-
-                    <div class="h-1 w-20 bg-gradient-to-r from-purple-500 to-indigo-600 mb-6"></div>                            开始学习 &rarr;
-
-                                            </span>
-
-                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">                    </div>
-
-                        I'm a passionate developer and AI enthusiast dedicated to exploring the intersection of mathematics,                 </a>
-
-                        machine learning, and software engineering. I believe in learning by building and sharing knowledge                 
-
-                        through interactive experiences.                <!-- Card for Backpropagation -->
-
-                    </p>                <a href="backpropagation.html"
-
-                    class="block bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-
-                    <div class="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-6 mb-6">                    <h3 class="text-xl font-bold accent-color mb-2">误差反向传播法（Backpropagation）</h3>
-
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">What I Do</h3>                    <p class="text-slate-600">
-
-                        <ul class="space-y-2 text-gray-700">                        理解神经网络训练的核心算法，掌握损失函数、梯度计算与参数更新的全过程。
-
-                            <li class="flex items-start">                    </p>
-
-                                <span class="text-purple-600 mr-2">▸</span>                    <div class="mt-4 text-right">
-
-                                <span>Build interactive educational tools to demystify complex AI concepts</span>                        <span class="inline-block accent-bg text-white font-semibold py-2 px-4 rounded-md">
-
-                            </li>                            开始学习 &rarr;
-
-                            <li class="flex items-start">                        </span>
-
-                                <span class="text-purple-600 mr-2">▸</span>                    </div>
-
-                                <span>Develop full-stack applications with modern technologies</span>                </a>
-
-                            </li>
-
-                            <li class="flex items-start">            </div>
-
-                                <span class="text-purple-600 mr-2">▸</span>        </main>
-
-                                <span>Explore machine learning algorithms and their mathematical foundations</span>
-
-                            </li>        <footer class="text-center mt-16 text-slate-500">
-
-                            <li class="flex items-start">            <p>&copy; 2024 MathforAI. All rights reserved.</p>
-
-                                <span class="text-purple-600 mr-2">▸</span>        </footer>
-
-                                <span>Contribute to open-source projects and share knowledge</span>    </div>
-
-                            </li></body>
-
-                        </ul></html>
-
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4">
-                        <div class="bg-white rounded-lg p-4 shadow-md">
-                            <div class="text-3xl font-bold text-purple-600 mb-1">5+</div>
-                            <div class="text-sm text-gray-600">Years of Experience</div>
-                        </div>
-                        <div class="bg-white rounded-lg p-4 shadow-md">
-                            <div class="text-3xl font-bold text-purple-600 mb-1">20+</div>
-                            <div class="text-sm text-gray-600">Projects Completed</div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Work Experience Section -->
-                <section id="experience-content" class="content-section">
-                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Work Experience 💼</h1>
-                    <div class="h-1 w-20 bg-gradient-to-r from-purple-500 to-indigo-600 mb-6"></div>
-
-                    <div class="space-y-6">
-                        <div class="border-l-4 border-purple-500 pl-6 py-4">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-semibold text-gray-800">Senior Software Engineer</h3>
-                                <span class="text-sm text-gray-500">2021 - Present</span>
-                            </div>
-                            <p class="text-purple-600 font-medium mb-3">Tech Company</p>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-start">
-                                    <span class="text-purple-500 mr-2">•</span>
-                                    <span>Led development of scalable web applications serving 100k+ users</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-purple-500 mr-2">•</span>
-                                    <span>Implemented CI/CD pipelines reducing deployment time by 60%</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-purple-500 mr-2">•</span>
-                                    <span>Mentored junior developers and conducted code reviews</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="border-l-4 border-indigo-500 pl-6 py-4">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-semibold text-gray-800">Software Developer</h3>
-                                <span class="text-sm text-gray-500">2019 - 2021</span>
-                            </div>
-                            <p class="text-indigo-600 font-medium mb-3">Startup Inc.</p>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-start">
-                                    <span class="text-indigo-500 mr-2">•</span>
-                                    <span>Built RESTful APIs and microservices architecture</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-indigo-500 mr-2">•</span>
-                                    <span>Optimized database queries improving performance by 40%</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-indigo-500 mr-2">•</span>
-                                    <span>Collaborated with cross-functional teams in Agile environment</span>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="border-l-4 border-purple-400 pl-6 py-4">
-                            <div class="flex justify-between items-start mb-2">
-                                <h3 class="text-xl font-semibold text-gray-800">Junior Developer</h3>
-                                <span class="text-sm text-gray-500">2018 - 2019</span>
-                            </div>
-                            <p class="text-purple-600 font-medium mb-3">Digital Agency</p>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-start">
-                                    <span class="text-purple-400 mr-2">•</span>
-                                    <span>Developed responsive web applications using modern frameworks</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-purple-400 mr-2">•</span>
-                                    <span>Participated in client meetings and requirement gathering</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Projects Section -->
-                <section id="projects-content" class="content-section">
-                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Featured Projects 🚀</h1>
-                    <div class="h-1 w-20 bg-gradient-to-r from-purple-500 to-indigo-600 mb-6"></div>
-
-                    <div class="space-y-6">
-                        <div class="project-card bg-white rounded-xl p-6 shadow-md">
-                            <div class="flex justify-between items-start mb-3">
-                                <h3 class="text-xl font-bold text-gray-800">Math for AI</h3>
-                                <span class="px-3 py-1 bg-green-100 text-green-700 rounded-full text-xs font-semibold">Active</span>
-                            </div>
-                            <p class="text-gray-600 mb-4">
-                                Interactive educational platform exploring mathematical concepts behind AI and machine learning. 
-                                Features visualizations for derivatives, gradient descent, neural networks, and more.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 skill-tag text-white text-xs rounded-full">Python</span>
-                                <span class="px-3 py-1 skill-tag text-white text-xs rounded-full">Flask</span>
-                                <span class="px-3 py-1 skill-tag text-white text-xs rounded-full">JavaScript</span>
-                                <span class="px-3 py-1 skill-tag text-white text-xs rounded-full">D3.js</span>
-                            </div>
-                            <a href="mathforai.html" class="text-purple-600 hover:text-purple-800 font-medium">
-                                View Project →
-                            </a>
-                        </div>
-
-                        <div class="project-card bg-white rounded-xl p-6 shadow-md">
-                            <div class="flex justify-between items-start mb-3">
-                                <h3 class="text-xl font-bold text-gray-800">Data Analytics Dashboard</h3>
-                                <span class="px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-semibold">Completed</span>
-                            </div>
-                            <p class="text-gray-600 mb-4">
-                                Real-time analytics dashboard for business intelligence with interactive charts, 
-                                data filtering, and customizable reporting features.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 skill-tag text-white text-xs rounded-full">React</span>
-                                <span class="px-3 py-1 skill-tag text-white text-xs rounded-full">Node.js</span>
-                                <span class="px-3 py-1 skill-tag text-white text-xs rounded-full">MongoDB</span>
-                                <span class="px-3 py-1 skill-tag text-white text-xs rounded-full">Chart.js</span>
-                            </div>
-                            <a href="#" class="text-purple-600 hover:text-purple-800 font-medium">
-                                View Project →
-                            </a>
-                        </div>
-
-                        <div class="project-card bg-white rounded-xl p-6 shadow-md">
-                            <div class="flex justify-between items-start mb-3">
-                                <h3 class="text-xl font-bold text-gray-800">Docker Automation Tools</h3>
-                                <span class="px-3 py-1 bg-yellow-100 text-yellow-700 rounded-full text-xs font-semibold">In Progress</span>
-                            </div>
-                            <p class="text-gray-600 mb-4">
-                                Collection of Docker automation scripts and tools for streamlining development 
-                                workflows and deployment processes.
-                            </p>
-                            <div class="flex flex-wrap gap-2 mb-4">
-                                <span class="px-3 py-1 skill-tag text-white text-xs rounded-full">Docker</span>
-                                <span class="px-3 py-1 skill-tag text-white text-xs rounded-full">Bash</span>
-                                <span class="px-3 py-1 skill-tag text-white text-xs rounded-full">Python</span>
-                            </div>
-                            <a href="#" class="text-purple-600 hover:text-purple-800 font-medium">
-                                View Project →
-                            </a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Math for AI Section -->
-                <section id="mathforai-content" class="content-section">
-                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Math for AI 📐</h1>
-                    <div class="h-1 w-20 bg-gradient-to-r from-purple-500 to-indigo-600 mb-6"></div>
-
-                    <p class="text-lg text-gray-600 mb-6">
-                        An interactive learning platform designed to help you understand the mathematical foundations of artificial intelligence.
-                    </p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                        <a href="derivatives.html" class="block bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1">
-                            <div class="flex items-center mb-3">
-                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
-                                    <span class="text-xl">∂</span>
-                                </div>
-                                <h3 class="text-lg font-bold text-gray-800">Derivatives & Partial Derivatives</h3>
-                            </div>
-                            <p class="text-gray-600 text-sm">
-                                Understand the geometric meaning of derivatives through interactive visualizations.
-                            </p>
-                        </a>
-
-                        <a href="taylor_visualizer.html" class="block bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1">
-                            <div class="flex items-center mb-3">
-                                <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
-                                    <span class="text-xl">∑</span>
-                                </div>
-                                <h3 class="text-lg font-bold text-gray-800">Taylor Series</h3>
-                            </div>
-                            <p class="text-gray-600 text-sm">
-                                Visualize how polynomials approximate complex functions.
-                            </p>
-                        </a>
-
-                        <a href="gradient_descent.html" class="block bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1">
-                            <div class="flex items-center mb-3">
-                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
-                                    <span class="text-xl">∇</span>
-                                </div>
-                                <h3 class="text-lg font-bold text-gray-800">Gradient Descent</h3>
-                            </div>
-                            <p class="text-gray-600 text-sm">
-                                Interactive exploration of machine learning's core optimization algorithm.
-                            </p>
-                        </a>
-
-                        <a href="regression_optimization.html" class="block bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1">
-                            <div class="flex items-center mb-3">
-                                <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
-                                    <span class="text-xl">📊</span>
-                                </div>
-                                <h3 class="text-lg font-bold text-gray-800">Regression Analysis</h3>
-                            </div>
-                            <p class="text-gray-600 text-sm">
-                                Learn optimization methods for finding the best data models.
-                            </p>
-                        </a>
-
-                        <a href="neural_networks_intro.html" class="block bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1">
-                            <div class="flex items-center mb-3">
-                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
-                                    <span class="text-xl">🧠</span>
-                                </div>
-                                <h3 class="text-lg font-bold text-gray-800">Neural Networks</h3>
-                            </div>
-                            <p class="text-gray-600 text-sm">
-                                Understand neural network structures and activation functions.
-                            </p>
-                        </a>
-
-                        <a href="backpropagation.html" class="block bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1">
-                            <div class="flex items-center mb-3">
-                                <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
-                                    <span class="text-xl">⚡</span>
-                                </div>
-                                <h3 class="text-lg font-bold text-gray-800">Backpropagation</h3>
-                            </div>
-                            <p class="text-gray-600 text-sm">
-                                Master the training algorithm behind neural networks.
-                            </p>
-                        </a>
-
-                        <a href="ai_model_training_process.html" class="block bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1">
-                            <div class="flex items-center mb-3">
-                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-3">
-                                    <span class="text-xl">🎯</span>
-                                </div>
-                                <h3 class="text-lg font-bold text-gray-800">AI Model Training</h3>
-                            </div>
-                            <p class="text-gray-600 text-sm">
-                                Complete overview of the AI model training process.
-                            </p>
-                        </a>
-
-                        <a href="gradient_descent_3d.html" class="block bg-white p-5 rounded-xl shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1">
-                            <div class="flex items-center mb-3">
-                                <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mr-3">
-                                    <span class="text-xl">🏔️</span>
-                                </div>
-                                <h3 class="text-lg font-bold text-gray-800">3D Gradient Descent</h3>
-                            </div>
-                            <p class="text-gray-600 text-sm">
-                                Visualize gradient descent in 3D space with interactive demos.
-                            </p>
-                        </a>
-                    </div>
-
-                    <div class="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-6 mt-6">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-2">🌍 Available in Multiple Languages</h3>
-                        <p class="text-gray-600 mb-4">Access the full Math for AI learning platform:</p>
-                        <div class="flex gap-3">
-                            <a href="mathforai.html" class="px-4 py-2 bg-white rounded-lg shadow hover:shadow-md transition font-medium text-gray-700">
-                                🇨🇳 中文版
-                            </a>
-                            <a href="en/index_en.html" class="px-4 py-2 bg-white rounded-lg shadow hover:shadow-md transition font-medium text-gray-700">
-                                🇬🇧 English
-                            </a>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Skills Section -->
-                <section id="skills-content" class="content-section">
-                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Skills & Technologies ⚡</h1>
-                    <div class="h-1 w-20 bg-gradient-to-r from-purple-500 to-indigo-600 mb-6"></div>
-
-                    <div class="space-y-6">
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-800 mb-3">Programming Languages</h3>
-                            <div class="flex flex-wrap gap-3">
-                                <span class="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg font-medium">Python</span>
-                                <span class="px-4 py-2 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white rounded-lg font-medium">JavaScript</span>
-                                <span class="px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white rounded-lg font-medium">Java</span>
-                                <span class="px-4 py-2 bg-gradient-to-r from-blue-400 to-blue-500 text-white rounded-lg font-medium">TypeScript</span>
-                                <span class="px-4 py-2 bg-gradient-to-r from-gray-600 to-gray-700 text-white rounded-lg font-medium">C++</span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-800 mb-3">Frameworks & Libraries</h3>
-                            <div class="flex flex-wrap gap-3">
-                                <span class="px-4 py-2 bg-gradient-to-r from-cyan-500 to-cyan-600 text-white rounded-lg font-medium">React</span>
-                                <span class="px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg font-medium">Node.js</span>
-                                <span class="px-4 py-2 bg-gradient-to-r from-gray-700 to-gray-800 text-white rounded-lg font-medium">Flask</span>
-                                <span class="px-4 py-2 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-lg font-medium">Django</span>
-                                <span class="px-4 py-2 bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg font-medium">TensorFlow</span>
-                                <span class="px-4 py-2 bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg font-medium">PyTorch</span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-800 mb-3">Tools & Technologies</h3>
-                            <div class="flex flex-wrap gap-3">
-                                <span class="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg font-medium">Docker</span>
-                                <span class="px-4 py-2 bg-gradient-to-r from-orange-600 to-orange-700 text-white rounded-lg font-medium">Git</span>
-                                <span class="px-4 py-2 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-lg font-medium">VS Code</span>
-                                <span class="px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-lg font-medium">MongoDB</span>
-                                <span class="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg font-medium">PostgreSQL</span>
-                                <span class="px-4 py-2 bg-gradient-to-r from-gray-500 to-gray-600 text-white rounded-lg font-medium">AWS</span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <h3 class="text-lg font-semibold text-gray-800 mb-3">Specializations</h3>
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="bg-white p-4 rounded-lg shadow-md">
-                                    <div class="text-2xl mb-2">🤖</div>
-                                    <h4 class="font-semibold text-gray-800 mb-1">Machine Learning</h4>
-                                    <p class="text-sm text-gray-600">Neural Networks, Deep Learning, NLP</p>
-                                </div>
-                                <div class="bg-white p-4 rounded-lg shadow-md">
-                                    <div class="text-2xl mb-2">🌐</div>
-                                    <h4 class="font-semibold text-gray-800 mb-1">Web Development</h4>
-                                    <p class="text-sm text-gray-600">Full-stack, RESTful APIs, Responsive Design</p>
-                                </div>
-                                <div class="bg-white p-4 rounded-lg shadow-md">
-                                    <div class="text-2xl mb-2">📊</div>
-                                    <h4 class="font-semibold text-gray-800 mb-1">Data Science</h4>
-                                    <p class="text-sm text-gray-600">Analysis, Visualization, Statistical Modeling</p>
-                                </div>
-                                <div class="bg-white p-4 rounded-lg shadow-md">
-                                    <div class="text-2xl mb-2">☁️</div>
-                                    <h4 class="font-semibold text-gray-800 mb-1">DevOps</h4>
-                                    <p class="text-sm text-gray-600">CI/CD, Containerization, Cloud Deployment</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Contact Section -->
-                <section id="contact-content" class="content-section">
-                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Get In Touch 📧</h1>
-                    <div class="h-1 w-20 bg-gradient-to-r from-purple-500 to-indigo-600 mb-6"></div>
-
-                    <p class="text-lg text-gray-600 mb-6">
-                        I'm always interested in hearing about new projects, opportunities, or just having a chat about technology and AI.
-                    </p>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <a href="https://github.com/TheWu99" target="_blank" class="bg-gray-800 text-white p-6 rounded-xl hover:bg-gray-700 transition flex items-center">
-                            <svg class="w-8 h-8 mr-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                            <div>
-                                <div class="font-semibold">GitHub</div>
-                                <div class="text-sm text-gray-300">@TheWu99</div>
-                            </div>
-                        </a>
-
-                        <a href="mailto:your.email@example.com" class="bg-gradient-to-r from-purple-500 to-indigo-600 text-white p-6 rounded-xl hover:from-purple-600 hover:to-indigo-700 transition flex items-center">
-                            <svg class="w-8 h-8 mr-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
-                            <div>
-                                <div class="font-semibold">Email</div>
-                                <div class="text-sm text-purple-100">your.email@example.com</div>
-                            </div>
-                        </a>
-                    </div>
-
-                    <div class="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-6">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-4">☕ Support My Work</h3>
-                        <p class="text-gray-600 mb-4">
-                            If you find my projects helpful, consider buying me a coffee!
-                        </p>
-                        <a href="https://www.buymeacoffee.com/" target="_blank" class="inline-block bg-gradient-to-r from-yellow-400 to-orange-500 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition">
-                            Buy Me a Coffee ☕
-                        </a>
-                    </div>
-                </section>
-
-            </main>
-
-            <!-- Right Sidebar (20%) -->
-            <aside class="w-1/5 sidebar">
-                <div class="glass-effect rounded-2xl shadow-2xl p-6 mb-6">
-                    <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-                        GitHub Activity
-                    </h3>
-                    
-                    <a href="https://github.com/TheWu99" target="_blank" class="block mb-4">
-                        <img src="https://github-readme-stats.vercel.app/api?username=TheWu99&show_icons=true&theme=tokyonight&hide_border=true&bg_color=1a1b27&title_color=667eea&icon_color=764ba2&text_color=ffffff" alt="GitHub Stats" class="w-full rounded-lg shadow-md">
-                    </a>
-
-                    <a href="https://github.com/TheWu99" target="_blank" class="block mb-4">
-                        <img src="https://github-readme-streak-stats.herokuapp.com/?user=TheWu99&theme=tokyonight&hide_border=true&background=1a1b27&ring=667eea&fire=764ba2&currStreakLabel=ffffff" alt="GitHub Streak" class="w-full rounded-lg shadow-md">
-                    </a>
-
-                    <a href="https://github.com/TheWu99" target="_blank" class="block">
-                        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=TheWu99&layout=compact&theme=tokyonight&hide_border=true&bg_color=1a1b27&title_color=667eea&text_color=ffffff" alt="Top Languages" class="w-full rounded-lg shadow-md">
-                    </a>
-                </div>
-
-                <div class="glass-effect rounded-2xl shadow-2xl p-6">
-                    <h3 class="text-lg font-bold text-gray-800 mb-4">📌 Pinned Repos</h3>
-                    <div class="space-y-3">
-                        <a href="https://github.com/TheWu99/TheWu99.github.io" target="_blank" class="block bg-white p-3 rounded-lg shadow-sm hover:shadow-md transition">
-                            <div class="font-semibold text-gray-800 text-sm mb-1">TheWu99.github.io</div>
-                            <div class="text-xs text-gray-600">Professional portfolio & Math for AI learning platform</div>
-                            <div class="flex items-center mt-2">
-                                <span class="w-3 h-3 bg-yellow-400 rounded-full mr-2"></span>
-                                <span class="text-xs text-gray-500">JavaScript</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </aside>
-
-        </div>
-    </div>
-
-    <script>
-        function showSection(sectionId) {
-            // Hide all content sections
-            document.querySelectorAll('.content-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Remove active class from all menu items
-            document.querySelectorAll('.menu-item').forEach(item => {
-                item.classList.remove('active');
-            });
-            
-            // Show selected section
-            document.getElementById(sectionId + '-content').classList.add('active');
-            
-            // Add active class to clicked menu item
-            event.target.closest('.menu-item').classList.add('active');
-            
-            // Scroll to top of main content
-            document.querySelector('main').scrollTo(0, 0);
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math for AI - 首页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background-color: #FDFBF8;
+            color: #334155;
         }
-    </script>
+        .accent-color {
+            color: #14B8A6;
+        }
+        .accent-bg {
+            background-color: #0D9488;
+        }
+        .accent-bg-hover:hover {
+            background-color: #0F766E;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <div class="container mx-auto p-8">
+        <header class="flex justify-between items-center mb-12">
+            <div class="text-center w-full">
+                <h1 class="text-4xl md:text-5xl font-bold accent-color">欢迎来到 Math for AI</h1>
+                <p class="mt-3 text-lg text-slate-600">一个旨在通过交互式工具探索人工智能背后数学概念的项目</p>
+            </div>
+            <div class="ml-4 flex-shrink-0">
+                <a href="https://www.buymeacoffee.com/" target="_blank" class="inline-block accent-bg accent-bg-hover text-white font-semibold py-2 px-6 rounded-md shadow-md transition duration-300">
+                    Buy Me a Coffee 
+                </a>
+                <!-- WeChat Pay QR code link/button -->
+                <!-- <a href="/static/wechat_pay_qr.png" target="_blank" class="inline-block border border-green-400 text-green-700 font-semibold py-2 px-4 rounded-md shadow-sm hover:bg-green-50 transition duration-300">
+                    微信支付
+                </a> -->
+                <a href="en/index_en.html" class="inline-block border border-slate-400 text-slate-700 font-semibold py-2 px-4 rounded-md shadow-sm hover:bg-slate-100 transition duration-300">
+                    English
+                </a>
+            </div>
+        </header>
+
+        <main>
+            <h2 class="text-2xl font-semibold text-slate-800 mb-6 text-center">可用的工具和主题</h2>
+            <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                
+                <!-- Card for Derivatives -->
+                <a href="derivatives.html" class="block bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-bold accent-color mb-2">导数与偏导数交互学习</h3>
+                    <p class="text-slate-600">
+                        通过可视化图表，理解导数的几何意义以及偏导数的“切片”思想。
+                    </p>
+                    <div class="mt-4 text-right">
+                        <span class="inline-block accent-bg text-white font-semibold py-2 px-4 rounded-md">
+                            开始学习 &rarr;
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Card for Taylor Visualizer -->
+                <a href="taylor_visualizer.html" class="block bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-bold accent-color mb-2">泰勒展开式可视化</h3>
+                    <p class="text-slate-600">
+                        通过交互式图表，直观理解如何用多项式逼近复杂函数。
+                    </p>
+                    <div class="mt-4 text-right">
+                        <span class="inline-block accent-bg text-white font-semibold py-2 px-4 rounded-md">
+                            开始学习 &rarr;
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Card for Gradient Descent -->
+                <a href="gradient_descent.html" class="block bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-bold accent-color mb-2">梯度下降法交互学习</h3>
+                    <p class="text-slate-600">
+                        通过动手操作，直观感受机器学习中最核心的优化算法。
+                    </p>
+                    <div class="mt-4 text-right">
+                        <span class="inline-block accent-bg text-white font-semibold py-2 px-4 rounded-md">
+                            开始学习 &rarr;
+                        </span>
+                    </div>
+                </a>
+                
+                <a href="regression_optimization.html" class="block bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-bold accent-color mb-2">回归分析与最优化</h3>
+                    <p class="text-slate-600">
+                        结合您的笔记，理解如何用最优化方法找到最佳的数据模型。
+                    </p>
+                    <div class="mt-4 text-right">
+                        <span class="inline-block accent-bg text-white font-semibold py-2 px-4 rounded-md">
+                            开始学习 &rarr;
+                        </span>
+                    </div>
+                </a>
+
+                <!-- Card for AI Model Training Process -->
+                <a href="ai_model_training_process.html"
+                    class="block bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-bold accent-color mb-2">AI模型训练过程详解</h3>
+                    <p class="text-slate-600">
+                        了解AI模型从数据准备、模型选择到训练与评估的完整流程，掌握机器学习项目的全局视角。
+                    </p>
+                    <div class="mt-4 text-right">
+                        <span class="inline-block accent-bg text-white font-semibold py-2 px-4 rounded-md">
+                            开始学习 &rarr;
+                        </span>
+                    </div>
+                </a>
+
+                          
+                
+                <!-- Card for Neural Networks Intro -->
+                <a href="neural_networks_intro.html"
+                    class="block bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-bold accent-color mb-2">神经网络（Neural Networks）简介</h3>
+                    <p class="text-slate-600">
+                        了解神经网络的基本结构、工作原理和常见激活函数，掌握现代AI的核心基础。
+                    </p>
+                    <div class="mt-4 text-right">
+                        <span class="inline-block accent-bg text-white font-semibold py-2 px-4 rounded-md">
+                            开始学习 &rarr;
+                        </span>
+                    </div>
+                </a>
+                
+                <!-- Card for Backpropagation -->
+                <a href="backpropagation.html"
+                    class="block bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                    <h3 class="text-xl font-bold accent-color mb-2">误差反向传播法（Backpropagation）</h3>
+                    <p class="text-slate-600">
+                        理解神经网络训练的核心算法，掌握损失函数、梯度计算与参数更新的全过程。
+                    </p>
+                    <div class="mt-4 text-right">
+                        <span class="inline-block accent-bg text-white font-semibold py-2 px-4 rounded-md">
+                            开始学习 &rarr;
+                        </span>
+                    </div>
+                </a>
+
+            </div>
+        </main>
+
+        <footer class="text-center mt-16 text-slate-500">
+            <p>&copy; 2024 MathforAI. All rights reserved.</p>
+        </footer>
+    </div>
 </body>
 </html>
