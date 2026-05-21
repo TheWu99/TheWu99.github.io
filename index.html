@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zichao Wu | Senior Software Engineer & Architect</title>
-  <meta name="description" content="Evidence-based senior software engineering and architecture profile focused on telecom backend modernization, PostgreSQL, AI voice agents, and cloud/GPU infrastructure.">
+  <title>Zichao Wu | Senior Software Engineer & Telecom Architect</title>
+  <meta name="description" content="25-year senior software engineering and architecture profile across telecom platforms, C++ backends, billing, CDR, voicemail, MMS, PostgreSQL, payments, lawful intercept, and AI voice infrastructure.">
   <style>
     :root {
       color-scheme: light;
@@ -18,32 +18,16 @@
       --dark: #101828;
     }
     * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--ink);
-      background: #eef2f6;
-      line-height: 1.55;
-    }
+    body { margin: 0; font-family: Arial, Helvetica, sans-serif; color: var(--ink); background: #eef2f6; line-height: 1.55; }
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
     .shell { max-width: 1180px; margin: 0 auto; padding: 28px 20px 56px; }
-    .hero {
-      background: linear-gradient(135deg, #0f2735 0%, #164e63 48%, #6b4f1d 100%);
-      color: white;
-      border-radius: 10px;
-      padding: 42px;
-      margin-bottom: 22px;
-    }
-    .eyebrow { letter-spacing: .08em; text-transform: uppercase; font-size: 12px; opacity: .82; margin: 0 0 12px; }
-    h1 { font-size: clamp(32px, 5vw, 58px); line-height: 1.02; margin: 0 0 16px; letter-spacing: 0; }
-    .hero p { max-width: 860px; font-size: 18px; margin: 0 0 22px; color: #e6edf4; }
+    .hero { background: linear-gradient(135deg, #102331 0%, #174f5e 50%, #594318 100%); color: white; border-radius: 10px; padding: 42px; margin-bottom: 22px; }
+    .eyebrow { letter-spacing: .08em; text-transform: uppercase; font-size: 12px; opacity: .84; margin: 0 0 12px; }
+    h1 { font-size: clamp(34px, 5vw, 58px); line-height: 1.02; margin: 0 0 16px; letter-spacing: 0; }
+    .hero p { max-width: 900px; font-size: 18px; margin: 0 0 22px; color: #e6edf4; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-    .button {
-      display: inline-flex; align-items: center; justify-content: center;
-      min-height: 42px; padding: 10px 16px; border-radius: 6px;
-      background: white; color: #102a37; font-weight: 700;
-    }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 10px 16px; border-radius: 6px; background: white; color: #102a37; font-weight: 700; }
     .button.secondary { background: rgba(255,255,255,.12); color: white; border: 1px solid rgba(255,255,255,.35); }
     .layout { display: grid; grid-template-columns: 280px 1fr; gap: 22px; align-items: start; }
     nav { position: sticky; top: 18px; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
@@ -78,110 +62,107 @@
 <body>
   <div class="shell">
     <header class="hero">
-      <p class="eyebrow">Senior Software Engineer | Software Architect | AI Voice Infrastructure</p>
+      <p class="eyebrow">Senior Software Engineer | Telecom Architect | AI Voice Infrastructure</p>
       <h1>Zichao Wu</h1>
-      <p>Senior software developer and architect modernizing carrier-grade telecom platforms across C++, Python, PostgreSQL, Oracle, REST APIs, realtime media, and AI voice-agent infrastructure.</p>
+      <p>25+ years building and modernizing carrier-grade telecom platforms: C/C++ backends, billing, CDR, account provisioning, voicemail, MMSC, SMS/MMS, reporting, payments, lawful intercept, PostgreSQL/Oracle, REST modernization, and AI-powered voice infrastructure.</p>
       <div class="hero-actions">
         <a class="button" href="professional-resume.md">Detailed Resume</a>
         <a class="button secondary" href="https://github.com/TheWu99" target="_blank" rel="noopener">GitHub</a>
-        <a class="button secondary" href="mathforai.html">Math for AI</a>
       </div>
     </header>
 
     <div class="layout">
       <nav aria-label="Resume sections">
         <a href="#summary">Summary</a>
+        <a href="#timeline">25-Year Arc</a>
         <a href="#evidence">Evidence</a>
         <a href="#skills">Skills</a>
         <a href="#achievements">Achievements</a>
-        <a href="#projects">Projects</a>
-        <a href="#roles">Role Versions</a>
-        <a href="#linkedin">LinkedIn</a>
+        <a href="#projects">Project Areas</a>
+        <a href="#roles">Target Roles</a>
         <a href="#confirmation">Needs Confirmation</a>
       </nav>
 
       <main>
         <section id="summary">
           <h2>Professional Summary</h2>
-          <p>Senior software engineer and architect with deep experience modernizing legacy telecom platforms and building production-oriented backend systems. Recent work bridges carrier systems into modern REST and AI workflows, including embedded C++ REST adapters, PostgreSQL/Oracle migration planning, an OpenAI Realtime/Twilio/RTP telecom voice agent, and a local vLLM/Qwen realtime wrapper for GPU-hosted AI services.</p>
+          <p>Senior software engineer and architect with a long production-oriented career across telecom backend systems and modern AI/cloud-adjacent infrastructure. The strongest story is not one recent project. It is the ability to evolve critical carrier systems across decades: preserve stable contracts, extend core business workflows, modernize database access, expose REST APIs, and connect proven telecom backends to realtime voice agents.</p>
           <div class="grid three">
-            <div class="tile"><div class="metric">5</div><strong>Core telecom services modernized</strong><p class="muted">Admin, Bill, UM, CR, and Card REST adapters.</p></div>
-            <div class="tile"><div class="metric">447</div><strong>Legacy IDL interfaces in scope</strong><p class="muted">Counted from reviewed IDL files.</p></div>
-            <div class="tile"><div class="metric">83k+</div><strong>Reviewed source lines</strong><p class="muted">C++/Python REST, telecom, job, and realtime-agent code.</p></div>
+            <div class="tile"><div class="metric">25+</div><strong>Years of telecom platform work</strong><p class="muted">Source evidence spans 2001-2026.</p></div>
+            <div class="tile"><div class="metric">479</div><strong>Reviewed IDL interfaces</strong><p class="muted">Admin, Bill, UM, CR, Card, CDR, and MMSC.</p></div>
+            <div class="tile"><div class="metric">18+</div><strong>Repo areas reviewed</strong><p class="muted">Core telecom, jobs, reporting, payments, LI, AI voice.</p></div>
+          </div>
+        </section>
+
+        <section id="timeline">
+          <h2>25-Year Career Arc</h2>
+          <div class="grid two">
+            <div class="tile"><h3>2001-2007: Telecom Foundations</h3><p>Admin, billing, card, CDR, CR, UM, replication, prepaid services, SMSCDR/SMSC integrations, QDN, contact data, number management, and core C++ service contracts.</p></div>
+            <div class="tile"><h3>2008-2016: Scale and Operations</h3><p>Job billing, reporting, account activity, revenue, bucket reports, voucher history, MTS/customer-specific reports, MMS/SMS/voicemail operations, CALEA, and production troubleshooting.</p></div>
+            <div class="tile"><h3>2017-2024: Database, API, Payments</h3><p>UCDA/PostgreSQL, Oracle/MySQL/ODBC, connection pooling, migration planning, serviceapp payment systems, .NET/C# modernization, lawful intercept, and external API adapters.</p></div>
+            <div class="tile"><h3>2025-2026: REST and AI Voice</h3><p>Embedded REST APIs for legacy telecom services, Miffy, telecom IVR agents, RTP/Twilio/OpenAI Realtime, local vLLM/Qwen wrappers, and GPU runtime deployment scripts.</p></div>
           </div>
         </section>
 
         <section id="evidence">
           <h2>Repository Evidence Reviewed</h2>
           <div class="tags">
-            <span class="tag">AdminServer</span><span class="tag">BillServer</span><span class="tag">UMServer</span><span class="tag">CRServer</span><span class="tag">CardControl</span><span class="tag">JobBillServer</span><span class="tag">Common/rest</span><span class="tag">miffy</span>
+            <span class="tag">AdminServer</span><span class="tag">BillServer</span><span class="tag">CDRServer</span><span class="tag">UMServer</span><span class="tag">CRServer</span><span class="tag">CardControl</span><span class="tag">JobBillServer</span><span class="tag">JobReportServer</span><span class="tag">MMSC</span><span class="tag">Common</span><span class="tag">AutoPay</span><span class="tag">AISClient</span><span class="tag">PromoServer</span><span class="tag">serviceapp</span><span class="tag">Li-X1X2X3</span><span class="tag">li-simulator-x1x2x3</span><span class="tag">telecom_ivr</span><span class="tag">miffy</span>
           </div>
-          <p class="muted">Evidence includes REST API docs and adapters, IDL files, Makefiles, PostgreSQL notes, UCDA docs, JobBill operational code, Miffy realtime server, RTP integration, local realtime wrapper, tests, RunPod/systemd scripts, and recent git history.</p>
+          <p class="muted">The professional resume intentionally does not use the Math for AI site as work evidence.</p>
         </section>
 
         <section id="skills">
           <h2>Technical Skills</h2>
           <div class="grid two">
-            <div class="tile"><h3>Backend and API</h3><p>C/C++, Python, FastAPI, WebSockets, embedded HTTP/JSON REST, legacy socket/IDL systems, C++03 integration clients, Bash, SQL.</p></div>
-            <div class="tile"><h3>Telecom</h3><p>Prepaid billing, account lifecycle, CDRs, rating, vouchers/cards, buckets/packages/add-ons, voicemail/UM, call routing, SMS/MMS, CALEA, IVR.</p></div>
-            <div class="tile"><h3>Data</h3><p>PostgreSQL/libpq, Oracle OCI, MySQL, ODBC, UCDA abstraction, connection pooling, prepared statements, partitioning, indexing, migration planning.</p></div>
-            <div class="tile"><h3>AI and Voice</h3><p>OpenAI Realtime, Twilio Media Streams, RTP/UDP, G.711 mu-law/A-law, VAD, Whisper/faster-whisper, vLLM, Qwen/Qwen3-ASR/TTS, Piper.</p></div>
-            <div class="tile"><h3>Operations</h3><p>Linux services, Makefiles, systemd examples, RunPod/Vast.ai GPU setup, health/readiness checks, structured telemetry, TAE logging.</p></div>
-            <div class="tile"><h3>Needs Confirmation</h3><p>AWS EKS, Kubernetes, Helm, Docker production ownership, Java/Spring Boot production scope, and quantified business outcomes.</p></div>
+            <div class="tile"><h3>Backend and API</h3><p>C/C++, Python, C#, Java, SQL, Bash, IDL/socket services, embedded REST, FastAPI, WebSockets, Spring Boot, .NET 8, Maven, Makefiles, CMake.</p></div>
+            <div class="tile"><h3>Telecom</h3><p>Prepaid billing, provisioning, CDRs, rate plans, buckets, packages, voicemail/UM, CR, SMS/MMS, MMSC, CALEA, lawful intercept X1/X2/X3, RTP, IVR.</p></div>
+            <div class="tile"><h3>Database and Payments</h3><p>PostgreSQL/libpq, Oracle OCI, MySQL, ODBC, UCDA, connection pooling, partitioning, indexing, Authorize.Net, Moneris, PowerTranz, FAC, Eigen.</p></div>
+            <div class="tile"><h3>AI Voice and Operations</h3><p>OpenAI Realtime, Twilio, RTP/UDP, G.711, Whisper, Piper, vLLM, Qwen, systemd, Docker Compose evidence, RunPod/Vast.ai scripts, telemetry, TAE logging.</p></div>
           </div>
         </section>
 
         <section id="achievements">
-          <h2>Evidence-Based Achievements</h2>
+          <h2>Strong Achievement Themes</h2>
           <ul>
-            <li>Modernized legacy C++ telecom services with optional embedded REST APIs while preserving existing socket/IDL contracts.</li>
-            <li>Created a reusable dependency-light REST layer in `Common/rest` with request parsing, route dispatch, JSON helpers, and IDL-friendly aliases.</li>
-            <li>Implemented high-value REST mappings for account, billing, rate plan, bucket, CDR, card, voicemail, call-routing, package, and add-on workflows.</li>
-            <li>Built Miffy, a realtime telecom voice agent connecting Twilio/OpenAI Realtime/RTP media to live backend tools.</li>
-            <li>Added Primal RTP session APIs with UDP media handling, jitter buffering, codec validation, dynamic port allocation, inspection, and cleanup.</li>
-            <li>Moved Miffy from mock data toward OSE REST-backed account lookup, CDR history, voucher top-up, add-ons, purchases, voicemail, and operational REST logging.</li>
-            <li>Built an OpenAI Realtime-compatible local wrapper for faster-whisper/OpenAI/Qwen3-ASR, vLLM/Qwen, and Piper/Qwen3-TTS/OpenAI/ElevenLabs/MiniMax.</li>
-            <li>Added RunPod setup, start/stop/verify scripts and systemd service examples for GPU-hosted Qwen/vLLM/Qwen3 services.</li>
-            <li>Authored PostgreSQL capacity and migration guidance for a 30M-subscriber, 150M-message voicemail workload; production deployment impact needs confirmation.</li>
-            <li>Supported JobBill automation for periodic charging, account expiry, bucket resets, SMS/MMS alerts, orphan cleanup, CALEA, and encrypted SMS evidence handling.</li>
+            <li>Sustained and evolved a carrier-grade telecom platform across a 25-year source history.</li>
+            <li>Built and maintained account, billing, CDR, card, voicemail, call-routing, MMSC, job, reporting, payment, and lawful-intercept systems.</li>
+            <li>Modernized legacy C++ services with REST APIs while preserving existing socket/IDL clients.</li>
+            <li>Advanced PostgreSQL migration work through UCDA/libpq, connection pooling, partitioning, indexing, and tuning guidance.</li>
+            <li>Expanded production operations through reports, batch jobs, SMS/MMS alerts, CALEA workflows, and troubleshooting runbooks.</li>
+            <li>Built AI voice and IVR systems that connect RTP/Twilio/OpenAI-compatible media to telecom backend actions.</li>
           </ul>
         </section>
 
         <section id="projects">
-          <h2>Project Portfolio</h2>
+          <h2>Project Areas</h2>
           <div class="grid two">
-            <div class="tile"><h3>Legacy Telecom REST Modernization</h3><p>REST modernization across AdminServer, BillControl, CardControl, UMServer, and CRServer with discovery endpoints, JSON envelopes, opt-in ports, and worker-thread controls.</p></div>
-            <div class="tile"><h3>Miffy AI Telecom Voice Agent</h3><p>Realtime subscriber-support voice agent using Twilio, OpenAI Realtime, RTP, FastAPI, telecom tools, OSE REST, sentiment/prompt-drift tracking, and voicemail playback.</p></div>
-            <div class="tile"><h3>Local Realtime AI Wrapper</h3><p>OpenAI-compatible wrapper for local or configurable STT, LLM, and TTS providers, including vLLM/Qwen and Qwen3 ASR/TTS deployment scripts.</p></div>
-            <div class="tile"><h3>PostgreSQL / UCDA Modernization</h3><p>Database abstraction and migration work across PostgreSQL, Oracle OCI, MySQL, and ODBC with connection pooling and voicemail scale recommendations.</p></div>
-            <div class="tile"><h3>Telecom Job Automation</h3><p>Operational automation for recurring charges, alerts, sweeps, expiry, CALEA, SMS/MMS, orphan cleanup, and integrations across core telecom services.</p></div>
-            <div class="tile"><h3>Math for AI</h3><p>Interactive educational site for AI/math concepts, kept as an active side project and linked from this portfolio.</p></div>
+            <div class="tile"><h3>Carrier Telecom Core</h3><p>Admin, Bill, CDR, UM, CR, Card, MMSC, Common, AutoPay, AISClient, JobBill, and JobReport systems.</p></div>
+            <div class="tile"><h3>REST Modernization</h3><p>Common REST layer and service adapters for Admin, Bill, Card, UM, CR, and CDR APIs.</p></div>
+            <div class="tile"><h3>Database Modernization</h3><p>UCDA across PostgreSQL, Oracle, MySQL, and ODBC with migration and tuning guidance.</p></div>
+            <div class="tile"><h3>Payments</h3><p>Legacy and .NET credit-card services with multi-gateway routing and Linux deployment planning.</p></div>
+            <div class="tile"><h3>Lawful Intercept</h3><p>ETSI X1/X2/X3 C++ implementation and Java/Spring Boot simulator integration evidence.</p></div>
+            <div class="tile"><h3>AI Voice</h3><p>telecom_ivr and Miffy: RTP, Twilio, OpenAI Realtime, local wrapper, vLLM/Qwen, voicemail, voucher, account, and add-on tools.</p></div>
           </div>
         </section>
 
         <section id="roles">
-          <h2>Targeted Resume Positioning</h2>
+          <h2>Target Role Positioning</h2>
           <h3>Senior Software Engineer</h3>
-          <p>Lead with backend execution: C++/Python, REST adapters, production debugging, telecom workflows, database integration, and realtime voice/media implementation.</p>
+          <p>Lead with deep hands-on C++/Python/C#/Java backend delivery, telecom workflows, production debugging, REST modernization, database integration, and realtime media/AI implementation.</p>
           <h3>Software Architect / Staff Engineer</h3>
-          <p>Lead with architecture: incremental modernization, shared platform patterns, legacy-to-cloud/API bridges, PostgreSQL migration strategy, AI runtime choices, and operational guardrails.</p>
-        </section>
-
-        <section id="linkedin">
-          <h2>LinkedIn Positioning</h2>
-          <p><strong>Headline:</strong> Senior Software Engineer & Architect | Telecom Backend Modernization | C++/Python | PostgreSQL/Oracle | Realtime AI Voice Agents | Cloud/GPU Infrastructure</p>
-          <p><strong>About:</strong> I modernize carrier-grade telecom systems and connect them to modern API, database, cloud, and AI workflows. My work spans C++ backend services, prepaid billing, CDRs, vouchers, voicemail, call routing, PostgreSQL/Oracle migration, realtime media, and AI voice agents. I am strongest where architecture and production reality meet: preserving stable legacy contracts, creating practical migration paths, and making complex backend platforms usable by newer applications and AI agents.</p>
+          <p>Lead with long-horizon platform evolution: legacy compatibility, migration paths, shared service patterns, PostgreSQL strategy, payment/lawful-intercept integrations, and AI voice architecture.</p>
         </section>
 
         <section id="confirmation">
           <h2>Claims To Confirm Before Publishing With Numbers</h2>
-          <p class="note">Do not add exact revenue, uptime, latency, call-volume, subscriber-volume, cost-savings, team-size, or production cloud claims until confirmed. The reviewed repos support REST modernization, Miffy voice-agent architecture, PostgreSQL planning, RunPod/Vast.ai scripts, and AWS C6 build evidence. They do not prove complete EKS/Helm production ownership.</p>
-          <div class="tags"><span class="tag warn">Impact numbers</span><span class="tag warn">Dates</span><span class="tag warn">Employer names</span><span class="tag warn">AWS EKS</span><span class="tag warn">Kubernetes/Helm</span><span class="tag warn">Java/Spring Boot</span></div>
+          <p class="note">Keep exact production metrics out until confirmed: subscriber counts, call/message volumes, revenue, uptime, latency gains, cost savings, team size, cloud production ownership, and whether specific payment/AI/lawful-intercept components were production, pilot, or prototype.</p>
+          <div class="tags"><span class="tag warn">Impact numbers</span><span class="tag warn">Official dates</span><span class="tag warn">Employer names</span><span class="tag warn">Production cloud scope</span><span class="tag warn">Pilot vs production</span></div>
         </section>
       </main>
     </div>
 
-    <footer>Evidence-based resume refresh generated from reviewed repository code and documentation.</footer>
+    <footer>Evidence-based 25-year telecom platform resume. Math for AI is intentionally excluded from the professional work narrative.</footer>
   </div>
 </body>
 </html>
