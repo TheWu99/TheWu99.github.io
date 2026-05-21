@@ -1,73 +1,37 @@
-# Math for AI
+# Zichao Wu - Senior Engineering Portfolio
 
-A project to explore the mathematics behind artificial intelligence through interactive visualizations and tools.
+GitHub Pages portfolio and evidence-based professional resume for senior software engineering, software architecture, telecom backend modernization, database modernization, and AI voice infrastructure roles.
 
-## 🌐 Live Site
+Live site: <https://thewu99.github.io/>
 
-Visit the live site at: [https://thewu99.github.io/](https://thewu99.github.io/)
+## Current Focus
 
-## 📚 Topics Covered
+- Carrier-grade telecom backend modernization
+- Legacy C++ socket/IDL services exposed through opt-in REST APIs
+- PostgreSQL/Oracle/MySQL/ODBC database abstraction and migration planning
+- Realtime AI voice agents with Twilio, RTP, OpenAI Realtime-compatible protocols, and telecom backend tools
+- Local/GPU AI runtime work with vLLM, Qwen/Qwen3-ASR/Qwen3-TTS, faster-whisper, Piper, and systemd/RunPod deployment scripts
 
-- **Derivatives & Partial Derivatives** - Interactive visualizations of derivatives and their geometric meanings
-- **Taylor Series** - Understand polynomial approximations of complex functions
-- **Gradient Descent** - Core optimization algorithm in machine learning
-- **Regression Analysis** - Data modeling and optimization methods
-- **Neural Networks** - Introduction to neural network structures and activation functions
-- **Backpropagation** - Understanding the training algorithm behind neural networks
+## Resume Artifacts
 
-## 🚀 Local Development
+- `index.html` - live portfolio homepage
+- `professional-resume.md` - detailed evidence-based resume content, achievement bullets, project descriptions, targeted role versions, LinkedIn headline/about, and claims that need confirmation
 
-### Option 1: Static Site (GitHub Pages Compatible)
-Simply open `index.html` in your browser. All HTML files are self-contained and work without a server.
+## Evidence Basis
 
-### Option 2: Flask Development Server
-```bash
-pip install -r requirements.txt
-python app.py
-```
-Then visit http://localhost:5000
+The resume was generated from reviewed local repositories and documentation, including:
 
-### Option 3: Docker
-```bash
-docker build -t mathforai .
-docker run -t --name mathforai -p 5000:5000 mathforai
-```
+- `AdminServer`
+- `BillServer`
+- `UMServer`
+- `CRServer`
+- `CardControl`
+- `JobBillServer`
+- `Common/rest`
+- `miffy`
 
-## 📦 Docker Commands
+Claims with missing proof are marked as needing confirmation, especially exact impact numbers, dates, production AWS EKS/Kubernetes/Helm ownership, and Java/Spring Boot production scope.
 
-```bash
-#debug
-docker logs mathforai
+## Existing Learning Project
 
-#list the running container
-docker ps
-
-#save Docker image to .tar file
-docker save -o mathforai.tar mathforai
-
-#copy .tar to NAS
-sftp nas:/docker/
-put mathforai.tar 
-
-#load image on NAS
-ssh nas
-cd /volume1/docker/
-docker load -i mathforai.tar
-
-#run docker
-docker run -t --name mathforai -p 5000:5000 mathforai
-
-#push to Docker Hub
-docker login
-docker tag mathforai flydragonpulse/mathforai:latest
-docker push flydragonpulse/mathforai:latest
-```
-
-## 🌍 Languages
-
-- 中文 (Chinese) - Default
-- English - Available at `/en/index_en.html`
-
-## 📄 License
-
-© 2024 MathforAI. All rights reserved.
+The Math for AI pages remain available from the homepage and existing static routes.
