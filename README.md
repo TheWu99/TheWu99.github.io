@@ -19,7 +19,7 @@ This resume now focuses on the full 25-year body of work, not only recent REST o
 ## Resume Artifacts
 
 - `index.html` - live portfolio homepage
-- `professional-resume.md` - detailed evidence-based resume content, 25-year career narrative, achievement bullets, project descriptions, role-specific versions, LinkedIn headline/about, and claims that need confirmation
+- `professional-resume.html` - detailed evidence-based resume page, 25-year career narrative, achievement bullets, project descriptions, role-specific versions, LinkedIn headline/about, and claims that need confirmation
 
 ## Evidence Basis
 
@@ -45,7 +45,3 @@ The resume is grounded in reviewed local repositories and documentation, includi
 - `miffy`
 
 Claims with missing proof are marked as needing confirmation, especially exact production impact numbers, official dates, employer names, team sizes, and whether specific cloud/AI/payment/lawful-intercept work was production, pilot, or prototype.
-
-## Note
-
-The Math for AI pages may still exist as static site content, but they are intentionally excluded from the professional work resume because they are not relevant to the target senior engineering roles.
