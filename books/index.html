@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src https://api.github.com; img-src 'self' data: https://raw.githubusercontent.com; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+  <title>私人知识书库</title>
+  <meta name="description" content="从私人 GitHub Knowledge Base 安全读取所有书籍与章节。">
+  <link rel="stylesheet" href="styles.css?v=20260721-library-1">
+</head>
+<body>
+  <noscript>此阅读器需要启用 JavaScript。</noscript>
+
+  <main id="authView" class="auth-shell">
+    <section class="auth-card" aria-labelledby="authTitle">
+      <div class="seal" aria-hidden="true">书</div>
+      <p class="eyebrow">PRIVATE KNOWLEDGE LIBRARY</p>
+      <h1 id="authTitle">私人知识书库</h1>
+      <p class="lede">验证 GitHub 身份后，浏览器会从你的私人知识库动态读取所有已经完成和正在生成的书籍。</p>
+      <div class="security-note"><strong>内容不会发布到本网站</strong><p>本页只包含阅读器代码；书籍正文仍保存在私人仓库中。</p></div>
+      <form id="authForm" autocomplete="off">
+        <label for="tokenInput">GitHub Fine-grained Personal Access Token</label>
+        <div class="token-row">
+          <input id="tokenInput" name="github-token" type="password" autocomplete="new-password" spellcheck="false" placeholder="github_pat_..." required>
+          <button id="toggleToken" class="button ghost" type="button">显示</button>
+        </div>
+        <label class="check-row"><input id="rememberToken" type="checkbox"><span>仅在当前浏览器标签页保存</span></label>
+        <button id="unlockButton" class="button primary wide" type="submit">验证并进入书库</button>
+        <p id="authStatus" class="status" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <div id="libraryView" class="library-shell" hidden>
+    <header class="topbar">
+      <div class="brand"><div class="mini-seal">书</div><div><p class="eyebrow">ZICHAO'S PRIVATE LIBRARY</p><h1>私人知识书库</h1></div></div>
+      <div class="top-actions">
+        <button id="refreshButton" class="button ghost" type="button">刷新书库</button>
+        <button id="themeButton" class="button ghost" type="button">明暗</button>
+        <button id="lockButton" class="button danger" type="button">锁定</button>
+      </div>
+    </header>
+
+    <div class="library-grid">
+      <aside id="sidebar" class="sidebar">
+        <div class="sidebar-head">
+          <div class="sidebar-title"><strong>书籍与章节</strong><span id="bookCount">—</span></div>
+          <input id="librarySearch" type="search" placeholder="搜索书名或章节…" autocomplete="off">
+        </div>
+        <div id="libraryTree" class="library-tree" aria-label="书籍和章节目录"></div>
+        <p id="treeStatus" class="status"></p>
+      </aside>
+
+      <main class="reading-panel">
+        <div class="reader-toolbar">
+          <button id="sidebarButton" class="button ghost mobile-only" type="button">目录</button>
+          <div class="breadcrumb" id="breadcrumb">请选择一本书或一个章节</div>
+          <label class="font-control">字号 <input id="fontSize" type="range" min="16" max="28" value="20"></label>
+        </div>
+        <div id="loadingState" class="loading" hidden>正在从私人知识库读取内容…</div>
+        <article id="content" class="markdown-body">
+          <div class="welcome">
+            <div class="welcome-mark">道</div>
+            <h2>选择左侧书名或章节开始阅读</h2>
+            <p>书籍目录会根据私人仓库内容自动更新。</p>
+          </div>
+        </article>
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js?v=20260721-library-1" defer></script>
+</body>
+</html>
