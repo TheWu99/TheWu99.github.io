@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex,nofollow,noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src https://api.github.com; img-src 'self' data:; style-src 'self'; script-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'">
+  <title>《道德经》私人阅读室</title>
+  <meta name="description" content="从私人 GitHub Knowledge Base 安全读取《道德经》逐章详解。">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <noscript>此阅读器需要启用 JavaScript。</noscript>
+
+  <main id="authView" class="auth-shell">
+    <section class="auth-card" aria-labelledby="authTitle">
+      <div class="seal" aria-hidden="true">道</div>
+      <p class="eyebrow">PRIVATE KNOWLEDGE READER</p>
+      <h1 id="authTitle">《道德经》私人阅读室</h1>
+      <p class="lede">页面本身不保存书籍正文。解锁后，浏览器才会从你的私人仓库读取内容，并验证 GitHub 用户必须是 <strong>TheWu99</strong>。</p>
+
+      <div class="security-note">
+        <strong>安全边界</strong>
+        <p>GitHub 个人 Pages 本身是公开静态网站，无法原生设置为“仅本人访问”。这里采用内容级保护：公开页面只有阅读器代码，私有正文必须使用你的 GitHub 只读凭证才能加载。</p>
+      </div>
+
+      <form id="authForm" autocomplete="off">
+        <label for="tokenInput">GitHub Fine-grained Personal Access Token</label>
+        <div class="token-row">
+          <input id="tokenInput" name="github-token" type="password" inputmode="text" autocomplete="new-password" spellcheck="false" placeholder="github_pat_..." required>
+          <button id="toggleToken" class="button ghost" type="button" aria-label="显示或隐藏令牌">显示</button>
+        </div>
+        <label class="check-row">
+          <input id="rememberToken" type="checkbox">
+          <span>仅在当前浏览器标签页保存；关闭标签页后清除</span>
+        </label>
+        <button id="unlockButton" class="button primary wide" type="submit">验证并进入阅读室</button>
+        <p id="authStatus" class="status" role="status" aria-live="polite"></p>
+      </form>
+
+      <details>
+        <summary>怎样创建最小权限的只读令牌？</summary>
+        <ol>
+          <li>打开 GitHub Settings → Developer settings → Personal access tokens → Fine-grained tokens。</li>
+          <li>Resource owner 选择 <strong>TheWu99</strong>。</li>
+          <li>Repository access 只选择 <strong>ChatGPT-Knowledge-Base</strong>。</li>
+          <li>Repository permissions 只授予 <strong>Contents: Read-only</strong>；其他权限保持 No access。</li>
+          <li>设置较短有效期。令牌只粘贴在本页，不要写入任何公开仓库。</li>
+        </ol>
+        <a class="text-link" href="https://github.com/settings/personal-access-tokens" target="_blank" rel="noopener noreferrer">打开 GitHub 令牌设置</a>
+      </details>
+    </section>
+  </main>
+
+  <div id="readerView" class="reader-shell" hidden>
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">ZICHAO'S PRIVATE LIBRARY</p>
+        <h1>《道德经》大师课</h1>
+      </div>
+      <div class="top-actions">
+        <button id="themeButton" class="icon-button" type="button" aria-label="切换明暗主题">明暗</button>
+        <button id="lockButton" class="button danger" type="button">锁定</button>
+      </div>
+    </header>
+
+    <div class="reader-grid">
+      <aside id="sidebar" class="sidebar">
+        <div class="sidebar-head">
+          <label for="chapterSearch">章节</label>
+          <input id="chapterSearch" type="search" placeholder="搜索章节标题…" autocomplete="off">
+        </div>
+        <nav id="chapterList" class="chapter-list" aria-label="《道德经》章节"></nav>
+      </aside>
+
+      <section class="reading-panel">
+        <div class="reader-toolbar">
+          <button id="sidebarButton" class="icon-button mobile-only" type="button" aria-label="打开章节目录">目录</button>
+          <div class="chapter-nav">
+            <button id="prevButton" class="button ghost" type="button">上一章</button>
+            <span id="chapterProgress" class="progress">—</span>
+            <button id="nextButton" class="button ghost" type="button">下一章</button>
+          </div>
+          <label class="font-control" for="fontSize">
+            字号
+            <input id="fontSize" type="range" min="16" max="28" value="19">
+          </label>
+        </div>
+
+        <section class="audio-panel" aria-labelledby="audioTitle">
+          <div>
+            <p class="eyebrow">BROWSER SPEECH</p>
+            <h2 id="audioTitle">语音朗读</h2>
+          </div>
+          <div class="audio-settings">
+            <label>范围
+              <select id="audioScope">
+                <option value="original">只朗读原文</option>
+                <option value="chapter">朗读本章全文</option>
+              </select>
+            </label>
+            <label>语音
+              <select id="voiceSelect"></select>
+            </label>
+            <label>语速
+              <select id="rateSelect">
+                <option value="0.8">0.8×</option>
+                <option value="1" selected>1.0×</option>
+                <option value="1.2">1.2×</option>
+                <option value="1.4">1.4×</option>
+              </select>
+            </label>
+          </div>
+          <div class="audio-actions">
+            <button id="speakButton" class="button primary" type="button">开始朗读</button>
+            <button id="pauseButton" class="button ghost" type="button">暂停</button>
+            <button id="stopButton" class="button ghost" type="button">停止</button>
+            <span id="speechStatus" class="status" role="status" aria-live="polite"></span>
+          </div>
+        </section>
+
+        <div id="loadingState" class="loading" hidden>正在从私人知识库读取章节…</div>
+        <article id="chapterContent" class="markdown-body" aria-live="polite"></article>
+      </section>
+    </div>
+  </div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
