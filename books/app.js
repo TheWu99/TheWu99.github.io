@@ -5,6 +5,7 @@
   const REPO = 'ChatGPT-Knowledge-Base';
   const API = 'https://api.github.com';
   const TOKEN_KEY = 'private-library-token';
+  const COLLECTION_ROOTS = ['AI时代投资者/Book'];
 
   const el = id => document.getElementById(id);
   const authView = el('authView');
@@ -23,7 +24,6 @@
 
   let token = '';
   let books = [];
-  let activePath = '';
 
   function setStatus(node, message, type = '') {
     node.textContent = message;
@@ -52,19 +52,18 @@
   }
 
   async function readFile(path) {
-    const data = await api(`/repos/${OWNER}/${REPO}/contents/${path.split('/').map(encodeURIComponent).join('/')}?t=${Date.now()}`);
+    const encoded = path.split('/').map(encodeURIComponent).join('/');
+    const data = await api(`/repos/${OWNER}/${REPO}/contents/${encoded}?t=${Date.now()}`);
     if (!data.content) throw new Error('无法读取文件内容');
     return decodeBase64(data.content);
   }
 
   function naturalCompare(a, b) {
-    return a.localeCompare(b, 'zh-CN', { numeric: true, sensitivity: 'base' });
+    return String(a).localeCompare(String(b), 'zh-CN', { numeric: true, sensitivity: 'base' });
   }
 
   function prettifySlug(slug) {
-    return decodeURIComponent(slug)
-      .replace(/[-_]+/g, ' ')
-      .replace(/\b\w/g, c => c.toUpperCase());
+    return decodeURIComponent(slug).replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
   }
 
   function firstHeading(markdown, fallback) {
@@ -77,89 +76,132 @@
   }
 
   function chapterNumber(name) {
-    const arabic = name.match(/(?:chapter|ch|第)?[-_\s]*(\d{1,3})/i);
-    return arabic ? Number(arabic[1]) : null;
+    const match = name.match(/(?:chapter|ch|第)?[-_\s]*(\d{1,3})/i);
+    return match ? Number(match[1]) : null;
   }
 
   function inferStatus(book) {
-    if (book.meta && typeof book.meta === 'object') {
-      const raw = String(book.meta.status || book.meta.state || '').toLowerCase();
-      if (/complete|finished|done|已完成/.test(raw)) return '已完成';
-      if (/progress|generating|draft|进行|生成/.test(raw)) return '生成中';
-      const total = Number(book.meta.totalChapters || book.meta.total_chapters || book.meta.total || 0);
-      const completed = Number(book.meta.completedChapters || book.meta.completed_chapters || book.meta.completed || book.chapters.length);
-      if (total && completed >= total) return '已完成';
+    const meta = book.meta || {};
+    const raw = String(meta.status || meta.state || '').toLowerCase();
+    if (/complete|finished|done|已完成/.test(raw)) return '已完成';
+    if (/progress|generating|draft|进行|生成/.test(raw)) return '生成中';
+    const total = Number(meta.totalChapters || meta.total_chapters || meta.total || 0);
+    const completed = Number(meta.completedChapters || meta.completed_chapters || meta.completed || book.chapters.length);
+    return total && completed >= total ? '已完成' : '生成中';
+  }
+
+  function createBook(path) {
+    return {
+      path,
+      slug: path.split('/').pop(),
+      title: prettifySlug(path.split('/').pop()),
+      chapters: [],
+      readme: null,
+      overview: null,
+      catalog: null,
+      introPath: null,
+      meta: null,
+      collection: COLLECTION_ROOTS.find(root => path.startsWith(`${root}/`)) || ''
+    };
+  }
+
+  function specialCollectionBookPath(filePath) {
+    for (const root of COLLECTION_ROOTS) {
+      if (!filePath.startsWith(`${root}/`)) continue;
+      const rest = filePath.slice(root.length + 1).split('/');
+      if (rest.length >= 2) return `${root}/${rest[0]}`;
     }
-    return '生成中';
+    return null;
+  }
+
+  async function enrichBook(book) {
+    if (book.catalog) {
+      try {
+        book.meta = JSON.parse(await readFile(book.catalog));
+        book.title = book.meta.title || book.meta.bookTitle || book.meta.book_title || book.title;
+        const listed = Array.isArray(book.meta.chapters) ? book.meta.chapters : [];
+        for (const item of listed) {
+          const relative = item.path || item.file || item.filename;
+          if (!relative) continue;
+          const fullPath = relative.startsWith(`${book.path}/`) ? relative : `${book.path}/${relative}`;
+          let chapter = book.chapters.find(ch => ch.path === fullPath);
+          if (!chapter) {
+            chapter = { name: relative.split('/').pop(), path: fullPath, number: item.number || chapterNumber(relative), title: item.title || '' };
+            book.chapters.push(chapter);
+          } else {
+            chapter.title = item.title || chapter.title;
+            chapter.number = item.number || chapter.number;
+          }
+        }
+      } catch (error) {
+        console.warn(`Cannot parse ${book.catalog}`, error);
+      }
+    }
+
+    const introPath = book.readme || book.overview;
+    if (introPath) {
+      try {
+        const intro = await readFile(introPath);
+        book.title = firstHeading(intro, book.title).replace(/^《|》$/g, '');
+        book.introPath = introPath;
+      } catch (error) {
+        console.warn(`Cannot read ${introPath}`, error);
+      }
+    }
+
+    book.chapters.sort((a, b) => {
+      if (a.number != null && b.number != null) return a.number - b.number;
+      return naturalCompare(a.path, b.path);
+    });
+    book.status = inferStatus(book);
   }
 
   async function discoverBooks() {
     treeStatus.textContent = '正在扫描私人知识库…';
     const repo = await api(`/repos/${OWNER}/${REPO}`);
     const tree = await api(`/repos/${OWNER}/${REPO}/git/trees/${encodeURIComponent(repo.default_branch)}?recursive=1&t=${Date.now()}`);
-    const files = tree.tree.filter(item => item.type === 'blob' && /\.md$|chapters\.json$/i.test(item.path));
-    const dirs = new Map();
+    const files = tree.tree.filter(item => item.type === 'blob' && (/\.md$/i.test(item.path) || /chapters\.json$/i.test(item.path)));
+    const bookMap = new Map();
+    const genericDirs = new Map();
 
     for (const file of files) {
       const parts = file.path.split('/');
       const name = parts.pop();
       const dir = parts.join('/');
       if (!dir) continue;
-      if (!dirs.has(dir)) dirs.set(dir, { path: dir, files: [], chapters: [], readme: null, overview: null, catalog: null });
-      const group = dirs.get(dir);
-      group.files.push({ name, path: file.path });
+
+      const specialPath = specialCollectionBookPath(file.path);
+      if (specialPath) {
+        if (!bookMap.has(specialPath)) bookMap.set(specialPath, createBook(specialPath));
+        const book = bookMap.get(specialPath);
+        if (/^readme\.md$/i.test(name) && dir === specialPath) book.readme = file.path;
+        else if (/^(overview|introduction|index)\.md$/i.test(name) && dir === specialPath) book.overview = file.path;
+        else if (/^chapters\.json$/i.test(name) && dir === specialPath) book.catalog = file.path;
+        else if (/\.md$/i.test(name) && isChapterFile(name)) {
+          book.chapters.push({ name, path: file.path, number: chapterNumber(name), title: '' });
+        }
+        continue;
+      }
+
+      if (!genericDirs.has(dir)) genericDirs.set(dir, createBook(dir));
+      const group = genericDirs.get(dir);
       if (/^readme\.md$/i.test(name)) group.readme = file.path;
       else if (/^(overview|introduction|index)\.md$/i.test(name)) group.overview = file.path;
       else if (/^chapters\.json$/i.test(name)) group.catalog = file.path;
-      else if (/\.md$/i.test(name) && isChapterFile(name)) group.chapters.push({ name, path: file.path, number: chapterNumber(name) });
+      else if (/\.md$/i.test(name) && isChapterFile(name)) group.chapters.push({ name, path: file.path, number: chapterNumber(name), title: '' });
     }
 
-    let candidates = [...dirs.values()].filter(group => group.catalog || group.chapters.length >= 1);
-    candidates = candidates.filter(group => !candidates.some(other => other !== group && other.path.startsWith(`${group.path}/`) && other.chapters.length > group.chapters.length));
+    let generic = [...genericDirs.values()].filter(group => group.catalog || group.chapters.length > 0);
+    generic = generic.filter(group => !generic.some(other => other !== group && other.path.startsWith(`${group.path}/`) && other.chapters.length >= group.chapters.length));
+    for (const book of generic) if (!bookMap.has(book.path)) bookMap.set(book.path, book);
 
-    for (const book of candidates) {
-      book.slug = book.path.split('/').pop();
-      book.title = prettifySlug(book.slug);
-      book.meta = null;
-      if (book.catalog) {
-        try {
-          book.meta = JSON.parse(await readFile(book.catalog));
-          book.title = book.meta.title || book.meta.bookTitle || book.meta.book_title || book.title;
-          const listed = Array.isArray(book.meta.chapters) ? book.meta.chapters : [];
-          for (const item of listed) {
-            const path = item.path || item.file || item.filename;
-            if (!path) continue;
-            const fullPath = path.includes('/') ? path : `${book.path}/${path}`;
-            if (!book.chapters.some(ch => ch.path === fullPath)) {
-              book.chapters.push({ name: path.split('/').pop(), path: fullPath, number: item.number || chapterNumber(path), title: item.title || '' });
-            } else {
-              const found = book.chapters.find(ch => ch.path === fullPath);
-              found.title = item.title || found.title;
-              found.number = item.number || found.number;
-            }
-          }
-        } catch (error) {
-          console.warn(`Cannot parse ${book.catalog}`, error);
-        }
-      }
-      const introPath = book.readme || book.overview;
-      if (introPath) {
-        try {
-          const intro = await readFile(introPath);
-          book.title = firstHeading(intro, book.title).replace(/^《|》$/g, '');
-          book.introPath = introPath;
-        } catch (error) {
-          console.warn(`Cannot read ${introPath}`, error);
-        }
-      }
-      book.chapters.sort((a, b) => {
-        if (a.number != null && b.number != null) return a.number - b.number;
-        return naturalCompare(a.name, b.name);
-      });
-      book.status = inferStatus(book);
-    }
+    books = [...bookMap.values()].filter(book => book.catalog || book.chapters.length > 0);
+    await Promise.all(books.map(enrichBook));
+    books.sort((a, b) => {
+      if (a.collection !== b.collection) return naturalCompare(a.collection || 'zz', b.collection || 'zz');
+      return naturalCompare(a.title, b.title);
+    });
 
-    books = candidates.sort((a, b) => naturalCompare(a.title, b.title));
     bookCount.textContent = `${books.length} 本`;
     treeStatus.textContent = books.length ? '' : '没有发现包含章节的书籍目录。';
     renderTree();
@@ -168,9 +210,19 @@
   function renderTree(query = '') {
     const q = query.trim().toLowerCase();
     libraryTree.replaceChildren();
+    let lastCollection = null;
+
     for (const book of books) {
-      const matchingChapters = book.chapters.filter(ch => `${ch.title || ''} ${ch.name}`.toLowerCase().includes(q));
-      if (q && !book.title.toLowerCase().includes(q) && matchingChapters.length === 0) continue;
+      const matchingChapters = book.chapters.filter(ch => `${ch.title || ''} ${ch.name} ${ch.path}`.toLowerCase().includes(q));
+      if (q && !`${book.title} ${book.path}`.toLowerCase().includes(q) && matchingChapters.length === 0) continue;
+
+      if (book.collection && book.collection !== lastCollection) {
+        const heading = document.createElement('div');
+        heading.className = 'collection-heading';
+        heading.textContent = book.collection;
+        libraryTree.appendChild(heading);
+        lastCollection = book.collection;
+      }
 
       const group = document.createElement('section');
       group.className = 'book-group';
@@ -189,7 +241,7 @@
 
       const list = document.createElement('div');
       list.className = 'chapter-list';
-      const visible = q && !book.title.toLowerCase().includes(q) ? matchingChapters : book.chapters;
+      const visible = q && !`${book.title} ${book.path}`.toLowerCase().includes(q) ? matchingChapters : book.chapters;
       for (const chapter of visible) {
         const button = document.createElement('button');
         button.type = 'button';
@@ -240,7 +292,7 @@
       }
       if (inCode) { code.push(line); continue; }
       const heading = line.match(/^(#{1,6})\s+(.+)$/);
-      if (heading) { closeList(); const level = heading[1].length; html += `<h${level}>${inlineMarkdown(heading[2])}</h${level}>`; continue; }
+      if (heading) { closeList(); html += `<h${heading[1].length}>${inlineMarkdown(heading[2])}</h${heading[1].length}>`; continue; }
       if (/^>\s?/.test(line)) { closeList(); html += `<blockquote>${inlineMarkdown(line.replace(/^>\s?/, ''))}</blockquote>`; continue; }
       const ul = line.match(/^\s*[-*+]\s+(.+)$/);
       if (ul) { if (listType !== 'ul') { closeList(); listType = 'ul'; html += '<ul>'; } html += `<li>${inlineMarkdown(ul[1])}</li>`; continue; }
@@ -263,7 +315,6 @@
       const markdown = await readFile(path);
       content.innerHTML = renderMarkdown(markdown);
       breadcrumb.textContent = `${bookTitle} / ${itemTitle}`;
-      activePath = path;
       document.querySelectorAll('[data-path]').forEach(node => node.classList.toggle('active', node.dataset.path === path));
       if (window.innerWidth <= 900) sidebar.classList.remove('open');
       window.scrollTo({ top: 0, behavior: 'smooth' });
