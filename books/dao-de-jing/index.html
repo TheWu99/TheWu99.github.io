@@ -15,14 +15,18 @@
 
   <main id="authView" class="auth-shell">
     <section class="auth-card" aria-labelledby="authTitle">
-      <div class="seal" aria-hidden="true">道</div>
-      <p class="eyebrow">PRIVATE KNOWLEDGE READER</p>
-      <h1 id="authTitle">《道德经》私人阅读室</h1>
+      <div class="auth-brand">
+        <div class="repo-mark" aria-hidden="true">道</div>
+        <div>
+          <p class="eyebrow">PRIVATE REPOSITORY READER</p>
+          <h1 id="authTitle">《道德经》私人阅读室</h1>
+        </div>
+      </div>
       <p class="lede">页面本身不保存书籍正文。解锁后，浏览器才会从你的私人仓库读取内容，并验证 GitHub 用户必须是 <strong>TheWu99</strong>。</p>
 
       <div class="security-note">
         <strong>安全边界</strong>
-        <p>GitHub 个人 Pages 本身是公开静态网站，无法原生设置为“仅本人访问”。这里采用内容级保护：公开页面只有阅读器代码，私有正文必须使用你的 GitHub 只读凭证才能加载。</p>
+        <p>公开页面只包含阅读器代码；私人正文必须使用你的 GitHub 只读凭证才能加载。</p>
       </div>
 
       <form id="authForm" autocomplete="off">
@@ -55,12 +59,18 @@
 
   <div id="readerView" class="reader-shell" hidden>
     <header class="topbar">
-      <div>
-        <p class="eyebrow">ZICHAO'S PRIVATE LIBRARY</p>
-        <h1>《道德经》大师课</h1>
+      <div class="files-brand">
+        <span class="panel-icon" aria-hidden="true">◫</span>
+        <strong>Files</strong>
       </div>
+      <nav class="repo-breadcrumb" aria-label="Repository path">
+        <strong>ChatGPT-Knowledge-Base</strong>
+        <span>/</span><span>Philosophy</span>
+        <span>/</span><span>Chinese-Philosophy</span>
+        <span>/</span><strong>Dao-De-Jing</strong>
+      </nav>
       <div class="top-actions">
-        <button id="themeButton" class="icon-button" type="button" aria-label="切换明暗主题">明暗</button>
+        <button id="themeButton" class="icon-button" type="button" aria-label="切换明暗主题">◐</button>
         <button id="lockButton" class="button danger" type="button">锁定</button>
       </div>
     </header>
@@ -68,15 +78,25 @@
     <div class="reader-grid">
       <aside id="sidebar" class="sidebar">
         <div class="sidebar-head">
-          <label for="chapterSearch">章节</label>
-          <input id="chapterSearch" type="search" placeholder="搜索章节标题…" autocomplete="off">
+          <div class="branch-row">
+            <span class="branch-icon" aria-hidden="true">⑂</span>
+            <strong>main</strong>
+            <span class="chevron" aria-hidden="true">⌄</span>
+          </div>
+          <label class="sr-only" for="chapterSearch">搜索章节</label>
+          <input id="chapterSearch" type="search" placeholder="Go to chapter" autocomplete="off">
+        </div>
+        <div class="tree-root">
+          <span class="tree-caret" aria-hidden="true">⌄</span>
+          <span class="folder-icon" aria-hidden="true">▰</span>
+          <strong>Dao-De-Jing</strong>
         </div>
         <nav id="chapterList" class="chapter-list" aria-label="《道德经》章节"></nav>
       </aside>
 
       <section class="reading-panel">
         <div class="reader-toolbar">
-          <button id="sidebarButton" class="icon-button mobile-only" type="button" aria-label="打开章节目录">目录</button>
+          <button id="sidebarButton" class="icon-button mobile-only" type="button" aria-label="打开章节目录">Files</button>
           <div class="chapter-nav">
             <button id="prevButton" class="button ghost" type="button">上一章</button>
             <span id="chapterProgress" class="progress">—</span>
@@ -89,9 +109,12 @@
         </div>
 
         <section class="audio-panel" aria-labelledby="audioTitle">
-          <div>
-            <p class="eyebrow">BROWSER SPEECH</p>
-            <h2 id="audioTitle">语音朗读</h2>
+          <div class="audio-title-block">
+            <span class="audio-icon" aria-hidden="true">◉</span>
+            <div>
+              <p class="eyebrow">AUDIO PLAYBACK</p>
+              <h2 id="audioTitle">语音朗读</h2>
+            </div>
           </div>
           <div class="audio-settings">
             <label>范围
@@ -120,8 +143,14 @@
           </div>
         </section>
 
-        <div id="loadingState" class="loading" hidden>正在从私人知识库读取章节…</div>
-        <article id="chapterContent" class="markdown-body" aria-live="polite"></article>
+        <div class="file-preview">
+          <div class="file-preview-head">
+            <strong>Chapter.md</strong>
+            <span>Rendered Markdown</span>
+          </div>
+          <div id="loadingState" class="loading" hidden>正在从私人知识库读取章节…</div>
+          <article id="chapterContent" class="markdown-body" aria-live="polite"></article>
+        </div>
       </section>
     </div>
   </div>
