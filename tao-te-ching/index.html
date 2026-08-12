@@ -72,43 +72,6 @@
       <nav id="toc"></nav>
     </aside>
   </div>
-  <section class="audio-player" id="audioPlayer" aria-label="章节语音朗读器">
-    <div class="audio-player-head">
-      <button class="audio-collapse" id="audioCollapse" type="button" aria-label="收起朗读器" aria-expanded="true">⌄</button>
-      <div class="audio-now">
-        <span class="audio-kicker">正在朗读</span>
-        <strong id="audioTitle">选择“朗读本章”开始</strong>
-      </div>
-      <button class="audio-primary" id="audioPrimary" type="button">▶ 朗读本章</button>
-    </div>
-    <div class="audio-panel" id="audioPanel">
-      <div class="audio-controls" aria-label="播放控制">
-        <button class="audio-control" id="audioPrevious" type="button" aria-label="上一段">← 上一段</button>
-        <button class="audio-control" id="audioStop" type="button" aria-label="停止朗读">■ 停止</button>
-        <button class="audio-control" id="audioNext" type="button" aria-label="下一段">下一段 →</button>
-      </div>
-      <div class="audio-settings">
-        <label>速度
-          <select id="audioRate" aria-label="朗读速度">
-            <option value="0.8">0.8×</option>
-            <option value="1" selected>1×</option>
-            <option value="1.25">1.25×</option>
-            <option value="1.5">1.5×</option>
-          </select>
-        </label>
-        <label class="voice-setting">语音
-          <select id="audioVoice" aria-label="中文朗读语音">
-            <option value="">自动选择中文语音</option>
-          </select>
-        </label>
-      </div>
-      <div class="audio-progress-row">
-        <progress id="audioProgress" value="0" max="1" aria-label="章节朗读进度"></progress>
-        <span id="audioProgressText">0 / 0</span>
-      </div>
-      <p class="audio-status" id="audioStatus" aria-live="polite">浏览器语音在本机生成，不上传章节内容。</p>
-    </div>
-  </section>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
