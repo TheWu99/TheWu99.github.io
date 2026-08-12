@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">西域历史地理骨架示意图</title>
+  <desc id="desc">展示阿尔泰山、天山、昆仑山，准噶尔盆地、塔里木盆地、塔克拉玛干沙漠，哈密吐鲁番北庭龟兹于阗疏勒等绿洲，以及南道、北道、天山北道和帕米尔出口。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f6f0df"/>
+      <stop offset="1" stop-color="#e3d4b7"/>
+    </linearGradient>
+    <linearGradient id="basin" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e6cf96"/>
+      <stop offset="1" stop-color="#cfae68"/>
+    </linearGradient>
+    <linearGradient id="grass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#c8d8a1"/>
+      <stop offset="1" stop-color="#98b77a"/>
+    </linearGradient>
+    <pattern id="desert" width="26" height="22" patternUnits="userSpaceOnUse">
+      <path d="M0 15 Q6 8 13 15 T26 15" fill="none" stroke="#a77b3f" stroke-width="1.3" opacity=".48"/>
+      <circle cx="7" cy="5" r="1.4" fill="#9b7036" opacity=".35"/>
+    </pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#7a482d"/>
+    </marker>
+    <style>
+      .title{font:700 31px 'Noto Sans SC','Microsoft YaHei',sans-serif;fill:#392f25}
+      .subtitle{font:15px 'Noto Sans SC','Microsoft YaHei',sans-serif;fill:#6a5948}
+      .region{font:700 20px 'Noto Sans SC','Microsoft YaHei',sans-serif;fill:#44372c}
+      .label{font:600 15px 'Noto Sans SC','Microsoft YaHei',sans-serif;fill:#302821}
+      .small{font:13px 'Noto Sans SC','Microsoft YaHei',sans-serif;fill:#564b40}
+      .water{font:600 13px 'Noto Sans SC','Microsoft YaHei',sans-serif;fill:#245f86}
+      .mount{fill:#9f8f70;stroke:#6e614c;stroke-width:1.6}
+      .route{fill:none;stroke:#7a482d;stroke-width:4;stroke-dasharray:10 8;marker-end:url(#arrow)}
+      .route2{fill:none;stroke:#9a6438;stroke-width:3.4;stroke-dasharray:7 7;marker-end:url(#arrow)}
+      .river{fill:none;stroke:#4a8fb7;stroke-width:4;stroke-linecap:round}
+      .city{fill:#a84432;stroke:#fff9e9;stroke-width:3}
+      .town{fill:#6f4d2d;stroke:#fff9e9;stroke-width:3}
+      .hub{fill:#704d96;stroke:#fff9e9;stroke-width:3}
+      .legend{fill:#fffaf0;stroke:#8d7a5d;stroke-width:1.5}
+    </style>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <text x="600" y="42" text-anchor="middle" class="title">西域历史地理骨架</text>
+  <text x="600" y="69" text-anchor="middle" class="subtitle">三山夹两盆、绿洲环沙漠、天山南北与帕米尔出口示意；并非精确测绘或固定疆界图</text>
+
+  <!-- outer directions -->
+  <path d="M20 285 L155 245 L185 700 L25 735 Z" fill="#d7cfb7" stroke="#85765d" stroke-width="2"/>
+  <text x="93" y="470" text-anchor="middle" class="region">河西走廊</text>
+  <text x="93" y="497" text-anchor="middle" class="small">敦煌、玉门关、阳关</text>
+  <text x="93" y="520" text-anchor="middle" class="small">通往关中与中原</text>
+
+  <path d="M1040 165 L1180 120 L1180 760 L1040 720 Z" fill="#d9d1b5" stroke="#88775c" stroke-width="2"/>
+  <text x="1110" y="430" text-anchor="middle" class="region">中亚方向</text>
+  <text x="1110" y="458" text-anchor="middle" class="small">费尔干纳／粟特</text>
+  <text x="1110" y="481" text-anchor="middle" class="small">巴克特里亚／南亚北缘</text>
+
+  <!-- Altai -->
+  <path d="M190 150 l28-38 25 34 28-45 30 42 27-38 29 41 28-36 29 38 30-42 28 40 28-34 30 39 27-31 30 35 26-29 30 31 25-25 28 27 25-20 35 25 -8 35 -810 6z" class="mount"/>
+  <text x="600" y="132" text-anchor="middle" class="region">阿尔泰山</text>
+
+  <!-- Junggar basin -->
+  <path d="M220 175 C390 145 650 150 900 180 C980 190 1010 245 980 320 C875 365 700 370 530 350 C390 335 280 315 220 260 Z" fill="url(#grass)" stroke="#7d9165" stroke-width="2.5"/>
+  <text x="590" y="235" text-anchor="middle" class="region">准噶尔盆地与天山北麓草原</text>
+  <text x="590" y="262" text-anchor="middle" class="small">骑兵机动、牧业与东西草原通道</text>
+
+  <!-- Tianshan -->
+  <path d="M175 390 l30-54 26 45 31-62 31 56 31-67 33 60 32-72 34 66 33-75 35 69 34-70 35 65 35-69 34 64 35-60 34 58 36-62 34 58 35-53 34 52 34-48 34 46 33-42 34 41 30-35 37 38 -8 40 -900 6z" class="mount"/>
+  <text x="610" y="375" text-anchor="middle" class="region">天山山脉：分隔南北，也通过山口连接南北</text>
+
+  <!-- Tarim basin -->
+  <path d="M205 430 C365 390 625 390 900 425 C1010 440 1035 540 1000 690 C835 760 600 770 370 730 C250 710 185 620 205 430 Z" fill="url(#basin)" stroke="#9c7946" stroke-width="3"/>
+  <text x="600" y="470" text-anchor="middle" class="region">塔里木盆地</text>
+
+  <!-- Taklamakan -->
+  <ellipse cx="610" cy="595" rx="270" ry="118" fill="#d5b26f" stroke="#a77c3e" stroke-width="2.5"/>
+  <ellipse cx="610" cy="595" rx="270" ry="118" fill="url(#desert)"/>
+  <text x="610" y="585" text-anchor="middle" class="region">塔克拉玛干沙漠</text>
+  <text x="610" y="612" text-anchor="middle" class="small">道路多沿盆地边缘绿洲绕行</text>
+
+  <!-- Kunlun -->
+  <path d="M175 820 l31-55 29 44 32-64 32 56 34-70 34 63 35-78 37 70 35-82 38 75 35-79 38 73 37-75 39 69 38-73 38 67 39-68 37 63 39-62 38 57 38-55 35 50 35-44 37 45 -10 40 -910 4z" class="mount"/>
+  <text x="610" y="805" text-anchor="middle" class="region">昆仑山—喀喇昆仑山—阿尔金山体系</text>
+
+  <!-- Pamir -->
+  <path d="M925 360 l55-65 52 55 45-38 35 63 -15 370 -70 55 -92-50 20-130 -25-110 z" fill="#8d8068" stroke="#675c4b" stroke-width="2.5"/>
+  <text x="1015" y="520" text-anchor="middle" class="region" transform="rotate(78 1015 520)">葱岭／帕米尔高原</text>
+
+  <!-- rivers -->
+  <path class="river" d="M340 430 C360 500 405 525 475 535 C545 545 620 540 700 560 C770 575 820 610 855 655"/>
+  <text x="540" y="525" class="water">塔里木河水系（概略）</text>
+  <path class="river" d="M760 185 C790 220 825 250 900 265"/>
+  <text x="805" y="230" class="water">伊犁河谷方向</text>
+  <path class="river" d="M725 750 C710 700 700 675 690 655"/>
+  <text x="735" y="705" class="water">和田河</text>
+  <path class="river" d="M890 730 C855 690 820 660 790 645"/>
+  <text x="865" y="682" class="water">叶尔羌河</text>
+
+  <!-- routes -->
+  <path class="route" d="M95 465 C180 440 235 425 300 420 C410 410 515 415 635 425 C760 435 860 450 970 500 C1025 525 1080 500 1140 455"/>
+  <text x="610" y="410" text-anchor="middle" class="label">塔里木北缘道路：伊吾／高昌—焉耆—龟兹—姑墨—疏勒—帕米尔</text>
+
+  <path class="route" d="M95 560 C190 590 245 650 330 690 C455 750 610 760 750 735 C845 720 900 675 970 610 C1030 560 1080 540 1140 520"/>
+  <text x="610" y="752" text-anchor="middle" class="label">塔里木南缘道路：楼兰／鄯善—且末—精绝—于阗—莎车—疏勒</text>
+
+  <path class="route2" d="M95 355 C190 300 285 275 380 270 C500 265 650 275 780 260 C890 248 980 235 1115 220"/>
+  <text x="605" y="286" text-anchor="middle" class="label">天山北道：哈密—北庭—准噶尔—伊犁—中亚草原</text>
+
+  <path class="route2" d="M325 420 C335 360 350 320 380 275"/>
+  <text x="350" y="345" class="small" transform="rotate(-72 350 345)">车师古道等跨山通道</text>
+  <path class="route2" d="M700 425 C720 360 745 310 785 265"/>
+  <text x="742" y="350" class="small" transform="rotate(-64 742 350)">天山山口</text>
+
+  <!-- cities north/east -->
+  <g>
+    <circle cx="210" cy="405" r="11" class="city"/>
+    <text x="210" y="385" text-anchor="middle" class="label">哈密／伊吾</text>
+
+    <circle cx="300" cy="420" r="11" class="city"/>
+    <text x="300" y="400" text-anchor="middle" class="label">吐鲁番／车师／高昌</text>
+
+    <rect x="366" y="255" width="23" height="23" rx="4" class="hub"/>
+    <text x="378" y="245" text-anchor="middle" class="label">北庭／庭州</text>
+
+    <circle cx="445" cy="430" r="10" class="town"/>
+    <text x="445" y="408" text-anchor="middle" class="label">焉耆</text>
+
+    <circle cx="565" cy="435" r="12" class="city"/>
+    <text x="565" y="412" text-anchor="middle" class="label">龟兹／库车</text>
+
+    <circle cx="700" cy="448" r="10" class="town"/>
+    <text x="700" y="425" text-anchor="middle" class="label">姑墨／阿克苏</text>
+
+    <circle cx="895" cy="500" r="12" class="city"/>
+    <text x="895" y="478" text-anchor="middle" class="label">疏勒／喀什</text>
+
+    <circle cx="820" cy="255" r="11" class="city"/>
+    <text x="820" y="235" text-anchor="middle" class="label">伊犁河谷／乌孙</text>
+  </g>
+
+  <!-- south route cities -->
+  <g>
+    <circle cx="255" cy="555" r="10" class="town"/>
+    <text x="255" y="580" text-anchor="middle" class="label">楼兰／鄯善</text>
+
+    <circle cx="350" cy="675" r="9" class="town"/>
+    <text x="350" y="700" text-anchor="middle" class="label">且末</text>
+
+    <circle cx="475" cy="715" r="9" class="town"/>
+    <text x="475" y="740" text-anchor="middle" class="label">精绝／尼雅</text>
+
+    <circle cx="700" cy="720" r="12" class="city"/>
+    <text x="700" y="745" text-anchor="middle" class="label">于阗／和田</text>
+
+    <circle cx="835" cy="665" r="10" class="town"/>
+    <text x="835" y="690" text-anchor="middle" class="label">莎车</text>
+  </g>
+
+  <!-- administrative hubs -->
+  <rect x="505" y="448" width="23" height="23" rx="4" class="hub"/>
+  <text x="516" y="487" text-anchor="middle" class="small">安西都护府治龟兹时期</text>
+  <rect x="475" y="420" width="20" height="20" rx="4" class="hub"/>
+  <text x="485" y="405" text-anchor="middle" class="small">乌垒／西域都护</text>
+
+  <!-- far west labels -->
+  <text x="1080" y="320" text-anchor="middle" class="label">大宛／费尔干纳</text>
+  <text x="1090" y="650" text-anchor="middle" class="label">大月氏—大夏方向</text>
+  <text x="1060" y="705" text-anchor="middle" class="small">经帕米尔南部山口</text>
+
+  <!-- legend -->
+  <rect x="28" y="775" width="420" height="100" rx="10" class="legend"/>
+  <text x="48" y="802" class="label">图例</text>
+  <circle cx="65" cy="830" r="9" class="city"/><text x="84" y="835" class="small">主要绿洲中心</text>
+  <circle cx="190" cy="830" r="8" class="town"/><text x="208" y="835" class="small">其他节点</text>
+  <rect x="305" y="820" width="20" height="20" rx="3" class="hub"/><text x="333" y="835" class="small">军政枢纽</text>
+  <path d="M50 858 L125 858" class="route"/><text x="138" y="863" class="small">绿洲主干道路</text>
+  <path d="M285 858 L355 858" class="route2"/><text x="368" y="863" class="small">草原／跨山支线</text>
+
+  <text x="1165" y="880" text-anchor="end" class="small">原创学习示意图 · 2026-08-01</text>
+</svg>

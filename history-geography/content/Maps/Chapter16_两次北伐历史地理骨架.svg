@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="980" viewBox="0 0 1400 980" role="img" aria-labelledby="title desc">
+  <title id="title">第十六章《两次北伐》历史地理骨架示意图</title>
+  <desc id="desc">比较1367至1368年明军北伐与1926至1928年国民革命军北伐的主要地理节点、河流和交通轴线。地图为原创关系示意图，并非精确测绘图。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f4f0e3"/>
+      <stop offset="1" stop-color="#e7dfc8"/>
+    </linearGradient>
+    <marker id="arrowMing" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#9b2f2f"/>
+    </marker>
+    <marker id="arrowModern" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#245b8a"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.22"/>
+    </filter>
+    <style>
+      .title{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:34px;font-weight:700;fill:#2d2b27}
+      .subtitle{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:17px;fill:#5f5a50}
+      .region{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:22px;font-weight:700;fill:#6a6358;opacity:.78}
+      .city{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:17px;font-weight:600;fill:#262626}
+      .small{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:14px;fill:#4d4a44}
+      .river{fill:none;stroke:#6ea5c8;stroke-width:9;stroke-linecap:round;opacity:.85}
+      .rail{fill:none;stroke:#555;stroke-width:3;stroke-dasharray:12 8;opacity:.72}
+      .ming{fill:none;stroke:#9b2f2f;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#arrowMing)}
+      .modern{fill:none;stroke:#245b8a;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#arrowModern)}
+      .branch{fill:none;stroke:#245b8a;stroke-width:4;stroke-dasharray:9 7;marker-end:url(#arrowModern);opacity:.9}
+      .nodeM{fill:#fff7f3;stroke:#9b2f2f;stroke-width:3}
+      .nodeN{fill:#f3f8fc;stroke:#245b8a;stroke-width:3}
+      .nodeBoth{fill:#fffdf0;stroke:#7a5b20;stroke-width:3}
+    </style>
+  </defs>
+
+  <rect width="1400" height="980" fill="url(#bg)"/>
+  <rect x="34" y="30" width="1332" height="116" rx="18" fill="#fffaf0" stroke="#b9ad91" filter="url(#shadow)"/>
+  <text x="700" y="78" text-anchor="middle" class="title">第十六章《两次北伐》历史地理骨架</text>
+  <text x="700" y="112" text-anchor="middle" class="subtitle">红线：1367—1368年明军北伐　蓝线：1926—1928年国民革命军北伐　虚线：近代铁路与分路推进</text>
+
+  <!-- Broad regions -->
+  <path d="M110 780 C260 700,380 720,500 690 C660 650,760 670,900 610 C1080 540,1210 560,1310 480 L1310 900 L90 900 Z" fill="#d8e7c9" opacity=".72"/>
+  <path d="M135 570 C310 500,450 515,600 470 C770 420,940 430,1130 350 C1230 310,1290 295,1340 260 L1340 575 C1180 635,1000 650,820 710 C610 770,390 770,160 830 Z" fill="#e9d4ac" opacity=".58"/>
+  <path d="M230 275 C430 230,610 250,770 215 C920 180,1110 185,1300 135 L1340 330 C1120 405,940 430,760 455 C560 485,360 480,160 545 Z" fill="#e4c39e" opacity=".55"/>
+
+  <text x="190" y="842" class="region">岭南与东南沿海</text>
+  <text x="190" y="635" class="region">长江—江淮地带</text>
+  <text x="220" y="418" class="region">黄淮—山东—中原</text>
+  <text x="280" y="236" class="region">华北平原</text>
+
+  <!-- Mountain barriers -->
+  <path d="M115 760 l20 -34 l20 34 l20 -38 l22 38 l20 -31 l20 31 l22 -36 l20 36 l20 -30 l20 30" fill="none" stroke="#8b7258" stroke-width="5"/>
+  <text x="212" y="800" text-anchor="middle" class="small">南岭</text>
+  <path d="M880 410 l20 -34 l20 34 l22 -39 l22 39 l20 -31 l22 31 l20 -36 l22 36" fill="none" stroke="#8b7258" stroke-width="5"/>
+  <text x="960" y="445" text-anchor="middle" class="small">山东丘陵</text>
+
+  <!-- Rivers -->
+  <path class="river" d="M120 690 C320 655,470 650,625 630 C810 605,1000 600,1270 565"/>
+  <text x="730" y="615" class="small">长江</text>
+  <path class="river" d="M175 510 C390 480,590 488,770 455 C950 422,1120 430,1300 395"/>
+  <text x="760" y="446" class="small">淮河</text>
+  <path class="river" d="M170 350 C380 315,560 350,725 330 C910 305,1080 315,1295 270"/>
+  <text x="720" y="317" class="small">黄河</text>
+  <path class="river" d="M400 830 C400 760,430 700,455 640"/>
+  <text x="418" y="748" class="small">湘江</text>
+  <path class="river" d="M560 750 C590 700,610 665,625 630"/>
+  <text x="575" y="714" class="small">赣江</text>
+  <path class="river" d="M1060 350 C1080 300,1090 240,1110 180"/>
+  <text x="1098" y="245" class="small">运河／卫河轴</text>
+
+  <!-- Modern rail corridors -->
+  <path class="rail" d="M300 855 L390 745 L470 620 L560 470 L720 305 L920 205"/>
+  <text x="493" y="555" class="small">粤汉—京汉铁路轴</text>
+  <path class="rail" d="M690 610 L770 470 L900 355 L1040 260 L1160 180"/>
+  <text x="870" y="390" class="small">津浦铁路轴</text>
+  <path class="rail" d="M665 500 L770 470 L880 450 L980 430"/>
+  <text x="812" y="486" class="small">陇海铁路轴</text>
+
+  <!-- Ming route -->
+  <path class="ming" d="M690 610 C720 560,740 520,770 470 C810 430,860 395,920 355 C965 325,1020 300,1060 280"/>
+  <path class="ming" d="M1060 280 C990 300,900 325,820 330 C760 332,705 320,650 300"/>
+  <path class="ming" d="M650 300 C740 270,860 245,980 225 C1060 210,1110 195,1160 180"/>
+  <text x="835" y="372" class="small" fill="#9b2f2f">先山东，再河南、潼关</text>
+  <text x="880" y="250" class="small" fill="#9b2f2f">临清—德州—直沽—通州</text>
+
+  <!-- Modern route -->
+  <path class="modern" d="M300 855 C330 810,360 780,390 745 C420 700,450 660,470 620 C515 585,570 560,625 535"/>
+  <path class="modern" d="M625 535 C660 525,690 505,720 470 C750 440,775 415,800 390"/>
+  <path class="modern" d="M800 390 C850 360,900 330,955 305 C1035 268,1100 220,1160 180"/>
+  <path class="branch" d="M625 535 C650 560,665 590,690 610"/>
+  <path class="branch" d="M690 610 C760 585,840 550,920 510"/>
+  <text x="352" y="728" class="small" fill="#245b8a">广州—湖南—武汉</text>
+  <text x="650" y="578" class="small" fill="#245b8a">江西、东南分路</text>
+  <text x="905" y="332" class="small" fill="#245b8a">徐州—济南—天津—北京</text>
+
+  <!-- Nodes -->
+  <g filter="url(#shadow)">
+    <circle cx="690" cy="610" r="10" class="nodeBoth"/><text x="706" y="605" class="city">南京／应天</text>
+    <circle cx="770" cy="470" r="10" class="nodeBoth"/><text x="786" y="464" class="city">徐州</text>
+    <circle cx="920" cy="355" r="10" class="nodeM"/><text x="936" y="349" class="city">济宁</text>
+    <circle cx="1060" cy="280" r="10" class="nodeM"/><text x="1076" y="274" class="city">济南／临清轴</text>
+    <circle cx="650" cy="300" r="10" class="nodeM"/><text x="565" y="290" class="city">汴梁—洛阳</text>
+    <circle cx="525" cy="285" r="10" class="nodeM"/><text x="450" y="270" class="city">潼关</text>
+    <circle cx="1160" cy="180" r="12" class="nodeBoth"/><text x="1178" y="175" class="city">大都／北京</text>
+    <circle cx="300" cy="855" r="11" class="nodeN"/><text x="318" y="850" class="city">广州</text>
+    <circle cx="390" cy="745" r="10" class="nodeN"/><text x="405" y="739" class="city">长沙</text>
+    <circle cx="470" cy="620" r="11" class="nodeN"/><text x="485" y="614" class="city">武汉</text>
+    <circle cx="625" cy="535" r="10" class="nodeN"/><text x="640" y="529" class="city">南昌／九江</text>
+    <circle cx="800" cy="390" r="10" class="nodeN"/><text x="815" y="384" class="city">郑州</text>
+    <circle cx="955" cy="305" r="10" class="nodeN"/><text x="970" y="299" class="city">济南</text>
+    <circle cx="1090" cy="220" r="10" class="nodeN"/><text x="1105" y="214" class="city">天津</text>
+    <circle cx="920" cy="510" r="10" class="nodeN"/><text x="936" y="504" class="city">上海</text>
+  </g>
+
+  <!-- Legend and interpretation -->
+  <rect x="65" y="155" width="430" height="178" rx="16" fill="#fffaf0" stroke="#b9ad91" opacity=".96"/>
+  <text x="90" y="190" class="city">读图要点</text>
+  <line x1="90" y1="220" x2="170" y2="220" class="ming"/>
+  <text x="190" y="226" class="small">明军：先拆除大都外援，再沿水路北上</text>
+  <line x1="90" y1="255" x2="170" y2="255" class="modern"/>
+  <text x="190" y="261" class="small">国民革命军：以武汉、南京为枢纽，多路推进</text>
+  <line x1="90" y1="290" x2="170" y2="290" class="rail"/>
+  <text x="190" y="296" class="small">近代铁路把战争重心集中到城市和车站</text>
+
+  <rect x="840" y="760" width="500" height="150" rx="16" fill="#fffaf0" stroke="#b9ad91" opacity=".96"/>
+  <text x="865" y="798" class="city">核心结论</text>
+  <text x="865" y="830" class="small">两次北伐都不是沿直线冲向首都，而是逐段控制：</text>
+  <text x="865" y="858" class="small">财政基地 → 河流／铁路走廊 → 区域枢纽 → 黄河门户 → 北方首都。</text>
+  <text x="865" y="886" class="small">地理决定成本，交通扩大能力，制度决定统一的深度。</text>
+
+  <text x="700" y="950" text-anchor="middle" class="small">原创历史地理关系示意图｜仅用于学习，不作为精确行政边界或测绘依据</text>
+</svg>

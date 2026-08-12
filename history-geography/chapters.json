@@ -1,0 +1,91 @@
+{
+  "title": "透过地理看历史",
+  "subtitle": "中国历史地理公共阅读版",
+  "chapters": [
+    {
+      "chapter": 1,
+      "title": "三国古战场：荆州在哪里",
+      "file": "content/Chapters/Chapter01_三国古战场_荆州在哪里.md"
+    },
+    {
+      "chapter": 2,
+      "title": "关中大地：王者之气",
+      "file": "content/Chapters/Chapter02_关中大地_王者之气.md"
+    },
+    {
+      "chapter": 3,
+      "title": "江南富庶：衣冠南渡",
+      "file": "content/Chapters/Chapter03_江南富庶_衣冠南渡.md"
+    },
+    {
+      "chapter": 4,
+      "title": "人说山西好风光",
+      "file": "content/Chapters/Chapter04_人说山西好风光.md"
+    },
+    {
+      "chapter": 5,
+      "title": "燕赵多慷慨悲歌之士",
+      "file": "content/Chapters/Chapter05_燕赵多慷慨悲歌之士.md"
+    },
+    {
+      "chapter": 6,
+      "title": "中原逐鹿，谁主沉浮",
+      "file": "content/Chapters/Chapter06_中原逐鹿_谁主沉浮.md"
+    },
+    {
+      "chapter": 7,
+      "title": "巴山蜀水，天府之国",
+      "file": "content/Chapters/Chapter07_巴山蜀水_天府之国.md"
+    },
+    {
+      "chapter": 8,
+      "title": "山东与两淮",
+      "file": "content/Chapters/Chapter08_山东与两淮.md"
+    },
+    {
+      "chapter": 9,
+      "title": "西和诸戎，南征百越",
+      "file": "content/Chapters/Chapter09_西和诸戎_南征百越.md"
+    },
+    {
+      "chapter": 10,
+      "title": "随风直到夜郎西",
+      "file": "content/Chapters/Chapter10_随风直到夜郎西.md"
+    },
+    {
+      "chapter": 11,
+      "title": "从南诏到大理",
+      "file": "content/Chapters/Chapter11_从南诏到大理.md"
+    },
+    {
+      "chapter": 12,
+      "title": "河套",
+      "file": "content/Chapters/Chapter12_河套.md"
+    },
+    {
+      "chapter": 13,
+      "title": "河西走廊",
+      "file": "content/Chapters/Chapter13_河西走廊.md"
+    },
+    {
+      "chapter": 14,
+      "title": "西域",
+      "file": "content/Chapters/Chapter14_西域.md"
+    },
+    {
+      "chapter": 15,
+      "title": "深入塞北，直抵辽东",
+      "file": "content/Chapters/Chapter15_深入塞北_直抵辽东.md"
+    },
+    {
+      "chapter": 16,
+      "title": "两次北伐",
+      "file": "content/Chapters/Chapter16_两次北伐.md"
+    },
+    {
+      "chapter": 17,
+      "title": "抗日战争：沿海失守、纵深抵抗与总体战",
+      "file": "content/Chapters/Chapter17_抗日战争.md"
+    }
+  ]
+}

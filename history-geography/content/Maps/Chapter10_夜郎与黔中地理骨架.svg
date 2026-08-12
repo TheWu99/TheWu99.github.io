@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="820" viewBox="0 0 1200 820" role="img" aria-labelledby="title desc">
+  <title id="title">夜郎与黔中地理骨架示意图</title>
+  <desc id="desc">展示四川盆地、云贵高原、贵州主要山脉、水系、夜郎活动范围争议区及古代交通方向的原创示意图。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7f3e8"/>
+      <stop offset="1" stop-color="#e9e0cc"/>
+    </linearGradient>
+    <linearGradient id="plateau" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d8c89f"/>
+      <stop offset="1" stop-color="#c6b27e"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#7c4d28"/>
+    </marker>
+    <marker id="blueArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#2c6f9e"/>
+    </marker>
+    <style>
+      .title { font: 700 30px 'Noto Sans SC','Microsoft YaHei',sans-serif; fill:#3b2f22; }
+      .subtitle { font: 15px 'Noto Sans SC','Microsoft YaHei',sans-serif; fill:#5f5142; }
+      .region { font: 700 20px 'Noto Sans SC','Microsoft YaHei',sans-serif; fill:#4a3b2a; }
+      .label { font: 600 16px 'Noto Sans SC','Microsoft YaHei',sans-serif; fill:#2f2a24; }
+      .small { font: 13px 'Noto Sans SC','Microsoft YaHei',sans-serif; fill:#4f463c; }
+      .riverlabel { font: 600 14px 'Noto Sans SC','Microsoft YaHei',sans-serif; fill:#1d5f8d; }
+      .route { fill:none; stroke:#7c4d28; stroke-width:4; stroke-dasharray:10 8; marker-end:url(#arrow); }
+      .route2 { fill:none; stroke:#9a6d37; stroke-width:3; stroke-dasharray:6 7; marker-end:url(#arrow); }
+      .river { fill:none; stroke:#4c91bf; stroke-width:5; stroke-linecap:round; }
+      .minorRiver { fill:none; stroke:#73a9cc; stroke-width:3; stroke-linecap:round; }
+      .mountain { fill:#9c8c65; stroke:#776847; stroke-width:1.5; opacity:.88; }
+      .node { fill:#6e3f22; stroke:#fff6e6; stroke-width:3; }
+      .modern { fill:#2f6b4f; stroke:#fff6e6; stroke-width:3; }
+      .legendBox { fill:#fffaf0; stroke:#8e7b5c; stroke-width:1.5; rx:10; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="820" fill="url(#bg)"/>
+  <text x="600" y="45" text-anchor="middle" class="title">夜郎与黔中地理骨架</text>
+  <text x="600" y="72" text-anchor="middle" class="subtitle">山脉、水系、坝子与古代通道关系示意；夜郎核心地望存在争议，图中不标唯一都城</text>
+
+  <!-- surrounding regions -->
+  <path d="M110 110 H500 L540 205 L430 255 L180 245 Z" fill="#d9dfba" stroke="#8a9568" stroke-width="2"/>
+  <text x="295" y="155" text-anchor="middle" class="region">四川盆地</text>
+  <text x="295" y="180" text-anchor="middle" class="small">成都—川南—宜宾</text>
+
+  <path d="M770 125 L1110 110 L1140 400 L1005 480 L880 345 Z" fill="#d8dfc8" stroke="#83916d" stroke-width="2"/>
+  <text x="1010" y="185" text-anchor="middle" class="region">湘西与五溪</text>
+  <text x="1010" y="210" text-anchor="middle" class="small">沅水上游—武陵山地</text>
+
+  <path d="M770 590 L1150 505 L1160 780 H770 Z" fill="#cfe0be" stroke="#77936e" stroke-width="2"/>
+  <text x="1010" y="690" text-anchor="middle" class="region">广西与珠江上游</text>
+  <text x="1010" y="716" text-anchor="middle" class="small">西江—红水河—番禺方向</text>
+
+  <path d="M40 430 L250 310 L400 375 L350 790 H50 Z" fill="#d9cfad" stroke="#8a7a57" stroke-width="2"/>
+  <text x="155" y="540" text-anchor="middle" class="region">滇东北与滇中</text>
+  <text x="155" y="565" text-anchor="middle" class="small">昭通—曲靖—滇池方向</text>
+
+  <!-- Guizhou plateau -->
+  <path d="M310 245 L520 180 L790 220 L945 355 L860 610 L680 740 L390 700 L260 520 Z" fill="url(#plateau)" stroke="#765f3c" stroke-width="3"/>
+  <text x="615" y="365" text-anchor="middle" class="region">贵州高原／黔中山地</text>
+  <text x="615" y="390" text-anchor="middle" class="small">坝子分散、喀斯特广布、河谷深切</text>
+
+  <!-- mountain chains -->
+  <g>
+    <path class="mountain" d="M330 250 l22-38 22 38 22-34 24 38 22-30 25 35 -15 22 -100 2z"/>
+    <text x="400" y="220" text-anchor="middle" class="label">乌蒙山</text>
+
+    <path class="mountain" d="M545 205 l20-34 22 36 22-32 24 36 20-28 24 36 -12 22 -108 4z"/>
+    <text x="610" y="170" text-anchor="middle" class="label">大娄山</text>
+
+    <path class="mountain" d="M800 275 l18-31 19 31 22-36 23 34 22-29 26 39 -14 21 -104 3z"/>
+    <text x="865" y="245" text-anchor="middle" class="label">武陵山</text>
+
+    <path class="mountain" d="M470 500 l24-39 24 38 22-31 24 34 22-29 27 39 25-34 25 37 24-29 27 39 -18 23 -206 3z"/>
+    <text x="585" y="470" text-anchor="middle" class="label">苗岭／长江—珠江分水带</text>
+  </g>
+
+  <!-- disputed Yelang zone -->
+  <ellipse cx="455" cy="440" rx="150" ry="125" fill="#b36a5e" fill-opacity=".18" stroke="#9a4337" stroke-width="4" stroke-dasharray="12 8"/>
+  <text x="455" y="415" text-anchor="middle" class="region" fill="#7f2f28">夜郎活动核心争议区</text>
+  <text x="455" y="440" text-anchor="middle" class="small">黔西北—滇东北说</text>
+  <text x="455" y="462" text-anchor="middle" class="small">黔西南—六盘水—安顺西部说</text>
+  <text x="455" y="484" text-anchor="middle" class="small">边界与中心随时代变化</text>
+
+  <!-- rivers -->
+  <path class="river" d="M600 420 C650 370 700 330 770 305 C825 286 860 240 900 205"/>
+  <text x="760" y="325" class="riverlabel">乌江 → 长江</text>
+
+  <path class="minorRiver" d="M520 285 C500 245 460 220 420 185 C390 160 370 142 340 130"/>
+  <text x="405" y="170" class="riverlabel">赤水河方向</text>
+
+  <path class="river" d="M470 520 C500 570 565 615 635 660 C690 695 750 720 825 730"/>
+  <text x="600" y="650" class="riverlabel">北盘江—红水河 → 珠江</text>
+
+  <path class="minorRiver" d="M370 570 C330 610 280 645 220 675"/>
+  <text x="255" y="640" class="riverlabel">南盘江方向</text>
+
+  <path class="minorRiver" d="M740 405 C820 420 900 430 980 405"/>
+  <text x="850" y="395" class="riverlabel">清水江／沅水方向</text>
+
+  <!-- nodes -->
+  <g>
+    <circle cx="320" cy="160" r="9" class="node"/>
+    <text x="320" y="145" text-anchor="middle" class="label">僰道／宜宾</text>
+
+    <circle cx="255" cy="400" r="9" class="node"/>
+    <text x="220" y="385" text-anchor="middle" class="label">昭通</text>
+
+    <circle cx="365" cy="385" r="9" class="node"/>
+    <text x="355" y="366" text-anchor="middle" class="label">威宁／赫章</text>
+
+    <circle cx="500" cy="515" r="9" class="node"/>
+    <text x="500" y="545" text-anchor="middle" class="label">安顺西部</text>
+
+    <circle cx="665" cy="405" r="9" class="modern"/>
+    <text x="665" y="433" text-anchor="middle" class="label">贵阳（今）</text>
+
+    <circle cx="760" cy="345" r="9" class="node"/>
+    <text x="765" y="330" text-anchor="middle" class="label">且兰大致方向</text>
+
+    <circle cx="970" cy="365" r="9" class="node"/>
+    <text x="970" y="345" text-anchor="middle" class="label">龙标／五溪</text>
+
+    <circle cx="245" cy="650" r="9" class="node"/>
+    <text x="190" y="690" text-anchor="middle" class="label">曲靖／滇东</text>
+
+    <circle cx="1010" cy="710" r="9" class="node"/>
+    <text x="1010" y="752" text-anchor="middle" class="label">番禺方向</text>
+  </g>
+
+  <!-- routes -->
+  <path class="route" d="M320 168 C300 235 285 315 260 392 C285 405 325 405 355 392 C325 480 285 570 250 640"/>
+  <text x="205" y="330" class="label" transform="rotate(-75 205 330)">五尺道／南夷道</text>
+
+  <path class="route2" d="M330 175 C390 245 420 310 445 365"/>
+  <text x="390" y="275" class="small">巴蜀商品与汉使进入夜郎</text>
+
+  <path class="route2" d="M500 525 C625 560 790 620 995 700"/>
+  <text x="735" y="610" class="small">牂牁江—珠江上游—南越战略方向</text>
+
+  <path class="route2" d="M675 405 C770 385 865 370 955 365"/>
+  <text x="810" y="350" class="small">黔中—五溪—沅水</text>
+
+  <path class="route2" d="M410 500 C350 550 295 600 250 640"/>
+  <text x="330" y="570" class="small">夜郎—滇东</text>
+
+  <!-- compass -->
+  <g transform="translate(1085 95)">
+    <circle cx="0" cy="0" r="34" fill="#fffaf0" stroke="#6f6048" stroke-width="2"/>
+    <path d="M0 -28 L8 0 L0 28 L-8 0 Z" fill="#6e3f22"/>
+    <text x="0" y="-42" text-anchor="middle" class="label">北</text>
+  </g>
+
+  <!-- legend -->
+  <rect x="805" y="510" width="345" height="145" class="legendBox"/>
+  <text x="825" y="538" class="label">图例与阅读提示</text>
+  <line x1="825" y1="563" x2="885" y2="563" class="river"/>
+  <text x="900" y="568" class="small">主要水系方向</text>
+  <line x1="825" y1="590" x2="885" y2="590" class="route"/>
+  <text x="900" y="595" class="small">国家道路／主要古道</text>
+  <ellipse cx="855" cy="620" rx="30" ry="14" fill="#b36a5e" fill-opacity=".18" stroke="#9a4337" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="900" y="625" class="small">夜郎核心地望争议范围</text>
+  <text x="825" y="647" class="small">示意图不表示精确行政边界、比例或唯一都城。</text>
+
+  <text x="600" y="798" text-anchor="middle" class="subtitle">核心观察：贵州高原既被山岭切割，又处在巴蜀、滇、五溪与岭南多套交通网络的交会处。</text>
+</svg>

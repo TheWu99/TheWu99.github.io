@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="《透过地理看历史》：从山河形势、交通通道与区域结构理解中国历史。">
+  <meta name="theme-color" content="#f4efe5">
+  <title>透过地理看历史 · 公共阅读版</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script defer src="./app.js"></script>
+</head>
+<body>
+  <div class="reading-progress" aria-hidden="true"><span id="progressBar"></span></div>
+  <header class="mobile-bar">
+    <button class="icon-button" id="menuButton" aria-label="打开章节目录" aria-expanded="false">目录</button>
+    <a class="mobile-title" href="./">透过地理看历史</a>
+    <button class="icon-button" id="themeButtonMobile" aria-label="切换深浅色">明暗</button>
+  </header>
+  <div class="shell">
+    <aside class="sidebar" id="sidebar" aria-label="章节目录">
+      <div class="brand">
+        <a href="./" class="seal" aria-label="返回首页">史</a>
+        <div>
+          <p class="eyebrow">山河形势 · 历史进程</p>
+          <h1>透过地理看历史</h1>
+          <p class="subtitle">十七章 · 公共阅读版</p>
+        </div>
+      </div>
+      <div class="completion">
+        <div><span>已完成</span><strong>17 / 17</strong></div>
+        <div class="completion-track"><span></span></div>
+      </div>
+      <label class="search">
+        <span class="sr-only">搜索章节</span>
+        <input id="chapterSearch" type="search" inputmode="search" placeholder="搜索章节或关键词…" autocomplete="off">
+      </label>
+      <nav id="chapterList" class="chapter-list" aria-label="全部章节"></nav>
+      <p class="privacy-note">本页面不使用 Cookie，不收集阅读数据。</p>
+    </aside>
+    <button class="scrim" id="scrim" aria-label="关闭章节目录"></button>
+    <main class="reader">
+      <header class="reader-header">
+        <div>
+          <p class="eyebrow" id="chapterNumber">第一章</p>
+          <h2 id="chapterTitle">三国古战场：荆州在哪里</h2>
+        </div>
+        <div class="reader-tools" aria-label="阅读设置">
+          <button class="tool-button" id="fontButton" aria-label="调整字号">字号</button>
+          <button class="tool-button" id="shareButton" aria-label="分享本章">分享</button>
+          <button class="tool-button desktop-theme" id="themeButton" aria-label="切换深浅色">明暗</button>
+        </div>
+      </header>
+      <div class="chapter-meta">
+        <span id="readingTime">预计阅读 10 分钟</span>
+        <span aria-hidden="true">·</span>
+        <span>历史地理学习指南</span>
+      </div>
+      <article id="content" class="prose" aria-live="polite">
+        <p class="loading">正在载入章节…</p>
+      </article>
+      <nav class="chapter-pager" aria-label="章节翻页">
+        <a id="previousChapter" class="pager-link previous" href="#"><span>上一篇</span><strong>—</strong></a>
+        <a id="nextChapter" class="pager-link next" href="#"><span>下一篇</span><strong>—</strong></a>
+      </nav>
+      <footer class="site-footer">
+        <p>《透过地理看历史》公共阅读版</p>
+        <p>内容用于历史地理学习与交流。地图均为原创示意图，不作为精确疆域图。</p>
+      </footer>
+    </main>
+    <aside class="on-this-page" aria-label="本章目录">
+      <p class="eyebrow">本章目录</p>
+      <nav id="toc"></nav>
+    </aside>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

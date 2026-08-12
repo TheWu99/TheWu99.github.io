@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="840" viewBox="0 0 1200 840" role="img" aria-labelledby="title desc">
+  <title id="title">南诏与大理国地理骨架示意图</title>
+  <desc id="desc">展示云南高原、洱海与滇池盆地、横断山主要水系、南诏大理政治中心及通往四川、吐蕃、安南和缅甸方向的古代交通网络。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7f2e6"/>
+      <stop offset="1" stop-color="#e7dcc5"/>
+    </linearGradient>
+    <linearGradient id="plateau" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d6c79e"/>
+      <stop offset="1" stop-color="#bea66d"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#7c4b2a"/>
+    </marker>
+    <marker id="blueArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#357da8"/>
+    </marker>
+    <style>
+      .title { font:700 30px 'Noto Sans SC','Microsoft YaHei',sans-serif; fill:#382d21; }
+      .subtitle { font:15px 'Noto Sans SC','Microsoft YaHei',sans-serif; fill:#625445; }
+      .region { font:700 20px 'Noto Sans SC','Microsoft YaHei',sans-serif; fill:#47392b; }
+      .label { font:600 15px 'Noto Sans SC','Microsoft YaHei',sans-serif; fill:#2f2923; }
+      .small { font:13px 'Noto Sans SC','Microsoft YaHei',sans-serif; fill:#50473e; }
+      .riverlabel { font:600 14px 'Noto Sans SC','Microsoft YaHei',sans-serif; fill:#205e87; }
+      .river { fill:none; stroke:#4b91bd; stroke-width:5; stroke-linecap:round; }
+      .minorRiver { fill:none; stroke:#78abc9; stroke-width:3; stroke-linecap:round; }
+      .mountain { fill:#95845f; stroke:#6f6143; stroke-width:1.5; opacity:.9; }
+      .route { fill:none; stroke:#7c4b2a; stroke-width:4; stroke-dasharray:10 8; marker-end:url(#arrow); }
+      .route2 { fill:none; stroke:#a06b35; stroke-width:3; stroke-dasharray:7 7; marker-end:url(#arrow); }
+      .node { fill:#6e3e22; stroke:#fff7e8; stroke-width:3; }
+      .capital { fill:#a83f2e; stroke:#fff7e8; stroke-width:3; }
+      .modern { fill:#2f6b4f; stroke:#fff7e8; stroke-width:3; }
+      .lake { fill:#8bc2d9; stroke:#3b7fa5; stroke-width:2.5; }
+      .legend { fill:#fffaf0; stroke:#8c795a; stroke-width:1.5; rx:10; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="840" fill="url(#bg)"/>
+  <text x="600" y="42" text-anchor="middle" class="title">南诏与大理国地理骨架</text>
+  <text x="600" y="69" text-anchor="middle" class="subtitle">盆地、山脉、水系、都城与跨区域通道关系示意；并非精确测绘或固定疆界图</text>
+
+  <!-- surrounding regions -->
+  <path d="M115 92 H520 L560 170 L485 225 L155 215 Z" fill="#dbe0bd" stroke="#88956a" stroke-width="2"/>
+  <text x="310" y="132" text-anchor="middle" class="region">四川盆地与川西南</text>
+  <text x="310" y="158" text-anchor="middle" class="small">成都—雅州—嶲州／西昌</text>
+
+  <path d="M55 100 L180 75 L300 245 L190 390 L55 355 Z" fill="#d4c9af" stroke="#82745d" stroke-width="2"/>
+  <text x="122" y="200" text-anchor="middle" class="region">吐蕃方向</text>
+  <text x="122" y="226" text-anchor="middle" class="small">川西高原—金沙江上游</text>
+
+  <path d="M795 125 L1165 115 L1160 430 L1015 490 L890 360 Z" fill="#dce1c5" stroke="#87936d" stroke-width="2"/>
+  <text x="1030" y="190" text-anchor="middle" class="region">滇东／贵州／岭南</text>
+  <text x="1030" y="216" text-anchor="middle" class="small">曲靖—五尺道—珠江上游</text>
+
+  <path d="M40 540 L245 445 L335 575 L280 815 H35 Z" fill="#d6cfb3" stroke="#81755b" stroke-width="2"/>
+  <text x="135" y="675" text-anchor="middle" class="region">缅甸与南亚方向</text>
+  <text x="135" y="702" text-anchor="middle" class="small">伊洛瓦底江流域／骠国</text>
+
+  <path d="M720 610 L1165 480 L1170 820 H640 Z" fill="#cfe0bd" stroke="#77916a" stroke-width="2"/>
+  <text x="990" y="715" text-anchor="middle" class="region">滇南与安南方向</text>
+  <text x="990" y="742" text-anchor="middle" class="small">红河—交趾／澜沧江—东南亚</text>
+
+  <!-- Yunnan plateau -->
+  <path d="M270 205 L520 145 L805 205 L945 365 L850 650 L655 770 L390 720 L220 510 Z" fill="url(#plateau)" stroke="#725d3c" stroke-width="3"/>
+  <text x="610" y="270" text-anchor="middle" class="region">云南高原</text>
+  <text x="610" y="294" text-anchor="middle" class="small">盆地链、湖泊、山口与纵向河谷共同构成政治网络</text>
+
+  <!-- mountains -->
+  <g>
+    <path class="mountain" d="M250 215 l20-36 22 37 20-31 23 36 21-29 25 37 -14 22 -105 2z"/>
+    <text x="315" y="181" text-anchor="middle" class="label">横断山北段</text>
+
+    <path class="mountain" d="M300 350 l19-34 21 35 21-31 24 36 22-30 25 38 -15 22 -105 2z"/>
+    <text x="365" y="320" text-anchor="middle" class="label">苍山—点苍山</text>
+
+    <path class="mountain" d="M540 505 l21-36 22 37 22-31 24 36 22-29 25 38 -15 22 -108 3z"/>
+    <text x="610" y="473" text-anchor="middle" class="label">哀牢山</text>
+
+    <path class="mountain" d="M720 310 l18-31 20 32 21-35 23 34 20-29 25 39 -14 21 -103 3z"/>
+    <text x="785" y="279" text-anchor="middle" class="label">乌蒙山／滇东北高地</text>
+  </g>
+
+  <!-- lakes and basins -->
+  <ellipse cx="440" cy="385" rx="34" ry="92" class="lake" transform="rotate(-8 440 385)"/>
+  <text x="438" y="383" text-anchor="middle" class="label">洱海</text>
+  <ellipse cx="680" cy="440" rx="72" ry="42" class="lake" transform="rotate(-15 680 440)"/>
+  <text x="680" y="445" text-anchor="middle" class="label">滇池</text>
+
+  <ellipse cx="405" cy="515" rx="77" ry="44" fill="#e7d5a7" stroke="#947a47" stroke-width="2" stroke-dasharray="7 5"/>
+  <text x="405" y="520" text-anchor="middle" class="label">巍山盆地</text>
+
+  <ellipse cx="440" cy="390" rx="98" ry="135" fill="#b35f51" fill-opacity=".12" stroke="#944438" stroke-width="3" stroke-dasharray="10 7"/>
+  <text x="448" y="258" text-anchor="middle" class="small">南诏—大理核心区</text>
+
+  <ellipse cx="690" cy="440" rx="115" ry="78" fill="#4f7f65" fill-opacity=".10" stroke="#4a705b" stroke-width="3" stroke-dasharray="9 7"/>
+  <text x="690" y="535" text-anchor="middle" class="small">拓东／滇池东方副中心</text>
+
+  <!-- rivers -->
+  <path class="river" d="M265 260 C380 215 525 205 675 230 C790 248 875 225 990 185"/>
+  <text x="635" y="214" class="riverlabel">金沙江 → 长江上游</text>
+
+  <path class="river" d="M285 285 C250 390 245 505 250 610 C255 685 235 735 205 790"/>
+  <text x="226" y="500" class="riverlabel" transform="rotate(-87 226 500)">怒江 → 缅甸方向</text>
+
+  <path class="river" d="M365 275 C340 390 365 500 430 600 C470 660 500 720 520 800"/>
+  <text x="410" y="625" class="riverlabel" transform="rotate(56 410 625)">澜沧江 → 东南亚</text>
+
+  <path class="river" d="M595 475 C660 545 730 610 825 680 C890 730 960 770 1060 795"/>
+  <text x="760" y="640" class="riverlabel" transform="rotate(34 760 640)">红河 → 安南</text>
+
+  <path class="minorRiver" d="M725 405 C800 390 885 400 980 430"/>
+  <text x="845" y="386" class="riverlabel">珠江上游方向</text>
+
+  <!-- political nodes -->
+  <g>
+    <circle cx="405" cy="510" r="10" class="node"/>
+    <text x="405" y="557" text-anchor="middle" class="label">蒙舍诏／巍山</text>
+
+    <circle cx="420" cy="414" r="10" class="capital"/>
+    <text x="345" y="432" text-anchor="middle" class="label">太和城</text>
+
+    <circle cx="430" cy="345" r="11" class="capital"/>
+    <text x="510" y="341" text-anchor="middle" class="label">羊苴咩城／大理</text>
+
+    <circle cx="405" cy="280" r="9" class="node"/>
+    <text x="395" y="257" text-anchor="middle" class="label">剑川</text>
+
+    <circle cx="340" cy="235" r="9" class="node"/>
+    <text x="300" y="220" text-anchor="middle" class="label">丽江／铁桥方向</text>
+
+    <circle cx="565" cy="430" r="9" class="node"/>
+    <text x="555" y="411" text-anchor="middle" class="label">姚州／姚安</text>
+
+    <circle cx="695" cy="420" r="11" class="capital"/>
+    <text x="695" y="398" text-anchor="middle" class="label">拓东城／今昆明</text>
+
+    <circle cx="290" cy="505" r="9" class="node"/>
+    <text x="260" y="488" text-anchor="middle" class="label">永昌／保山</text>
+
+    <circle cx="555" cy="620" r="9" class="node"/>
+    <text x="555" y="648" text-anchor="middle" class="label">银生／景东方向</text>
+
+    <circle cx="330" cy="125" r="9" class="node"/>
+    <text x="330" y="110" text-anchor="middle" class="label">成都方向</text>
+
+    <circle cx="1010" cy="770" r="9" class="node"/>
+    <text x="1010" y="805" text-anchor="middle" class="label">交趾／安南</text>
+  </g>
+
+  <!-- routes -->
+  <path class="route" d="M330 135 C385 185 405 230 410 275 C422 300 428 320 430 334"/>
+  <text x="430" y="190" class="label" transform="rotate(67 430 190)">清溪道／川滇北线</text>
+
+  <path class="route2" d="M930 170 C845 245 775 330 705 410"/>
+  <text x="805" y="285" class="small">五尺道—石门道／滇东北线</text>
+
+  <path class="route2" d="M420 340 C375 300 350 270 342 242 C315 205 270 175 205 150"/>
+  <text x="245" y="285" class="small" transform="rotate(-52 245 285)">洱海—金沙江—吐蕃方向</text>
+
+  <path class="route2" d="M420 430 C375 455 335 480 300 500 C250 550 205 610 165 680"/>
+  <text x="210" y="575" class="small" transform="rotate(-55 210 575)">滇西道／缅甸方向</text>
+
+  <path class="route2" d="M455 430 C510 480 540 545 555 610 C670 665 820 720 995 765"/>
+  <text x="740" y="705" class="small">红河—安南军事与贸易方向</text>
+
+  <path class="route2" d="M460 365 C530 390 600 405 680 418"/>
+  <text x="565" y="376" class="small">洱海—姚州—拓东</text>
+
+  <!-- Mongol route -->
+  <path d="M165 145 C230 190 285 225 335 240 C385 260 415 300 428 335" fill="none" stroke="#5b4a8b" stroke-width="5" stroke-dasharray="4 7" marker-end="url(#arrow)"/>
+  <text x="225" y="175" class="label" fill="#5b4a8b">1253年蒙古西北迂回方向</text>
+
+  <!-- compass -->
+  <g transform="translate(1090 92)">
+    <circle cx="0" cy="0" r="34" fill="#fffaf0" stroke="#6e6048" stroke-width="2"/>
+    <path d="M0 -28 L8 0 L0 28 L-8 0 Z" fill="#6e3e22"/>
+    <text x="0" y="-43" text-anchor="middle" class="label">北</text>
+  </g>
+
+  <!-- legend -->
+  <rect x="790" y="505" width="350" height="155" class="legend"/>
+  <text x="812" y="534" class="label">图例与阅读提示</text>
+  <circle cx="825" cy="560" r="8" class="capital"/>
+  <text x="845" y="565" class="small">都城或重要政治中心</text>
+  <line x1="812" y1="588" x2="872" y2="588" class="river"/>
+  <text x="890" y="593" class="small">主要水系方向</text>
+  <line x1="812" y1="616" x2="872" y2="616" class="route2"/>
+  <text x="890" y="621" class="small">古代交通与扩张方向</text>
+  <text x="812" y="648" class="small">古道、城址和政区均为概念化位置</text>
+
+  <text x="600" y="823" text-anchor="middle" class="small">原创学习地图：突出“洱海核心—滇池副中心—横断山通道—多水系开放”的历史地理关系</text>
+</svg>

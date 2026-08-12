@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">中原地理骨架与逐鹿通道示意图</title>
+  <desc id="desc">展示黄河、洛河、伊河、颍河、淮河，洛阳盆地、郑州开封平原、太行山、嵩山、伏牛山，以及主要城市、关口、渡口与历史交通方向。该图为原创历史地理示意图，不是精确测绘地图。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbf5e7"/>
+      <stop offset="1" stop-color="#eadcc0"/>
+    </linearGradient>
+    <linearGradient id="plain" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e8d99b" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#d6bd72" stop-opacity="0.88"/>
+    </linearGradient>
+    <linearGradient id="basin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d8c88d" stop-opacity="0.82"/>
+      <stop offset="1" stop-color="#bda86a" stop-opacity="0.92"/>
+    </linearGradient>
+    <linearGradient id="mountain" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#a18c65" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#65563d" stop-opacity="0.94"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#4e4635" flood-opacity="0.25"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#944a31"/>
+    </marker>
+    <marker id="blueArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2b6f9f"/>
+    </marker>
+    <style>
+      .label { font-family: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #2e2a22; }
+      .tiny { font-size: 13px; }
+      .small { font-size: 16px; }
+      .medium { font-size: 20px; font-weight: 650; }
+      .large { font-size: 30px; font-weight: 760; }
+      .city { fill: #9b3f2f; stroke: #fff8e8; stroke-width: 3; }
+      .minor-city { fill: #b7633e; stroke: #fff8e8; stroke-width: 2; }
+      .pass { fill: #29241d; stroke: #fff8e8; stroke-width: 2; }
+      .river { fill: none; stroke: #2e7eb2; stroke-width: 7; stroke-linecap: round; }
+      .minor-river { fill: none; stroke: #5ba2c8; stroke-width: 4; stroke-linecap: round; }
+      .route { fill: none; stroke: #944a31; stroke-width: 5; stroke-dasharray: 12 8; marker-end: url(#arrow); }
+      .water-route { fill: none; stroke: #4f5e9e; stroke-width: 5; stroke-dasharray: 10 7; marker-end: url(#blueArrow); }
+      .zone { fill: none; stroke: #6d624d; stroke-width: 3; stroke-dasharray: 9 6; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <text x="600" y="48" text-anchor="middle" class="label large">中原地理骨架与逐鹿通道</text>
+  <text x="600" y="77" text-anchor="middle" class="label small">河洛盆地—郑州门户—开封平原—南阳走廊｜示意图，非精确测绘</text>
+
+  <!-- compass -->
+  <g transform="translate(1090,116)" filter="url(#shadow)">
+    <circle cx="0" cy="0" r="35" fill="#fffaf0" stroke="#6a5f49" stroke-width="2"/>
+    <path d="M0,-27 L8,4 L0,0 L-8,4 Z" fill="#9a3f2f"/>
+    <path d="M0,27 L8,-4 L0,0 L-8,-4 Z" fill="#5b6570"/>
+    <text x="0" y="-42" text-anchor="middle" class="label medium">北</text>
+  </g>
+
+  <!-- regional envelope -->
+  <path d="M180,180 C280,105 450,90 650,112 C842,132 1010,225 1055,365 C1090,478 1048,640 935,770 C835,862 650,858 480,825 C325,795 200,715 145,570 C102,455 112,302 180,180 Z" fill="#f6eedb" stroke="#6f634c" stroke-width="4" filter="url(#shadow)"/>
+
+  <!-- mountain systems -->
+  <path d="M220,145 C285,118 340,112 400,128 C380,185 375,238 348,295 C320,350 305,410 278,470 L202,455 C216,380 205,315 214,250 C220,208 225,176 220,145 Z" fill="url(#mountain)"/>
+  <text x="268" y="295" transform="rotate(-76 268 295)" class="label medium" fill="#fffaf0">太行山南端</text>
+
+  <path d="M270,500 C335,440 410,420 485,435 C525,444 565,468 600,500 L550,570 C490,542 430,548 372,585 C330,612 302,646 278,690 L195,640 C220,592 240,545 270,500 Z" fill="url(#mountain)"/>
+  <text x="390" y="525" transform="rotate(-18 390 525)" class="label medium" fill="#fffaf0">嵩山及其余脉</text>
+
+  <path d="M250,645 C345,600 430,615 510,665 C565,700 625,750 655,820 L510,825 C470,775 410,742 352,735 C305,730 262,742 222,770 L155,710 C180,683 212,660 250,645 Z" fill="url(#mountain)"/>
+  <text x="390" y="700" transform="rotate(14 390 700)" class="label medium" fill="#fffaf0">伏牛山—桐柏山</text>
+
+  <path d="M125,190 C180,130 250,105 330,115 C310,165 292,225 270,285 C240,270 205,266 165,272 Z" fill="url(#mountain)" opacity="0.9"/>
+  <text x="190" y="183" class="label medium" fill="#fffaf0">崤山／熊耳山</text>
+
+  <!-- Luoyang basin -->
+  <path d="M260,270 C330,225 430,220 515,255 C565,278 585,335 560,392 C535,440 455,470 365,452 C285,435 232,385 235,330 C237,307 245,287 260,270 Z" fill="url(#basin)" stroke="#9a8552" stroke-width="3" stroke-dasharray="8 5"/>
+  <text x="402" y="350" text-anchor="middle" class="label large" fill="#6d5a2e">洛阳盆地</text>
+  <text x="402" y="378" text-anchor="middle" class="label small" fill="#6d5a2e">河洛核心·山河门户</text>
+
+  <!-- Central and eastern plain -->
+  <path d="M540,200 C675,150 850,175 980,255 C1042,340 1035,495 985,645 C930,760 800,815 655,794 C600,745 570,675 565,600 C555,520 585,445 575,370 C568,302 540,252 540,200 Z" fill="url(#plain)" stroke="#b49b52" stroke-width="2" stroke-dasharray="8 5"/>
+  <text x="815" y="455" text-anchor="middle" class="label large" fill="#71602f">郑州—开封—豫东平原</text>
+  <text x="815" y="483" text-anchor="middle" class="label small" fill="#71602f">农业·漕运·大军展开空间</text>
+
+  <!-- Nanyang basin -->
+  <path d="M430,700 C500,655 600,655 682,695 C735,730 750,790 712,838 L490,838 C440,812 410,752 430,700 Z" fill="#d7c28c" stroke="#9d8752" stroke-width="3" stroke-dasharray="8 5"/>
+  <text x="585" y="770" text-anchor="middle" class="label medium">南阳盆地</text>
+  <text x="585" y="793" text-anchor="middle" class="label small">通往荆襄／汉水</text>
+
+  <!-- Yellow River -->
+  <path d="M105,225 C205,250 290,238 365,212 C445,184 520,175 600,198 C690,225 760,205 842,220 C930,238 1000,278 1072,320" class="river"/>
+  <text x="655" y="182" class="label large" fill="#1f668f">黄河</text>
+  <text x="760" y="205" class="label small" fill="#1f668f">道路·渡口·屏障·洪水</text>
+
+  <!-- Luo and Yi rivers -->
+  <path d="M210,338 C285,350 350,350 430,332 C485,320 520,300 560,286" class="minor-river"/>
+  <text x="318" y="326" class="label medium" fill="#2e7eb2">洛河</text>
+  <path d="M338,455 C370,425 398,398 440,366" class="minor-river"/>
+  <text x="345" y="430" class="label small" fill="#2e7eb2">伊河</text>
+
+  <!-- Ying and Huai rivers -->
+  <path d="M610,515 C690,540 760,575 825,625 C885,670 930,705 990,730" class="minor-river"/>
+  <text x="742" y="575" class="label medium" fill="#2e7eb2">颍水</text>
+  <path d="M410,825 C535,835 665,842 790,827 C875,816 950,790 1055,782" class="river"/>
+  <text x="820" y="810" class="label medium" fill="#1f668f">淮河</text>
+
+  <!-- ancient canal / grain route -->
+  <path d="M902,720 C870,660 845,602 842,548 C838,492 855,430 830,365" class="water-route"/>
+  <text x="895" y="580" transform="rotate(-76 895 580)" class="label medium" fill="#514a91">汴河／漕运 → 江淮江南</text>
+
+  <!-- cities -->
+  <g>
+    <circle cx="395" cy="327" r="11" class="city"/>
+    <text x="414" y="334" class="label medium">洛阳</text>
+
+    <circle cx="550" cy="330" r="9" class="city"/>
+    <text x="568" y="337" class="label medium">巩义</text>
+
+    <circle cx="625" cy="350" r="10" class="city"/>
+    <text x="643" y="357" class="label medium">荥阳／成皋</text>
+
+    <circle cx="700" cy="395" r="11" class="city"/>
+    <text x="718" y="402" class="label medium">郑州</text>
+
+    <circle cx="835" cy="420" r="12" class="city"/>
+    <text x="854" y="427" class="label medium">开封／大梁／汴京</text>
+
+    <circle cx="950" cy="515" r="10" class="city"/>
+    <text x="969" y="522" class="label medium">商丘／宋</text>
+
+    <circle cx="700" cy="565" r="10" class="city"/>
+    <text x="718" y="572" class="label medium">许昌／许都</text>
+
+    <circle cx="618" cy="660" r="8" class="minor-city"/>
+    <text x="635" y="667" class="label medium">叶县／方城</text>
+
+    <circle cx="575" cy="745" r="10" class="city"/>
+    <text x="593" y="752" class="label medium">宛／南阳</text>
+
+    <circle cx="915" cy="650" r="8" class="minor-city"/>
+    <text x="932" y="657" class="label medium">陈留／淮阳</text>
+
+    <circle cx="760" cy="260" r="8" class="minor-city"/>
+    <text x="778" y="267" class="label medium">官渡</text>
+
+    <circle cx="490" cy="185" r="8" class="minor-city"/>
+    <text x="507" y="192" class="label medium">孟津／河阳</text>
+
+    <circle cx="350" cy="150" r="8" class="minor-city"/>
+    <text x="367" y="157" class="label medium">河内方向</text>
+  </g>
+
+  <!-- passes -->
+  <g>
+    <rect x="165" y="255" width="15" height="15" transform="rotate(45 172.5 262.5)" class="pass"/>
+    <text x="92" y="258" class="label medium">函谷关 → 关中</text>
+
+    <rect x="565" y="350" width="15" height="15" transform="rotate(45 572.5 357.5)" class="pass"/>
+    <text x="535" y="390" class="label medium">虎牢关</text>
+
+    <rect x="432" y="420" width="15" height="15" transform="rotate(45 439.5 427.5)" class="pass"/>
+    <text x="385" y="466" class="label medium">伊阙</text>
+  </g>
+
+  <!-- strategic routes -->
+  <path d="M120,305 C210,310 285,315 378,327" class="route"/>
+  <text x="205" y="292" class="label medium" fill="#8b432e">关中东出</text>
+
+  <path d="M420,337 C500,335 560,340 612,350" class="route"/>
+  <path d="M642,360 C700,375 765,392 820,415" class="route"/>
+  <text x="622" y="316" class="label medium" fill="#8b432e">洛阳—荥阳—开封轴线</text>
+
+  <path d="M835,435 C895,455 925,478 950,505" class="route"/>
+  <text x="930" y="438" class="label small" fill="#8b432e">→ 山东／徐州</text>
+
+  <path d="M707,580 C675,620 645,670 600,730" class="route"/>
+  <text x="650" y="640" class="label medium" fill="#8b432e">南阳—荆襄走廊</text>
+
+  <path d="M495,205 C520,250 580,292 650,330" class="route"/>
+  <text x="470" y="235" class="label small" fill="#8b432e">河北／山西南下</text>
+
+  <!-- strategic hinge zone -->
+  <ellipse cx="625" cy="350" rx="92" ry="60" class="zone"/>
+  <text x="625" y="290" text-anchor="middle" class="label small">荥阳—成皋战略铰链</text>
+
+  <!-- legend -->
+  <g transform="translate(70,760)" filter="url(#shadow)">
+    <rect x="0" y="0" width="330" height="112" rx="14" fill="#fffaf0" stroke="#756a54" stroke-width="2"/>
+    <text x="18" y="28" class="label medium">图例</text>
+    <circle cx="28" cy="52" r="8" class="city"/><text x="46" y="58" class="label small">主要城市／都城</text>
+    <rect x="21" y="70" width="13" height="13" transform="rotate(45 27.5 76.5)" class="pass"/><text x="46" y="82" class="label small">关口／门户</text>
+    <path d="M176,50 L232,50" class="river"/><text x="244" y="56" class="label small">主要河流</text>
+    <path d="M176,80 L232,80" class="route"/><text x="244" y="86" class="label small">战略通道</text>
+  </g>
+
+  <text x="1128" y="872" text-anchor="end" class="label tiny">原创示意图｜History/Book/透过地理看历史</text>
+</svg>

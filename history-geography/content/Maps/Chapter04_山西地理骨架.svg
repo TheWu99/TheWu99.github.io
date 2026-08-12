@@ -1,0 +1,157 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">山西地理骨架与历史通道示意图</title>
+  <desc id="desc">展示黄河、汾河、太行山、吕梁山、五台山、恒山、主要盆地、城市、关隘及山西对外交通方向。该图为原创历史地理示意图，不是精确测绘地图。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f8f4e8"/>
+      <stop offset="1" stop-color="#efe6cf"/>
+    </linearGradient>
+    <linearGradient id="mountain" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#9d8c68" stop-opacity="0.62"/>
+      <stop offset="1" stop-color="#746448" stop-opacity="0.82"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#4e4635" flood-opacity="0.25"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#9a4e32"/>
+    </marker>
+    <marker id="blueArrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2e6f9e"/>
+    </marker>
+    <style>
+      .label { font-family: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; fill: #2f2b23; }
+      .small { font-size: 18px; }
+      .medium { font-size: 22px; font-weight: 650; }
+      .large { font-size: 30px; font-weight: 750; }
+      .tiny { font-size: 15px; }
+      .city { fill: #9a3f2f; stroke: #fff8e8; stroke-width: 3; }
+      .pass { fill: #27231c; stroke: #fff8e8; stroke-width: 2; }
+      .basin { fill: #d9c786; fill-opacity: 0.72; stroke: #b49b52; stroke-width: 2; stroke-dasharray: 7 5; }
+      .route { fill: none; stroke: #9a4e32; stroke-width: 5; stroke-dasharray: 12 8; marker-end: url(#arrow); }
+      .river { fill: none; stroke: #2e7eb2; stroke-width: 8; stroke-linecap: round; }
+      .tributary { fill: none; stroke: #4d9bc9; stroke-width: 5; stroke-linecap: round; }
+      .border { fill: none; stroke: #5d533d; stroke-width: 3; stroke-dasharray: 10 7; }
+    </style>
+  </defs>
+
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <text x="600" y="52" text-anchor="middle" class="label large">山西地理骨架与历史通道</text>
+  <text x="600" y="80" text-anchor="middle" class="label small">山河围合中的南北盆地链｜示意图，非精确测绘</text>
+
+  <!-- compass -->
+  <g transform="translate(1080,115)" filter="url(#shadow)">
+    <circle cx="0" cy="0" r="36" fill="#fffaf0" stroke="#6a5f49" stroke-width="2"/>
+    <path d="M0,-28 L8,5 L0,0 L-8,5 Z" fill="#9a3f2f"/>
+    <path d="M0,28 L8,-5 L0,0 L-8,-5 Z" fill="#5b6570"/>
+    <text x="0" y="-43" text-anchor="middle" class="label medium">北</text>
+  </g>
+
+  <!-- schematic provincial envelope -->
+  <path d="M420,115 C505,90 650,100 748,145 C815,178 840,238 828,307 C816,378 855,430 838,500 C820,575 780,650 728,728 C675,806 583,830 500,790 C430,758 385,694 370,620 C355,548 330,485 345,413 C360,340 335,274 360,210 C375,170 390,138 420,115 Z" fill="#f4edd6" stroke="#6f634c" stroke-width="4" filter="url(#shadow)"/>
+
+  <!-- mountain belts -->
+  <path d="M387,145 C350,220 365,290 350,365 C337,430 360,510 365,585 C370,655 405,720 450,770 L500,735 C458,670 446,612 448,545 C450,465 420,405 440,330 C458,260 440,197 466,128 Z" fill="url(#mountain)" opacity="0.78"/>
+  <text x="386" y="455" transform="rotate(-82 386 455)" class="label medium" fill="#fffaf0">吕梁山地</text>
+
+  <path d="M735,145 C795,210 785,275 800,342 C815,410 792,476 805,545 C818,610 775,690 720,760 L673,720 C714,660 732,600 720,535 C707,465 735,405 715,338 C696,275 718,210 685,155 Z" fill="url(#mountain)" opacity="0.85"/>
+  <text x="776" y="455" transform="rotate(82 776 455)" class="label medium" fill="#fffaf0">太行山脉</text>
+
+  <path d="M505,122 C548,94 626,92 676,130 L650,178 C604,157 551,158 514,180 Z" fill="#877655" opacity="0.85"/>
+  <text x="590" y="137" text-anchor="middle" class="label small" fill="#fffaf0">恒山—长城山地</text>
+
+  <path d="M661,250 C699,230 730,245 750,275 L720,320 C690,305 665,287 643,266 Z" fill="#85724f" opacity="0.82"/>
+  <text x="712" y="266" class="label small" fill="#fffaf0">五台山</text>
+
+  <path d="M620,505 C663,475 708,485 742,520 L716,568 C678,548 649,544 606,556 Z" fill="#806f50" opacity="0.72"/>
+  <text x="685" y="525" class="label small" fill="#fffaf0">太岳—中条余脉</text>
+
+  <!-- basins -->
+  <ellipse cx="582" cy="177" rx="104" ry="45" class="basin"/>
+  <ellipse cx="565" cy="305" rx="92" ry="50" class="basin"/>
+  <ellipse cx="560" cy="420" rx="115" ry="63" class="basin"/>
+  <ellipse cx="545" cy="585" rx="90" ry="62" class="basin"/>
+  <ellipse cx="552" cy="728" rx="118" ry="55" class="basin"/>
+  <ellipse cx="710" cy="505" rx="72" ry="55" class="basin"/>
+
+  <text x="582" y="150" text-anchor="middle" class="label medium">大同盆地</text>
+  <text x="565" y="280" text-anchor="middle" class="label medium">忻定盆地</text>
+  <text x="560" y="390" text-anchor="middle" class="label medium">太原盆地</text>
+  <text x="545" y="555" text-anchor="middle" class="label medium">临汾盆地</text>
+  <text x="552" y="701" text-anchor="middle" class="label medium">运城盆地</text>
+  <text x="710" y="480" text-anchor="middle" class="label medium">上党盆地</text>
+
+  <!-- Yellow River -->
+  <path d="M365,165 C322,245 332,340 310,430 C294,510 320,590 365,675 C410,758 470,812 565,820 C680,832 760,795 814,720" class="river"/>
+  <text x="293" y="495" transform="rotate(-80 293 495)" class="label medium" fill="#1e668f">黄河（西界）</text>
+  <text x="635" y="842" text-anchor="middle" class="label medium" fill="#1e668f">黄河（南界）</text>
+
+  <!-- Fen River -->
+  <path d="M565,245 C548,315 555,360 552,420 C550,480 540,535 542,594 C545,650 552,700 565,767" class="tributary"/>
+  <text x="518" y="500" transform="rotate(-88 518 500)" class="label medium" fill="#2e7eb2">汾河</text>
+  <path d="M565,767 C580,790 600,804 620,818" class="tributary"/>
+
+  <!-- Great Wall -->
+  <path d="M450,112 L500,102 L548,111 L596,99 L646,110 L695,105 L742,130" fill="none" stroke="#6b4d37" stroke-width="6" stroke-dasharray="16 7"/>
+  <text x="595" y="96" text-anchor="middle" class="label small">长城与北部边塞</text>
+
+  <!-- cities -->
+  <g>
+    <circle cx="588" cy="180" r="9" class="city"/><text x="603" y="188" class="label medium">平城／大同</text>
+    <circle cx="565" cy="317" r="9" class="city"/><text x="580" y="325" class="label medium">忻州</text>
+    <circle cx="560" cy="430" r="10" class="city"/><text x="575" y="438" class="label medium">晋阳／太原</text>
+    <circle cx="542" cy="596" r="9" class="city"/><text x="557" y="604" class="label medium">平阳／临汾</text>
+    <circle cx="554" cy="738" r="9" class="city"/><text x="569" y="746" class="label medium">河东／运城</text>
+    <circle cx="710" cy="515" r="9" class="city"/><text x="725" y="523" class="label medium">上党／长治</text>
+    <circle cx="500" cy="690" r="7" class="city"/><text x="435" y="684" class="label small">平遥·祁县·太谷</text>
+  </g>
+
+  <!-- passes -->
+  <g>
+    <rect x="545" y="245" width="14" height="14" transform="rotate(45 552 252)" class="pass"/>
+    <text x="475" y="250" class="label medium">雁门关</text>
+    <rect x="734" y="415" width="14" height="14" transform="rotate(45 741 422)" class="pass"/>
+    <text x="752" y="428" class="label medium">娘子关</text>
+    <rect x="766" y="512" width="14" height="14" transform="rotate(45 773 519)" class="pass"/>
+    <text x="790" y="525" class="label medium">壶关</text>
+    <rect x="697" y="735" width="14" height="14" transform="rotate(45 704 742)" class="pass"/>
+    <text x="720" y="750" class="label medium">轵关／太行南口</text>
+  </g>
+
+  <!-- routes -->
+  <path d="M580,160 C575,125 565,106 560,82" class="route"/>
+  <text x="478" y="86" class="label medium" fill="#8b432e">向草原与塞北</text>
+
+  <path d="M742,422 C830,407 905,385 986,360" class="route"/>
+  <text x="870" y="345" text-anchor="middle" class="label medium" fill="#8b432e">越太行至河北</text>
+
+  <path d="M774,520 C855,520 922,515 1000,505" class="route"/>
+  <text x="895" y="493" text-anchor="middle" class="label medium" fill="#8b432e">上党东出中原</text>
+
+  <path d="M560,760 C585,800 630,825 690,835" class="route"/>
+  <text x="790" y="842" class="label medium" fill="#8b432e">向河南</text>
+
+  <path d="M500,740 C438,780 375,792 300,780" class="route"/>
+  <text x="185" y="785" class="label medium" fill="#8b432e">渡黄河至关中</text>
+
+  <path d="M555,430 C550,500 545,600 554,738" fill="none" stroke="#9a4e32" stroke-width="5" marker-end="url(#arrow)"/>
+  <text x="596" y="670" class="label small" fill="#8b432e">汾河谷地南下主轴</text>
+
+  <!-- contextual regions -->
+  <text x="190" y="305" class="label large" fill="#75684f">陕北／关中方向</text>
+  <text x="940" y="290" class="label large" fill="#75684f">河北平原</text>
+  <text x="940" y="590" class="label large" fill="#75684f">河南中原</text>
+  <text x="520" y="865" class="label large" fill="#75684f">黄河河谷</text>
+
+  <!-- legend -->
+  <g transform="translate(55,620)" filter="url(#shadow)">
+    <rect width="270" height="205" rx="14" fill="#fffaf0" stroke="#8a7c61" stroke-width="2"/>
+    <text x="22" y="34" class="label medium">图例</text>
+    <ellipse cx="38" cy="68" rx="22" ry="10" class="basin"/><text x="72" y="75" class="label small">主要盆地</text>
+    <rect x="17" y="94" width="42" height="15" fill="url(#mountain)"/><text x="72" y="108" class="label small">山地屏障</text>
+    <line x1="18" y1="135" x2="58" y2="135" class="river"/><text x="72" y="142" class="label small">黄河／主要水系</text>
+    <circle cx="38" cy="169" r="8" class="city"/><text x="72" y="176" class="label small">历史城市节点</text>
+  </g>
+
+  <text x="600" y="885" text-anchor="middle" class="label tiny">核心阅读法：盆地提供人口与粮食，山口决定进出方向，汾河串联南北，黄河与太行塑造外部边界。</text>
+</svg>

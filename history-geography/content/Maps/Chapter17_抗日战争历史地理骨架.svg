@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="1050" viewBox="0 0 1500 1050" role="img" aria-labelledby="title desc">
+  <title id="title">第十七章《抗日战争》历史地理骨架示意图</title>
+  <desc id="desc">展示1931至1945年抗日战争中的东北基地、华北铁路、长江轴线、沿海进攻、战略西迁、敌后山地、滇缅公路、驼峰航线、西北援助线与豫湘桂大陆走廊。地图为原创关系示意图，并非精确测绘图。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7f3e7"/>
+      <stop offset="1" stop-color="#e9e2cf"/>
+    </linearGradient>
+    <linearGradient id="land" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#dfe8cf"/>
+      <stop offset="1" stop-color="#c8d8b5"/>
+    </linearGradient>
+    <marker id="arrowRed" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#a63d32"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#2d648e"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#3c7b57"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#7a4f92"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.22"/>
+    </filter>
+    <style>
+      .title{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:34px;font-weight:700;fill:#2e2b26}
+      .subtitle{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:17px;fill:#5f5a50}
+      .region{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:22px;font-weight:700;fill:#646056;opacity:.78}
+      .city{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:16px;font-weight:650;fill:#242424}
+      .small{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:14px;fill:#4b4842}
+      .tiny{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:12px;fill:#4b4842}
+      .river{fill:none;stroke:#6ba1c3;stroke-width:9;stroke-linecap:round;opacity:.88}
+      .rail{fill:none;stroke:#5a5750;stroke-width:3;stroke-dasharray:11 8;opacity:.78}
+      .attack{fill:none;stroke:#a63d32;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#arrowRed)}
+      .retreat{fill:none;stroke:#2d648e;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#arrowBlue)}
+      .supply{fill:none;stroke:#3c7b57;stroke-width:5;stroke-dasharray:11 8;stroke-linecap:round;marker-end:url(#arrowGreen)}
+      .ichigo{fill:none;stroke:#7a4f92;stroke-width:7;stroke-dasharray:14 8;stroke-linecap:round;marker-end:url(#arrowPurple)}
+      .closed{fill:none;stroke:#8d775d;stroke-width:4;stroke-dasharray:4 8;stroke-linecap:round;opacity:.8}
+      .node{fill:#fffaf0;stroke:#504b42;stroke-width:2}
+      .rear{fill:#e8f1fb;stroke:#2d648e;stroke-width:3}
+      .supplyNode{fill:#eef7ef;stroke:#3c7b57;stroke-width:3}
+      .frontNode{fill:#fff1ed;stroke:#a63d32;stroke-width:3}
+      .guerrilla{fill:#d7ead6;stroke:#3c7b57;stroke-width:2;stroke-dasharray:7 5;opacity:.85}
+    </style>
+  </defs>
+
+  <rect width="1500" height="1050" fill="url(#bg)"/>
+  <rect x="36" y="26" width="1428" height="118" rx="18" fill="#fffaf1" stroke="#b8ad95" filter="url(#shadow)"/>
+  <text x="750" y="76" text-anchor="middle" class="title">第十七章《抗日战争》历史地理骨架</text>
+  <text x="750" y="111" text-anchor="middle" class="subtitle">红：日军主要推进　蓝：国家中枢与工业西迁　绿：国际补给线与敌后空间　紫：1944年豫湘桂大陆走廊</text>
+
+  <!-- Simplified East Asian geographic field -->
+  <path d="M165 265 C250 200,370 190,455 235 C535 190,650 200,725 245 C810 210,930 215,1015 260 C1110 235,1220 280,1290 355 C1330 430,1310 520,1260 575 C1230 660,1265 745,1205 825 C1130 900,1015 900,930 855 C850 895,760 880,690 835 C590 875,475 850,405 790 C320 780,245 720,220 640 C145 580,120 475,150 385 C125 340,135 300,165 265 Z" fill="url(#land)" stroke="#9c947f" stroke-width="3"/>
+
+  <!-- Maritime spaces and occupied eastern belt -->
+  <path d="M1030 220 C1180 240,1320 310,1370 410 L1370 850 C1280 915,1195 930,1110 875 C1165 780,1150 700,1190 620 C1255 515,1245 420,1170 340 C1120 285,1070 250,1030 220 Z" fill="#dceaf0" opacity=".9"/>
+  <text x="1300" y="610" class="region" transform="rotate(90 1300 610)">黄海—东海—南海</text>
+  <path d="M1085 205 C1190 245,1265 315,1260 395 C1250 470,1205 540,1205 630 C1210 720,1165 810,1095 855 L1035 805 C1090 710,1090 625,1105 535 C1125 450,1115 355,1040 285 Z" fill="#d98b73" opacity=".32"/>
+  <text x="1165" y="450" class="small" fill="#8f352e">沿海港口与占领走廊</text>
+
+  <!-- Northeast base -->
+  <path d="M980 190 C1070 155,1185 175,1255 245 C1275 300,1250 340,1200 355 C1110 340,1040 300,980 245 Z" fill="#d8846f" opacity=".5" stroke="#a63d32" stroke-width="2"/>
+  <text x="1105" y="225" class="region">东北基地</text>
+  <text x="1088" y="252" class="small">铁路・工业・资源・驻军</text>
+
+  <!-- Major rivers -->
+  <path class="river" d="M250 390 C390 355,500 365,620 335 C760 305,900 320,1050 350"/>
+  <text x="650" y="325" class="small">黄河</text>
+  <path class="river" d="M280 575 C420 555,500 565,610 548 C730 530,850 545,970 525 C1050 512,1120 510,1190 505"/>
+  <text x="820" y="530" class="small">长江</text>
+  <path class="river" d="M745 650 C800 620,835 575,850 545"/>
+  <text x="770" y="617" class="small">湘江</text>
+  <path class="river" d="M910 440 C950 405,990 385,1050 350"/>
+  <text x="960" y="401" class="small">淮河水网</text>
+
+  <!-- Mountains -->
+  <path d="M760 285 l20 -32 l20 32 l20 -39 l22 39 l20 -31 l22 31 l20 -36 l20 36" fill="none" stroke="#8b7258" stroke-width="5"/>
+  <text x="845" y="268" class="small">太行山</text>
+  <path d="M485 475 l20 -32 l20 32 l20 -38 l22 38 l20 -31 l22 31 l20 -36 l20 36 l22 -31 l20 31" fill="none" stroke="#8b7258" stroke-width="5"/>
+  <text x="575" y="458" class="small">秦岭—大巴山屏障</text>
+  <path d="M370 680 l20 -31 l20 31 l20 -38 l22 38 l20 -31 l22 31 l20 -35 l20 35" fill="none" stroke="#8b7258" stroke-width="5"/>
+  <text x="425" y="720" class="small">云贵高原</text>
+
+  <!-- Rail corridors -->
+  <path class="rail" d="M1000 290 L910 365 L900 450 L820 555 L820 660 L920 825"/>
+  <text x="835" y="475" class="tiny">平汉—粤汉铁路轴</text>
+  <path class="rail" d="M1085 315 L1010 385 L980 455 L1055 505"/>
+  <text x="1010" y="425" class="tiny">津浦铁路轴</text>
+  <path class="rail" d="M620 430 L760 430 L900 450 L980 455"/>
+  <text x="760" y="418" class="tiny">陇海铁路轴</text>
+  <path class="rail" d="M820 660 L790 735 L760 790 L700 830"/>
+  <text x="775" y="755" class="tiny">湘桂铁路轴</text>
+
+  <!-- Japanese advances -->
+  <path class="attack" d="M1130 240 C1085 255,1045 270,1000 290"/>
+  <path class="attack" d="M1000 290 C965 325,935 345,910 365 C900 400,900 420,900 450"/>
+  <path class="attack" d="M1230 430 C1165 450,1110 475,1055 505"/>
+  <path class="attack" d="M1055 505 C1000 520,930 535,850 545"/>
+  <path class="attack" d="M1270 760 C1160 780,1030 800,920 825"/>
+  <text x="1050" y="280" class="small" fill="#8f352e">东北—平津</text>
+  <text x="936" y="390" class="small" fill="#8f352e">沿铁路南下</text>
+  <text x="1100" y="485" class="small" fill="#8f352e">上海—南京—武汉</text>
+  <text x="1035" y="790" class="small" fill="#8f352e">华南登陆与封锁</text>
+
+  <!-- Strategic westward movement -->
+  <path class="retreat" d="M1055 505 C980 520,920 535,850 545 C760 555,650 560,545 575"/>
+  <path class="retreat" d="M850 545 C760 600,675 650,565 720"/>
+  <text x="680" y="548" class="small" fill="#2d648e">南京／武汉 → 重庆</text>
+  <text x="665" y="650" class="small" fill="#2d648e">工业、学校与人口西迁</text>
+
+  <!-- International supply lines -->
+  <path class="supply" d="M175 300 C270 315,350 345,435 380 C470 420,505 500,545 575"/>
+  <text x="300" y="340" class="small" fill="#3c7b57">苏联—新疆—兰州路线</text>
+  <path class="supply" d="M300 875 C360 830,420 780,480 750 C510 690,530 625,545 575"/>
+  <text x="325" y="825" class="small" fill="#3c7b57">滇缅公路</text>
+  <path class="supply" d="M165 785 C260 760,365 745,480 750"/>
+  <text x="205" y="750" class="small" fill="#3c7b57">驼峰航线</text>
+  <path class="closed" d="M730 920 C665 860,600 805,480 750"/>
+  <text x="585" y="860" class="small" fill="#7a6550">滇越铁路（1940年前重要）</text>
+
+  <!-- Ichi-Go corridor -->
+  <path class="ichigo" d="M900 450 C865 505,835 565,820 660 C805 715,785 760,760 790 C735 810,715 820,700 830"/>
+  <text x="845" y="690" class="small" fill="#6d4682">1944 豫湘桂会战</text>
+  <text x="810" y="717" class="tiny" fill="#6d4682">试图打通华北—印度支那大陆走廊</text>
+
+  <!-- Guerrilla areas -->
+  <ellipse cx="820" cy="335" rx="80" ry="55" class="guerrilla"/>
+  <text x="820" y="330" text-anchor="middle" class="small" fill="#2f6c4a">太行—晋察冀</text>
+  <text x="820" y="350" text-anchor="middle" class="tiny" fill="#2f6c4a">山地敌后网络</text>
+  <ellipse cx="975" cy="405" rx="65" ry="44" class="guerrilla"/>
+  <text x="975" y="410" text-anchor="middle" class="tiny" fill="#2f6c4a">山东敌后</text>
+  <ellipse cx="900" cy="535" rx="70" ry="42" class="guerrilla"/>
+  <text x="900" y="540" text-anchor="middle" class="tiny" fill="#2f6c4a">华中敌后</text>
+
+  <!-- City nodes -->
+  <g filter="url(#shadow)">
+    <circle cx="1130" cy="240" r="10" class="frontNode"/><text x="1147" y="236" class="city">沈阳</text>
+    <circle cx="1190" cy="210" r="9" class="frontNode"/><text x="1206" y="205" class="city">长春</text>
+    <circle cx="1000" cy="290" r="10" class="frontNode"/><text x="1018" y="284" class="city">北平</text>
+    <circle cx="1085" cy="315" r="9" class="frontNode"/><text x="1100" y="310" class="city">天津</text>
+    <circle cx="910" cy="365" r="9" class="node"/><text x="870" y="354" class="city">石家庄</text>
+    <circle cx="760" cy="430" r="9" class="node"/><text x="775" y="424" class="city">郑州</text>
+    <circle cx="900" cy="450" r="10" class="frontNode"/><text x="914" y="444" class="city">徐州</text>
+    <circle cx="1055" cy="505" r="11" class="frontNode"/><text x="1072" y="499" class="city">南京／上海轴</text>
+    <circle cx="850" cy="545" r="11" class="frontNode"/><text x="865" y="568" class="city">武汉</text>
+    <circle cx="820" cy="660" r="10" class="node"/><text x="837" y="655" class="city">长沙</text>
+    <circle cx="790" cy="735" r="9" class="node"/><text x="807" y="730" class="city">衡阳</text>
+    <circle cx="760" cy="790" r="9" class="node"/><text x="777" y="785" class="city">桂林</text>
+    <circle cx="700" cy="830" r="9" class="node"/><text x="716" y="825" class="city">柳州</text>
+    <circle cx="920" cy="825" r="10" class="frontNode"/><text x="937" y="820" class="city">广州</text>
+    <circle cx="545" cy="575" r="12" class="rear"/><text x="562" y="570" class="city">重庆</text>
+    <circle cx="500" cy="640" r="9" class="rear"/><text x="450" y="635" class="city">成都</text>
+    <circle cx="565" cy="720" r="10" class="rear"/><text x="582" y="715" class="city">贵阳</text>
+    <circle cx="480" cy="750" r="11" class="supplyNode"/><text x="496" y="745" class="city">昆明</text>
+    <circle cx="620" cy="430" r="9" class="rear"/><text x="575" y="419" class="city">西安</text>
+    <circle cx="435" cy="380" r="9" class="supplyNode"/><text x="450" y="374" class="city">兰州</text>
+    <circle cx="175" cy="300" r="9" class="supplyNode"/><text x="190" y="294" class="city">新疆入口</text>
+    <circle cx="300" cy="875" r="9" class="supplyNode"/><text x="235" y="899" class="city">腊戍／缅甸</text>
+    <circle cx="165" cy="785" r="9" class="supplyNode"/><text x="105" y="809" class="city">印度阿萨姆</text>
+    <circle cx="730" cy="920" r="9" class="node"/><text x="748" y="915" class="city">河内／海防</text>
+  </g>
+
+  <!-- Legend -->
+  <rect x="55" y="155" width="470" height="188" rx="16" fill="#fffaf0" stroke="#b8ad95" opacity=".96" filter="url(#shadow)"/>
+  <text x="82" y="188" class="city">读图要点</text>
+  <line x1="82" y1="217" x2="165" y2="217" class="attack"/>
+  <text x="185" y="223" class="small">以港口、铁路和长江航运实施点线推进</text>
+  <line x1="82" y1="252" x2="165" y2="252" class="retreat"/>
+  <text x="185" y="258" class="small">政治、工业、教育与人口向西南纵深转移</text>
+  <line x1="82" y1="287" x2="165" y2="287" class="supply"/>
+  <text x="185" y="293" class="small">西北、西南国际补给与山地敌后网络</text>
+  <line x1="82" y1="322" x2="165" y2="322" class="ichigo"/>
+  <text x="185" y="328" class="small">1944年沿铁路打通大陆交通线的尝试</text>
+
+  <!-- Core conclusion -->
+  <rect x="900" y="885" width="540" height="116" rx="16" fill="#fffaf0" stroke="#b8ad95" opacity=".97" filter="url(#shadow)"/>
+  <text x="927" y="920" class="city">核心结论</text>
+  <text x="927" y="950" class="small">日本擅长控制港口、铁路、城市和河运节点；</text>
+  <text x="927" y="976" class="small">中国通过国土纵深、内迁、敌后网络与国际通道，把速决战改造成持久战。</text>
+
+  <text x="750" y="1028" text-anchor="middle" class="small">原创历史地理关系示意图｜仅用于学习，不作为精确行政边界、战线或测绘依据</text>
+</svg>

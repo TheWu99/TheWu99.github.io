@@ -1,0 +1,170 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-labelledby="title desc">
+  <title id="title">第十五章：塞北—辽西—辽东历史地理骨架示意图</title>
+  <desc id="desc">原创示意图，展示蒙古高原、阴山燕山、大兴安岭、辽西走廊、辽河平原、辽东半岛以及曹操北征乌桓等主要历史交通方向。非精确比例地图。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef5f0"/>
+      <stop offset="1" stop-color="#f8f2df"/>
+    </linearGradient>
+    <linearGradient id="grass" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#dce8bd"/>
+      <stop offset="1" stop-color="#c9ddb0"/>
+    </linearGradient>
+    <linearGradient id="plain" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#e6d59b"/>
+      <stop offset="1" stop-color="#f0e2b7"/>
+    </linearGradient>
+    <pattern id="gobi" width="18" height="18" patternUnits="userSpaceOnUse">
+      <rect width="18" height="18" fill="#ead8b8"/>
+      <circle cx="4" cy="5" r="1.4" fill="#c6a77b"/>
+      <circle cx="14" cy="13" r="1.1" fill="#c6a77b"/>
+    </pattern>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#a23b32"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#356789"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+    </filter>
+    <style>
+      .title{font:700 34px "Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#24342f}
+      .subtitle{font:16px "Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#55635d}
+      .region{font:700 24px "Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#44564d}
+      .mountain{font:700 18px "Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#6d5a48}
+      .city{font:700 16px "Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#2d3436}
+      .note{font:14px "Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#4c5753}
+      .small{font:13px "Noto Sans CJK SC","Microsoft YaHei",sans-serif;fill:#59635f}
+      .water{fill:none;stroke:#5c91b6;stroke-width:5;stroke-linecap:round}
+      .water2{fill:none;stroke:#78a7c4;stroke-width:3;stroke-linecap:round}
+      .ridge{fill:none;stroke:#92785c;stroke-width:13;stroke-linecap:round;stroke-linejoin:round;opacity:.82}
+      .ridge2{fill:none;stroke:#aa8c6b;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;opacity:.8}
+      .route{fill:none;stroke:#a23b32;stroke-width:5;stroke-dasharray:12 8;marker-end:url(#arrowRed)}
+      .route2{fill:none;stroke:#356789;stroke-width:4;stroke-dasharray:9 7;marker-end:url(#arrowBlue)}
+      .node{fill:#fff7df;stroke:#7a4e2f;stroke-width:3}
+      .battle{fill:#b84235;stroke:#ffffff;stroke-width:3}
+      .capital{fill:#6f3f88;stroke:#ffffff;stroke-width:3}
+    </style>
+  </defs>
+
+  <rect width="1400" height="900" fill="url(#bg)"/>
+  <rect x="25" y="20" width="1350" height="860" rx="26" fill="none" stroke="#9aa99f" stroke-width="2"/>
+
+  <text x="700" y="62" text-anchor="middle" class="title">第十五章　塞北—辽西—辽东历史地理骨架</text>
+  <text x="700" y="91" text-anchor="middle" class="subtitle">蒙古高原、燕山山口、辽西双走廊与辽河平原的连接关系（原创示意，非精确比例）</text>
+
+  <!-- Regions -->
+  <path d="M80,135 C250,105 500,120 710,165 C820,190 860,260 810,330 C690,395 430,382 230,340 C125,305 72,235 80,135 Z" fill="url(#grass)" stroke="#9bae87" stroke-width="2"/>
+  <text x="390" y="190" text-anchor="middle" class="region">蒙古高原</text>
+  <text x="390" y="220" text-anchor="middle" class="note">草原核心 · 季节牧场 · 高机动联盟</text>
+
+  <path d="M110,285 C300,250 545,275 745,335 C760,378 720,425 635,450 C430,425 260,400 120,360 Z" fill="url(#gobi)" stroke="#c8ae85" stroke-width="2"/>
+  <text x="405" y="345" text-anchor="middle" class="region">戈壁—荒漠草原带</text>
+  <text x="405" y="373" text-anchor="middle" class="note">水源稀疏，既是缓冲区也是远征后勤门槛</text>
+
+  <path d="M835,150 C1000,95 1240,120 1320,260 C1350,370 1290,500 1170,540 C1040,510 930,420 865,315 C825,250 815,195 835,150 Z" fill="#d7ead1" stroke="#98b39a" stroke-width="2"/>
+  <text x="1100" y="205" text-anchor="middle" class="region">东北森林—河流区</text>
+  <text x="1100" y="235" text-anchor="middle" class="note">林产 · 渔猎 · 河运 · 农业拓展</text>
+
+  <path d="M785,410 C930,365 1110,395 1265,520 C1260,650 1130,735 940,735 C820,675 755,560 785,410 Z" fill="url(#plain)" stroke="#b8a56f" stroke-width="2"/>
+  <text x="1035" y="550" text-anchor="middle" class="region">辽河平原</text>
+  <text x="1035" y="580" text-anchor="middle" class="note">粮食、城镇与辽河交通网络</text>
+
+  <path d="M1000,705 C1090,680 1190,710 1260,790 C1190,830 1085,825 1005,790 Z" fill="#e5d2a4" stroke="#b49a66" stroke-width="2"/>
+  <text x="1130" y="775" text-anchor="middle" class="region">辽东半岛</text>
+
+  <path d="M110,520 C300,475 535,490 750,560 C790,640 745,750 620,805 C420,825 250,780 120,700 Z" fill="#efe1b6" stroke="#c4ac77" stroke-width="2"/>
+  <text x="390" y="650" text-anchor="middle" class="region">华北平原北缘</text>
+  <text x="390" y="680" text-anchor="middle" class="note">人口 · 粮食 · 城市 · 税收</text>
+
+  <!-- Seas -->
+  <path d="M740,730 C850,690 935,705 1000,790 C900,850 770,850 690,810 Z" fill="#bcd9e8" opacity=".85" stroke="#78a7c4" stroke-width="2"/>
+  <text x="835" y="796" text-anchor="middle" class="region" fill="#356789">渤海</text>
+  <path d="M1260,560 C1350,610 1370,780 1290,850 L1380,850 L1380,500 Z" fill="#bcd9e8" opacity=".85" stroke="#78a7c4" stroke-width="2"/>
+  <text x="1322" y="720" text-anchor="middle" class="region" fill="#356789" transform="rotate(90 1322 720)">黄海方向</text>
+
+  <!-- Mountain systems -->
+  <path class="ridge" d="M120,475 C250,430 390,445 520,485 C600,505 670,520 735,500"/>
+  <text x="340" y="458" text-anchor="middle" class="mountain">阴山—燕山北缘屏障</text>
+
+  <path class="ridge2" d="M570,555 C650,520 735,500 810,515 C850,525 885,550 915,585"/>
+  <text x="735" y="535" text-anchor="middle" class="mountain">燕山</text>
+
+  <path class="ridge" d="M805,140 C780,235 790,330 835,425 C850,465 870,510 905,555"/>
+  <text x="810" y="305" text-anchor="middle" class="mountain" transform="rotate(78 810 305)">大兴安岭</text>
+
+  <!-- Rivers -->
+  <path class="water" d="M760,285 C815,320 845,360 860,420 C875,485 930,520 1010,535 C1065,548 1110,590 1115,675"/>
+  <text x="935" y="500" class="note" fill="#356789">辽河</text>
+
+  <path class="water2" d="M720,360 C760,395 805,430 845,470 C885,510 910,555 930,615"/>
+  <text x="787" y="430" class="small" fill="#356789">西辽河</text>
+
+  <path class="water2" d="M650,400 C700,420 745,450 785,495 C810,525 835,560 870,600"/>
+  <text x="700" y="435" class="small" fill="#356789">大凌河</text>
+
+  <path class="water2" d="M1210,365 C1195,430 1200,505 1230,565 C1250,610 1270,650 1295,680"/>
+  <text x="1210" y="525" class="small" fill="#356789">鸭绿江方向</text>
+
+  <!-- Corridor highlight -->
+  <path d="M540,655 C640,620 735,610 830,635 C875,646 915,660 955,680" fill="none" stroke="#e09a4c" stroke-width="25" opacity=".35" stroke-linecap="round"/>
+  <text x="747" y="700" text-anchor="middle" class="mountain">辽西傍海道（山海关—锦州）</text>
+
+  <path d="M565,535 C650,490 740,475 835,520 C885,545 920,585 945,625" fill="none" stroke="#d68144" stroke-width="20" opacity=".28" stroke-linecap="round"/>
+  <text x="725" y="485" text-anchor="middle" class="mountain">大凌河廊道</text>
+
+  <!-- Nodes -->
+  <circle cx="465" cy="660" r="10" class="node"/><text x="448" y="642" class="city">北京</text>
+  <circle cx="570" cy="620" r="10" class="node"/><text x="532" y="606" class="city">山海关</text>
+  <circle cx="665" cy="625" r="10" class="node"/><text x="635" y="650" class="city">宁远</text>
+  <circle cx="760" cy="630" r="10" class="node"/><text x="740" y="655" class="city">锦州</text>
+  <circle cx="690" cy="500" r="10" class="node"/><text x="655" y="485" class="city">朝阳／龙城</text>
+  <circle cx="625" cy="455" r="9" class="battle"/><text x="575" y="440" class="city">白狼山</text>
+  <circle cx="735" cy="470" r="9" class="node"/><text x="740" y="458" class="city">柳城</text>
+  <circle cx="1010" cy="620" r="11" class="capital"/><text x="980" y="650" class="city">襄平／辽阳</text>
+  <circle cx="1055" cy="560" r="10" class="node"/><text x="1067" y="548" class="city">沈阳</text>
+  <circle cx="1035" cy="760" r="10" class="node"/><text x="990" y="748" class="city">辽东半岛港口</text>
+  <circle cx="655" cy="290" r="10" class="capital"/><text x="613" y="275" class="city">辽上京方向</text>
+  <circle cx="505" cy="270" r="10" class="node"/><text x="465" y="255" class="city">草原核心</text>
+
+  <!-- Routes -->
+  <path class="route" d="M465,650 C510,590 540,525 600,480 C620,465 635,458 650,455 C680,455 710,465 735,470"/>
+  <text x="485" y="535" class="note" fill="#8e2e28">207年曹操北征迂回线</text>
+
+  <path class="route2" d="M470,665 C570,670 675,662 760,642 C850,620 925,610 1005,620"/>
+  <text x="735" y="735" text-anchor="middle" class="note" fill="#356789">华北—辽西—辽东主通道</text>
+
+  <path class="route2" d="M505,280 C585,325 625,370 690,500"/>
+  <text x="580" y="350" class="note" fill="#356789">草原—大凌河方向</text>
+
+  <path class="route2" d="M655,290 C760,330 855,420 1015,600"/>
+  <text x="860" y="390" class="note" fill="#356789">西辽河—辽河方向</text>
+
+  <!-- Callouts -->
+  <g filter="url(#shadow)">
+    <rect x="65" y="735" width="470" height="105" rx="14" fill="#fffdf5" stroke="#9aa99f"/>
+    <text x="85" y="765" class="city">地图阅读提示</text>
+    <text x="85" y="792" class="note">1. 山脉不是绝对墙体，山口与河谷决定可通行方向。</text>
+    <text x="85" y="816" class="note">2. 辽西走廊包含大凌河廊道和傍海道两类主轴。</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="870" y="95" width="445" height="118" rx="14" fill="#fffdf5" stroke="#9aa99f"/>
+    <text x="892" y="126" class="city">核心模型</text>
+    <text x="892" y="154" class="note">草原机动 + 辽西节点 + 辽河农业 + 华北财政</text>
+    <text x="892" y="180" class="note">军事抵达只有转化为道路、粮运、城市和制度，</text>
+    <text x="892" y="203" class="note">才能成为长期统治。</text>
+  </g>
+
+  <!-- Legend -->
+  <g transform="translate(555,815)">
+    <circle cx="10" cy="0" r="8" class="node"/><text x="26" y="5" class="small">交通节点</text>
+    <circle cx="135" cy="0" r="8" class="battle"/><text x="151" y="5" class="small">战役节点</text>
+    <circle cx="260" cy="0" r="8" class="capital"/><text x="276" y="5" class="small">政治中心</text>
+    <line x1="385" y1="0" x2="438" y2="0" class="route"/><text x="451" y="5" class="small">北征线</text>
+    <line x1="535" y1="0" x2="588" y2="0" class="route2"/><text x="600" y="5" class="small">区域通道</text>
+  </g>
+
+  <text x="700" y="865" text-anchor="middle" class="small">本图为学习用原创概念图；古地名位置与道路走向均作概括表达，涉及争议地望时以章节说明为准。</text>
+</svg>

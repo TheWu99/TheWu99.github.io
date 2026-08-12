@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900" role="img" aria-labelledby="title desc">
+  <title id="title">第九章：西和诸戎与南征百越地理骨架</title>
+  <desc id="desc">示意关中、陇山、陇西、义渠与西戎，以及长江、南岭、湘江、灵渠、漓江、西江、珠江口、番禺、闽越和南越之间的地理关系。</desc>
+  <defs>
+    <linearGradient id="land" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f7f1df"/><stop offset="100%" stop-color="#efe4c7"/></linearGradient>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#cfe9f7"/><stop offset="100%" stop-color="#9fd0eb"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="3" stdDeviation="4" flood-opacity="0.18"/></filter>
+    <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#b53a2d"/></marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="8" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#2f6f9f"/></marker>
+    <style>
+      .title{font:700 34px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#2d2a25}.subtitle{font:500 17px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#625c52}.region{font:700 22px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#3b342b}.label{font:600 17px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#2f2c28}.small{font:500 14px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#4f4a43}.note{font:500 13px "Noto Sans SC","Microsoft YaHei",sans-serif;fill:#5e584f}.river{fill:none;stroke:#3b8ec2;stroke-width:7;stroke-linecap:round;stroke-linejoin:round}.river2{fill:none;stroke:#67a9cf;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.mountain{fill:none;stroke:#7d6845;stroke-width:13;stroke-linecap:round;opacity:.72}.route{fill:none;stroke:#b53a2d;stroke-width:5;stroke-dasharray:12 9;marker-end:url(#arrowRed)}.trade{fill:none;stroke:#2f6f9f;stroke-width:4;stroke-dasharray:8 8;marker-end:url(#arrowBlue)}.city{fill:#fffaf0;stroke:#6c5840;stroke-width:2.2;filter:url(#shadow)}.frontier{fill:#e8d4ad;stroke:#a88750;stroke-width:2;stroke-dasharray:8 6}.south{fill:#dce8c5;stroke:#71905b;stroke-width:2}.legend{fill:#fffdf7;stroke:#b9ab92;stroke-width:1.5}
+    </style>
+  </defs>
+  <rect width="1400" height="900" fill="url(#land)"/>
+  <path d="M1020 525 C1160 500 1265 545 1400 520 L1400 900 L980 900 C1020 790 1005 650 1020 525 Z" fill="url(#sea)"/>
+  <text x="700" y="52" text-anchor="middle" class="title">第九章：西和诸戎，南征百越</text>
+  <text x="700" y="82" text-anchor="middle" class="subtitle">西部农牧过渡带与南方山水网络的历史地理示意图（非精确测绘）</text>
+
+  <path d="M80 160 C155 110 270 115 350 165 L315 340 C220 365 125 330 80 250 Z" class="frontier"/>
+  <text x="188" y="145" class="region">西部诸戎活动区</text><text x="118" y="192" class="label">陇西 / 河湟方向</text><text x="112" y="222" class="small">农牧交错、马匹、河谷与山口</text><text x="170" y="292" class="label">西戎诸部</text>
+  <path d="M335 125 C365 175 368 265 350 355" class="mountain"/><text x="362" y="210" class="label" transform="rotate(78 362 210)">陇山</text>
+  <rect x="405" y="180" width="170" height="105" rx="18" class="city"/><text x="490" y="220" text-anchor="middle" class="region">关中</text><text x="490" y="251" text-anchor="middle" class="label">咸阳 / 雍 / 渭河平原</text>
+  <path d="M390 265 C505 310 650 292 760 330" class="river2"/><text x="545" y="318" class="label">渭河 → 黄河</text>
+  <ellipse cx="470" cy="115" rx="100" ry="48" class="frontier"/><text x="470" y="107" text-anchor="middle" class="region">义渠</text><text x="470" y="132" text-anchor="middle" class="small">关中北缘压力</text>
+  <path d="M390 230 C350 215 320 220 285 245" class="route"/><text x="325" y="198" class="small">秦向西经营</text><path d="M465 165 C465 150 466 145 468 141" class="route"/>
+
+  <rect x="650" y="130" width="210" height="120" rx="18" class="city"/><text x="755" y="171" text-anchor="middle" class="region">中原—江汉</text><text x="755" y="203" text-anchor="middle" class="label">郡县、道路、仓储</text><text x="755" y="230" text-anchor="middle" class="small">北方国家机器的出发区</text>
+  <path d="M760 290 C840 305 940 300 1060 300" class="river"/><text x="905" y="280" class="label">长江</text>
+
+  <path d="M1050 155 C1170 125 1280 170 1320 255 C1250 300 1140 300 1045 250 Z" class="south"/><text x="1180" y="190" text-anchor="middle" class="region">吴越 / 东瓯</text><text x="1180" y="220" text-anchor="middle" class="small">长江下游—浙江沿海</text>
+  <path d="M1140 315 C1210 315 1280 345 1315 400 C1270 445 1190 448 1120 410 Z" class="south"/><text x="1220" y="360" text-anchor="middle" class="region">闽越</text><text x="1220" y="390" text-anchor="middle" class="small">福建山海分隔区</text>
+
+  <path d="M650 430 C760 395 870 452 980 410 C1060 382 1120 430 1195 420" class="mountain"/><text x="910" y="397" text-anchor="middle" class="region">五岭 / 南岭</text><text x="910" y="430" text-anchor="middle" class="small">交通集中于山口与河谷</text>
+  <path d="M770 300 C760 350 770 400 805 470" class="river"/><text x="725" y="374" class="label">湘江</text><path d="M815 468 C830 505 840 548 870 590" class="river"/><text x="840" y="540" class="label">漓江</text>
+  <path d="M802 458 C808 468 815 476 825 485" stroke="#b53a2d" stroke-width="10" stroke-linecap="round"/><text x="705" y="475" class="label">灵渠（跨水系接口）</text>
+  <path d="M870 590 C930 630 1000 655 1085 665" class="river"/><text x="945" y="625" class="label">桂江—西江</text>
+
+  <path d="M620 505 C760 460 950 500 1110 570 C1130 675 1070 765 920 790 C750 805 620 720 600 620 Z" class="south"/><text x="715" y="560" class="region">西瓯</text><text x="700" y="590" class="small">桂中、桂东山河区域</text><text x="720" y="685" class="region">骆越</text><text x="690" y="715" class="small">桂西南—红河流域方向</text>
+  <rect x="930" y="690" width="185" height="92" rx="16" class="city"/><text x="1022" y="726" text-anchor="middle" class="region">番禺</text><text x="1022" y="755" text-anchor="middle" class="small">南海郡 / 南越国都城</text>
+  <text x="815" y="758" class="label">桂林郡</text><text x="630" y="770" class="label">象郡（范围有争议）</text>
+  <path d="M1085 665 C1070 690 1055 705 1040 715" class="river"/><text x="1110" y="645" class="label">珠江水系</text><text x="1200" y="665" class="region">南海</text>
+
+  <path d="M760 250 C780 320 785 375 807 444" class="route"/><text x="655" y="350" class="label">秦军南下与粮运</text><path d="M825 490 C855 535 905 585 970 625" class="route"/>
+  <path d="M1040 718 C1130 690 1200 675 1280 690" class="trade"/><text x="1165" y="720" class="label">海上交通</text>
+  <circle cx="807" cy="458" r="8" fill="#b53a2d"/><circle cx="1020" cy="715" r="8" fill="#b53a2d"/><circle cx="470" cy="230" r="8" fill="#b53a2d"/>
+
+  <rect x="60" y="645" width="410" height="185" rx="16" class="legend"/><text x="85" y="680" class="region">图例与阅读提醒</text>
+  <line x1="90" y1="710" x2="150" y2="710" class="mountain"/><text x="170" y="716" class="small">山地与交通门槛</text>
+  <line x1="90" y1="748" x2="150" y2="748" class="river"/><text x="170" y="754" class="small">主要水系</text>
+  <line x1="90" y1="786" x2="150" y2="786" class="route"/><text x="170" y="792" class="small">军事与后勤方向</text>
+  <text x="85" y="818" class="note">“戎”“越”与秦汉郡界均随时代变化，图中不表示精确族群边界。</text>
+  <text x="700" y="875" text-anchor="middle" class="note">核心机制：山岭集中路线，河流组织区域，工程连接水系，长期治理把军事通道转化为行政与经济网络。</text>
+</svg>
