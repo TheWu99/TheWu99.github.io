@@ -8,6 +8,18 @@ const state = {
 
 const el = (id) => document.getElementById(id);
 const root = document.documentElement;
+
+const audioState = {
+  supported: 'speechSynthesis' in window && 'SpeechSynthesisUtterance' in window,
+  segments: [],
+  index: 0,
+  playing: false,
+  paused: false,
+  generation: 0,
+  utterance: null,
+  voices: []
+};
+
 const tick = String.fromCharCode(96);
 
 function escapeHtml(value) {
@@ -213,9 +225,238 @@ function updatePager() {
   set(el('nextChapter'), next);
 }
 
+
+function splitSpeechText(text, maxLength) {
+  const cleaned = String(text || '')
+    .replace(/https?:\/\/\S+/gi, '')
+    .replace(/\[\^[^\]]+\]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+  if (!cleaned) return [];
+
+  const sentences = cleaned.match(/[^。！？!?；;]+[。！？!?；;]?/g) || [cleaned];
+  const chunks = [];
+  let current = '';
+
+  sentences.forEach(function (sentence) {
+    const value = sentence.trim();
+    if (!value) return;
+    if ((current + value).length <= maxLength) {
+      current += value;
+      return;
+    }
+    if (current) chunks.push(current);
+    if (value.length <= maxLength) {
+      current = value;
+      return;
+    }
+    for (let start = 0; start < value.length; start += maxLength) {
+      chunks.push(value.slice(start, start + maxLength));
+    }
+    current = '';
+  });
+  if (current) chunks.push(current);
+  return chunks;
+}
+
+function collectSpeechSegments() {
+  const nodes = Array.from(el('content').querySelectorAll('h2, h3, h4, p, li'));
+  const segments = [{
+    text: chineseChapter(state.current) + '，' + el('chapterTitle').textContent.trim(),
+    label: '章节标题',
+    node: el('chapterTitle')
+  }];
+
+  nodes.forEach(function (node) {
+    if (node.closest('pre, code, .code-block')) return;
+    const text = node.textContent;
+    if (/^\s*\[\^[^\]]+\]:/.test(text)) return;
+    splitSpeechText(text, 160).forEach(function (chunk) {
+      segments.push({
+        text: chunk,
+        label: node.matches('h2, h3, h4') ? text.trim() : '',
+        node: node
+      });
+    });
+  });
+
+  return segments;
+}
+
+function selectedVoice() {
+  const uri = el('audioVoice').value;
+  const exact = audioState.voices.find(function (voice) { return voice.voiceURI === uri; });
+  if (exact) return exact;
+  return audioState.voices.find(function (voice) { return /^zh(?:-|_)/i.test(voice.lang); }) || null;
+}
+
+function loadSpeechVoices() {
+  if (!audioState.supported) return;
+  const voices = speechSynthesis.getVoices();
+  if (!voices.length) return;
+  audioState.voices = voices;
+
+  const chinese = voices.filter(function (voice) {
+    return /^zh(?:-|_)/i.test(voice.lang) || /Chinese|Mandarin|中文|普通话|國語|国语/i.test(voice.name);
+  });
+  const options = chinese.length ? chinese : voices;
+  const saved = localStorage.getItem('tao-audio-voice') || '';
+  el('audioVoice').innerHTML = '<option value="">自动选择中文语音</option>' +
+    options.map(function (voice) {
+      return '<option value="' + escapeHtml(voice.voiceURI) + '">' +
+        escapeHtml(voice.name + ' · ' + voice.lang) + '</option>';
+    }).join('');
+  if (options.some(function (voice) { return voice.voiceURI === saved; })) {
+    el('audioVoice').value = saved;
+  }
+}
+
+function clearSpeechHighlight() {
+  el('content').querySelectorAll('.tts-active').forEach(function (node) {
+    node.classList.remove('tts-active');
+  });
+}
+
+function updateAudioUi(message) {
+  const total = audioState.segments.length;
+  const position = total ? Math.min(audioState.index + (audioState.playing ? 1 : 0), total) : 0;
+  el('audioProgress').max = Math.max(1, total);
+  el('audioProgress').value = position;
+  el('audioProgressText').textContent = position + ' / ' + total;
+
+  if (message) el('audioStatus').textContent = message;
+  if (audioState.paused) el('audioPrimary').textContent = '▶ 继续';
+  else if (audioState.playing) el('audioPrimary').textContent = 'Ⅱ 暂停';
+  else el('audioPrimary').textContent = '▶ 朗读本章';
+
+  const segment = audioState.segments[audioState.index];
+  el('audioTitle').textContent = segment && audioState.playing
+    ? (segment.label || chineseChapter(state.current) + ' · ' + el('chapterTitle').textContent)
+    : chineseChapter(state.current) + ' · ' + el('chapterTitle').textContent;
+}
+
+function highlightSpeechSegment(segment) {
+  clearSpeechHighlight();
+  if (!segment || !segment.node) return;
+  segment.node.classList.add('tts-active');
+  const rect = segment.node.getBoundingClientRect();
+  if (rect.top < 72 || rect.bottom > window.innerHeight - 190) {
+    segment.node.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
+
+function speakCurrentSegment() {
+  if (!audioState.supported || !audioState.segments.length) return;
+  if (audioState.index >= audioState.segments.length) {
+    stopSpeech(true);
+    updateAudioUi('本章朗读完成。');
+    return;
+  }
+
+  const generation = audioState.generation;
+  const segment = audioState.segments[audioState.index];
+  const utterance = new SpeechSynthesisUtterance(segment.text);
+  const voice = selectedVoice();
+  utterance.lang = voice ? voice.lang : 'zh-CN';
+  utterance.voice = voice;
+  utterance.rate = Number(el('audioRate').value) || 1;
+  utterance.pitch = 1;
+  audioState.utterance = utterance;
+  audioState.playing = true;
+  audioState.paused = false;
+
+  utterance.onstart = function () {
+    if (generation !== audioState.generation) return;
+    highlightSpeechSegment(segment);
+    updateAudioUi('正在朗读；可随时暂停或跳转段落。');
+  };
+  utterance.onend = function () {
+    if (generation !== audioState.generation) return;
+    audioState.index += 1;
+    speakCurrentSegment();
+  };
+  utterance.onerror = function (event) {
+    if (generation !== audioState.generation || event.error === 'canceled' || event.error === 'interrupted') return;
+    audioState.playing = false;
+    audioState.paused = false;
+    clearSpeechHighlight();
+    updateAudioUi('语音暂时无法播放，请重新点击朗读。');
+  };
+
+  speechSynthesis.speak(utterance);
+}
+
+function startSpeechAt(index) {
+  if (!audioState.supported || !audioState.segments.length) return;
+  audioState.generation += 1;
+  speechSynthesis.cancel();
+  audioState.index = Math.min(Math.max(index, 0), audioState.segments.length - 1);
+  audioState.playing = true;
+  audioState.paused = false;
+  const generation = audioState.generation;
+  setTimeout(function () {
+    if (generation === audioState.generation) speakCurrentSegment();
+  }, 50);
+}
+
+function toggleSpeech() {
+  if (!audioState.supported) {
+    updateAudioUi('此浏览器不支持网页语音朗读。');
+    return;
+  }
+  if (!audioState.segments.length) return;
+
+  if (audioState.paused) {
+    speechSynthesis.resume();
+    audioState.paused = false;
+    audioState.playing = true;
+    updateAudioUi('继续朗读。');
+    return;
+  }
+  if (audioState.playing) {
+    speechSynthesis.pause();
+    audioState.paused = true;
+    updateAudioUi('朗读已暂停。');
+    return;
+  }
+  if (audioState.index >= audioState.segments.length) audioState.index = 0;
+  startSpeechAt(audioState.index);
+}
+
+function stopSpeech(completed) {
+  audioState.generation += 1;
+  if (audioState.supported) speechSynthesis.cancel();
+  audioState.playing = false;
+  audioState.paused = false;
+  audioState.utterance = null;
+  clearSpeechHighlight();
+  if (!completed) audioState.index = 0;
+  updateAudioUi(completed ? '本章朗读完成。' : '朗读已停止。');
+}
+
+function moveSpeech(direction) {
+  if (!audioState.segments.length) return;
+  const next = Math.min(Math.max(audioState.index + direction, 0), audioState.segments.length - 1);
+  startSpeechAt(next);
+}
+
+function prepareAudioChapter() {
+  stopSpeech(false);
+  audioState.segments = collectSpeechSegments();
+  audioState.index = 0;
+  const supported = audioState.supported && audioState.segments.length > 0;
+  ['audioPrimary', 'audioPrevious', 'audioStop', 'audioNext', 'audioRate', 'audioVoice'].forEach(function (id) {
+    el(id).disabled = !supported;
+  });
+  updateAudioUi(supported
+    ? '浏览器语音在本机生成，不上传章节内容。'
+    : '此浏览器不支持网页语音朗读。');
+}
+
 async function loadChapter(number) {
   const chapter = state.manifest.chapters[number - 1];
   if (!chapter) return;
+  stopSpeech(false);
   state.current = number;
   document.title = chineseChapter(number) + '：' + chapter.title + ' · 道德经';
   el('chapterNumber').textContent = chineseChapter(number);
@@ -232,6 +473,7 @@ async function loadChapter(number) {
     el('content').innerHTML = markdownToHtml(markdown);
     buildToc();
     updatePager();
+    prepareAudioChapter();
     requestAnimationFrame(function () { window.scrollTo({ top: 0, behavior: 'auto' }); });
   } catch (error) {
     el('content').innerHTML = '<blockquote><p>本章载入失败，请刷新页面后重试。</p></blockquote>';
@@ -303,6 +545,40 @@ async function init() {
   renderChapterList();
   await loadChapter(state.current);
 
+
+  if (audioState.supported) {
+    loadSpeechVoices();
+    speechSynthesis.addEventListener('voiceschanged', loadSpeechVoices);
+  }
+  el('audioRate').value = localStorage.getItem('tao-audio-rate') || '1';
+  el('audioPrimary').addEventListener('click', toggleSpeech);
+  el('audioStop').addEventListener('click', function () { stopSpeech(false); });
+  el('audioPrevious').addEventListener('click', function () { moveSpeech(-1); });
+  el('audioNext').addEventListener('click', function () { moveSpeech(1); });
+  el('audioRate').addEventListener('change', function (event) {
+    localStorage.setItem('tao-audio-rate', event.target.value);
+    if (audioState.playing || audioState.paused) startSpeechAt(audioState.index);
+  });
+  el('audioVoice').addEventListener('change', function (event) {
+    localStorage.setItem('tao-audio-voice', event.target.value);
+    if (audioState.playing || audioState.paused) startSpeechAt(audioState.index);
+  });
+  el('audioCollapse').addEventListener('click', function (event) {
+    const player = el('audioPlayer');
+    const collapsed = player.classList.toggle('collapsed');
+    event.currentTarget.setAttribute('aria-expanded', String(!collapsed));
+    event.currentTarget.setAttribute('aria-label', collapsed ? '展开朗读器' : '收起朗读器');
+    localStorage.setItem('tao-audio-collapsed', String(collapsed));
+  });
+  if (localStorage.getItem('tao-audio-collapsed') === 'true') {
+    el('audioPlayer').classList.add('collapsed');
+    el('audioCollapse').setAttribute('aria-expanded', 'false');
+    el('audioCollapse').setAttribute('aria-label', '展开朗读器');
+  }
+  addEventListener('beforeunload', function () {
+    if (audioState.supported) speechSynthesis.cancel();
+  });
+
   el('chapterSearch').addEventListener('input', function (event) { renderChapterList(event.target.value); });
   document.addEventListener('click', function (event) {
     const link = event.target.closest('[data-chapter]');
@@ -325,8 +601,14 @@ async function init() {
   });
   addEventListener('keydown', function (event) {
     if (event.key === 'Escape') closeMenu();
-    if ((event.altKey || event.metaKey) && event.key === 'ArrowLeft' && state.current > 1) history.pushState({}, '', '?chapter=' + (state.current - 1)); loadChapter(state.current - 1);
-    if ((event.altKey || event.metaKey) && event.key === 'ArrowRight' && state.current < state.manifest.chapters.length) history.pushState({}, '', '?chapter=' + (state.current + 1)); loadChapter(state.current + 1);
+    if ((event.altKey || event.metaKey) && event.key === 'ArrowLeft' && state.current > 1) {
+      history.pushState({}, '', '?chapter=' + (state.current - 1));
+      loadChapter(state.current - 1);
+    }
+    if ((event.altKey || event.metaKey) && event.key === 'ArrowRight' && state.current < state.manifest.chapters.length) {
+      history.pushState({}, '', '?chapter=' + (state.current + 1));
+      loadChapter(state.current + 1);
+    }
   });
 }
 
