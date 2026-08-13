@@ -2,134 +2,35 @@
   "title": "道德经",
   "author": "老子",
   "language": "zh-CN",
-  "completed": 25,
+  "completed": 26,
   "total": 81,
-  "updated": "2026-08-12",
+  "updated": "2026-08-13",
   "chapters": [
-    {
-      "chapter": 1,
-      "title": "道可道，非常道",
-      "file": "content/chapter-01.md"
-    },
-    {
-      "chapter": 2,
-      "title": "天下皆知美之为美",
-      "file": "content/chapter-02.md"
-    },
-    {
-      "chapter": 3,
-      "title": "不尚贤，使民不争",
-      "file": "content/chapter-03.md"
-    },
-    {
-      "chapter": 4,
-      "title": "道冲，而用之或不盈",
-      "file": "content/chapter-04.md"
-    },
-    {
-      "chapter": 5,
-      "title": "天地不仁，以万物为刍狗",
-      "file": "content/chapter-05.md"
-    },
-    {
-      "chapter": 6,
-      "title": "谷神不死，是谓玄牝",
-      "file": "content/chapter-06.md"
-    },
-    {
-      "chapter": 7,
-      "title": "天长地久",
-      "file": "content/chapter-07.md"
-    },
-    {
-      "chapter": 8,
-      "title": "上善若水",
-      "file": "content/chapter-08.md"
-    },
-    {
-      "chapter": 9,
-      "title": "持而盈之，不如其已",
-      "file": "content/chapter-09.md"
-    },
-    {
-      "chapter": 10,
-      "title": "载营魄抱一，能无离乎",
-      "file": "content/chapter-10.md"
-    },
-    {
-      "chapter": 11,
-      "title": "三十辐共一毂，当其无，有车之用",
-      "file": "content/chapter-11.md"
-    },
-    {
-      "chapter": 12,
-      "title": "五色令人目盲，五音令人耳聋",
-      "file": "content/chapter-12.md"
-    },
-    {
-      "chapter": 13,
-      "title": "宠辱若惊，贵大患若身",
-      "file": "content/chapter-13.md"
-    },
-    {
-      "chapter": 14,
-      "title": "视之不见名曰夷，听之不闻名曰希",
-      "file": "content/chapter-14.md"
-    },
-    {
-      "chapter": 15,
-      "title": "古之善为士者，微妙玄通，深不可识",
-      "file": "content/chapter-15.md"
-    },
-    {
-      "chapter": 16,
-      "title": "致虚极，守静笃",
-      "file": "content/chapter-16.md"
-    },
-    {
-      "chapter": 17,
-      "title": "太上，下知有之",
-      "file": "content/chapter-17.md"
-    },
-    {
-      "chapter": 18,
-      "title": "大道废，有仁义",
-      "file": "content/chapter-18.md"
-    },
-    {
-      "chapter": 19,
-      "title": "绝圣弃智，民利百倍",
-      "file": "content/chapter-19.md"
-    },
-    {
-      "chapter": 20,
-      "title": "绝学无忧",
-      "file": "content/chapter-20.md"
-    },
-    {
-      "chapter": 21,
-      "title": "孔德之容，唯道是从",
-      "file": "content/chapter-21.md"
-    },
-    {
-      "chapter": 22,
-      "title": "曲则全，枉则直",
-      "file": "content/chapter-22.md"
-    },
-    {
-      "chapter": 23,
-      "title": "希言自然",
-      "file": "content/chapter-23.md"
-    },
-    {
-      "chapter": 24,
-      "title": "企者不立，跨者不行",
-      "file": "content/chapter-24.md"
-    },
-    {
-      "chapter": 25,
-      "title": "有物混成，先天地生",
-      "file": "content/chapter-25.md"
-    }
+    { "chapter": 1, "title": "道可道，非常道", "file": "content/chapter-01.md" },
+    { "chapter": 2, "title": "天下皆知美之为美", "file": "content/chapter-02.md" },
+    { "chapter": 3, "title": "不尚贤，使民不争", "file": "content/chapter-03.md" },
+    { "chapter": 4, "title": "道冲，而用之或不盈", "file": "content/chapter-04.md" },
+    { "chapter": 5, "title": "天地不仁，以万物为刍狗", "file": "content/chapter-05.md" },
+    { "chapter": 6, "title": "谷神不死，是谓玄牝", "file": "content/chapter-06.md" },
+    { "chapter": 7, "title": "天长地久", "file": "content/chapter-07.md" },
+    { "chapter": 8, "title": "上善若水", "file": "content/chapter-08.md" },
+    { "chapter": 9, "title": "持而盈之，不如其已", "file": "content/chapter-09.md" },
+    { "chapter": 10, "title": "载营魄抱一，能无离乎", "file": "content/chapter-10.md" },
+    { "chapter": 11, "title": "三十辐共一毂，当其无，有车之用", "file": "content/chapter-11.md" },
+    { "chapter": 12, "title": "五色令人目盲，五音令人耳聋", "file": "content/chapter-12.md" },
+    { "chapter": 13, "title": "宠辱若惊，贵大患若身", "file": "content/chapter-13.md" },
+    { "chapter": 14, "title": "视之不见名曰夷，听之不闻名曰希", "file": "content/chapter-14.md" },
+    { "chapter": 15, "title": "古之善为士者，微妙玄通，深不可识", "file": "content/chapter-15.md" },
+    { "chapter": 16, "title": "致虚极，守静笃", "file": "content/chapter-16.md" },
+    { "chapter": 17, "title": "太上，下知有之", "file": "content/chapter-17.md" },
+    { "chapter": 18, "title": "大道废，有仁义", "file": "content/chapter-18.md" },
+    { "chapter": 19, "title": "绝圣弃智，民利百倍", "file": "content/chapter-19.md" },
+    { "chapter": 20, "title": "绝学无忧", "file": "content/chapter-20.md" },
+    { "chapter": 21, "title": "孔德之容，唯道是从", "file": "content/chapter-21.md" },
+    { "chapter": 22, "title": "曲则全，枉则直", "file": "content/chapter-22.md" },
+    { "chapter": 23, "title": "希言自然", "file": "content/chapter-23.md" },
+    { "chapter": 24, "title": "企者不立，跨者不行", "file": "content/chapter-24.md" },
+    { "chapter": 25, "title": "有物混成，先天地生", "file": "content/chapter-25.md" },
+    { "chapter": 26, "title": "重为轻根，静为躁君", "file": "content/chapter-26.md" }
   ]
 }
