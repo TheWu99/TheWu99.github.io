@@ -2,9 +2,9 @@
   "title": "道德经",
   "author": "老子",
   "language": "zh-CN",
-  "completed": 26,
+  "completed": 27,
   "total": 81,
-  "updated": "2026-08-13",
+  "updated": "2026-08-19",
   "chapters": [
     { "chapter": 1, "title": "道可道，非常道", "file": "content/chapter-01.md" },
     { "chapter": 2, "title": "天下皆知美之为美", "file": "content/chapter-02.md" },
@@ -31,6 +31,7 @@
     { "chapter": 23, "title": "希言自然", "file": "content/chapter-23.md" },
     { "chapter": 24, "title": "企者不立，跨者不行", "file": "content/chapter-24.md" },
     { "chapter": 25, "title": "有物混成，先天地生", "file": "content/chapter-25.md" },
-    { "chapter": 26, "title": "重为轻根，静为躁君", "file": "content/chapter-26.md" }
+    { "chapter": 26, "title": "重为轻根，静为躁君", "file": "content/chapter-26.md" },
+    { "chapter": 27, "title": "善行无辙迹，善言无瑕谪", "file": "content/chapter-27.md" }
   ]
 }
